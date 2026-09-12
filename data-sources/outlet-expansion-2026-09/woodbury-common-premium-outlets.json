@@ -1,0 +1,2406 @@
+{
+  "outletId": "woodbury-common-premium-outlets",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.premiumoutlets.com/outlet/woodbury-common/stores/print",
+  "sourceRecordCount": 248,
+  "rows": [
+    {
+      "name": "7 for All Mankind",
+      "page": 1,
+      "sourceName": "7 for All Mankind",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "7-for-all-mankind"
+      ]
+    },
+    {
+      "name": "Abercrombie & Fitch",
+      "page": 1,
+      "sourceName": "Abercrombie & Fitch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "abercrombie-and-fitch"
+      ]
+    },
+    {
+      "name": "Acne Studios",
+      "page": 1,
+      "sourceName": "Acne Studios",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "acne-studios"
+      ]
+    },
+    {
+      "name": "adidas Outlet Store",
+      "page": 1,
+      "sourceName": "adidas Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "adidas"
+      ]
+    },
+    {
+      "name": "Aerie",
+      "page": 1,
+      "sourceName": "Aerie",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aerie"
+      ]
+    },
+    {
+      "name": "Aeropostale",
+      "page": 1,
+      "sourceName": "Aeropostale",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aeropostale"
+      ]
+    },
+    {
+      "name": "ALDO Outlet",
+      "page": 1,
+      "sourceName": "ALDO Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aldo"
+      ]
+    },
+    {
+      "name": "Alexander McQueen",
+      "page": 1,
+      "sourceName": "Alexander McQueen",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "alexander-mcqueen"
+      ]
+    },
+    {
+      "name": "AllSaints",
+      "page": 2,
+      "sourceName": "AllSaints",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "allsaints"
+      ]
+    },
+    {
+      "name": "American Eagle",
+      "page": 2,
+      "sourceName": "American Eagle",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "american-eagle"
+      ]
+    },
+    {
+      "name": "AMIRI",
+      "page": 2,
+      "sourceName": "AMIRI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "amiri"
+      ]
+    },
+    {
+      "name": "Anine Bing",
+      "page": 2,
+      "sourceName": "Anine Bing",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "anine-bing"
+      ]
+    },
+    {
+      "name": "Ann Taylor Factory Store",
+      "page": 2,
+      "sourceName": "Ann Taylor Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ann-taylor"
+      ]
+    },
+    {
+      "name": "Anne Fontaine",
+      "page": 2,
+      "sourceName": "Anne Fontaine",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "anne-fontaine"
+      ]
+    },
+    {
+      "name": "Arc'teryx Factory Outlet",
+      "page": 2,
+      "sourceName": "Arc'teryx Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "arcteryx"
+      ]
+    },
+    {
+      "name": "Aritzia",
+      "page": 2,
+      "sourceName": "Aritzia",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aritzia"
+      ]
+    },
+    {
+      "name": "Armani Exchange Outlet",
+      "page": 2,
+      "sourceName": "Armani Exchange Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "armani-exchange"
+      ]
+    },
+    {
+      "name": "Armani Outlet",
+      "page": 2,
+      "sourceName": "Armani Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "armani-outlet"
+      ]
+    },
+    {
+      "name": "ASICS",
+      "page": 2,
+      "sourceName": "ASICS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "asics"
+      ]
+    },
+    {
+      "name": "Auntie Anne's Pretzels",
+      "page": 3,
+      "sourceName": "Auntie Anne's Pretzels",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-auntie-anne-s-pretzels"
+    },
+    {
+      "name": "Avocado's Food",
+      "page": 3,
+      "sourceName": "Avocado's Food",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-avocado-s-food"
+    },
+    {
+      "name": "Balenciaga",
+      "page": 3,
+      "sourceName": "Balenciaga",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "balenciaga"
+      ]
+    },
+    {
+      "name": "Balmain",
+      "page": 3,
+      "sourceName": "Balmain",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "balmain"
+      ]
+    },
+    {
+      "name": "Banana Republic Factory Store",
+      "page": 3,
+      "sourceName": "Banana Republic Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "banana-republic"
+      ]
+    },
+    {
+      "name": "Bareburger",
+      "page": 3,
+      "sourceName": "Bareburger",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-bareburger"
+    },
+    {
+      "name": "Birkenstock",
+      "page": 3,
+      "sourceName": "Birkenstock Coming Soon!",
+      "kind": "retail",
+      "status": "coming-soon",
+      "brandIds": [
+        "birkenstock"
+      ]
+    },
+    {
+      "name": "Black Dirt Bourbon Barn",
+      "page": 3,
+      "sourceName": "Black Dirt Bourbon Barn",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-black-dirt-bourbon-barn"
+    },
+    {
+      "name": "Bloomingdale's - The Outlet Store",
+      "page": 3,
+      "sourceName": "Bloomingdale's - The Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bloomingdales"
+      ]
+    },
+    {
+      "name": "Boggi Milano",
+      "page": 3,
+      "sourceName": "Boggi Milano Now Open!",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boggi-milano"
+      ]
+    },
+    {
+      "name": "BOGNER",
+      "page": 3,
+      "sourceName": "BOGNER",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bogner"
+      ]
+    },
+    {
+      "name": "Bollicine & Co. Champagne Bar",
+      "page": 3,
+      "sourceName": "Bollicine & Co. Champagne Bar",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-bollicine-and-co-champagne-bar"
+    },
+    {
+      "name": "Bonpoint",
+      "page": 3,
+      "sourceName": "Bonpoint",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bonpoint"
+      ]
+    },
+    {
+      "name": "BOSS Outlet",
+      "page": 3,
+      "sourceName": "BOSS Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boss"
+      ]
+    },
+    {
+      "name": "Bottega Veneta",
+      "page": 3,
+      "sourceName": "Bottega Veneta",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bottega-veneta"
+      ]
+    },
+    {
+      "name": "Brioni",
+      "page": 4,
+      "sourceName": "Brioni",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brioni"
+      ]
+    },
+    {
+      "name": "Brooks Brothers Factory Store",
+      "page": 4,
+      "sourceName": "Brooks Brothers Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brooks-brothers"
+      ]
+    },
+    {
+      "name": "Brunello Cucinelli",
+      "page": 4,
+      "sourceName": "Brunello Cucinelli",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brunello-cucinelli"
+      ]
+    },
+    {
+      "name": "Brunello Cucinelli Men's",
+      "page": 4,
+      "sourceName": "Brunello Cucinelli Men's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brunello-cucinelli"
+      ]
+    },
+    {
+      "name": "Burberry",
+      "page": 4,
+      "sourceName": "Burberry",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "burberry"
+      ]
+    },
+    {
+      "name": "Calvin Klein",
+      "page": 4,
+      "sourceName": "Calvin Klein",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calvin-klein"
+      ]
+    },
+    {
+      "name": "Canada Goose",
+      "page": 4,
+      "sourceName": "Canada Goose",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "canada-goose"
+      ]
+    },
+    {
+      "name": "CARTER'S / OSHKOSH B'GOSH",
+      "page": 4,
+      "sourceName": "CARTER'S / OSHKOSH B'GOSH",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carters",
+        "oshkosh-bgosh"
+      ]
+    },
+    {
+      "name": "Celine",
+      "page": 4,
+      "sourceName": "Celine",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "celine"
+      ]
+    },
+    {
+      "name": "Chipotle",
+      "page": 4,
+      "sourceName": "Chipotle",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-chipotle"
+    },
+    {
+      "name": "Chloe",
+      "page": 4,
+      "sourceName": "Chloe",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "chloe"
+      ]
+    },
+    {
+      "name": "Christian Louboutin",
+      "page": 4,
+      "sourceName": "Christian Louboutin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "christian-louboutin"
+      ]
+    },
+    {
+      "name": "Cinnabon",
+      "page": 4,
+      "sourceName": "Cinnabon",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-cinnabon"
+    },
+    {
+      "name": "Citizen",
+      "page": 5,
+      "sourceName": "Citizen",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "citizen"
+      ]
+    },
+    {
+      "name": "Clarins Factory Store",
+      "page": 5,
+      "sourceName": "Clarins Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "clarins"
+      ]
+    },
+    {
+      "name": "Clarks",
+      "page": 5,
+      "sourceName": "Clarks",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "clarks"
+      ]
+    },
+    {
+      "name": "Coach Men's",
+      "page": 5,
+      "sourceName": "Coach Men's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "coach"
+      ]
+    },
+    {
+      "name": "Coach Outlet",
+      "page": 5,
+      "sourceName": "Coach Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "coach"
+      ]
+    },
+    {
+      "name": "Cole Haan Outlet",
+      "page": 5,
+      "sourceName": "Cole Haan Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "cole-haan"
+      ]
+    },
+    {
+      "name": "Columbia Factory Store",
+      "page": 5,
+      "sourceName": "Columbia Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "columbia"
+      ]
+    },
+    {
+      "name": "Cornell Cooperative Extension Sullivan County",
+      "page": 5,
+      "sourceName": "Cornell Cooperative Extension Sullivan County",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "CREED",
+      "page": 5,
+      "sourceName": "CREED",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "creed"
+      ]
+    },
+    {
+      "name": "Crocs",
+      "page": 5,
+      "sourceName": "Crocs",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "crocs"
+      ]
+    },
+    {
+      "name": "Currency Exchange International",
+      "page": 5,
+      "sourceName": "Currency Exchange International",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "David Yurman",
+      "page": 5,
+      "sourceName": "David Yurman",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "david-yurman"
+      ]
+    },
+    {
+      "name": "Diesel",
+      "page": 5,
+      "sourceName": "Diesel",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "diesel"
+      ]
+    },
+    {
+      "name": "Dior",
+      "page": 5,
+      "sourceName": "Dior",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dior"
+      ]
+    },
+    {
+      "name": "Dior Men",
+      "page": 5,
+      "sourceName": "Dior Men",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dior"
+      ]
+    },
+    {
+      "name": "DKNY",
+      "page": 6,
+      "sourceName": "DKNY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dkny"
+      ]
+    },
+    {
+      "name": "Dolce & Gabbana",
+      "page": 6,
+      "sourceName": "Dolce & Gabbana",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dolce-and-gabbana"
+      ]
+    },
+    {
+      "name": "Dunhill",
+      "page": 6,
+      "sourceName": "Dunhill",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dunhill"
+      ]
+    },
+    {
+      "name": "Eleventy",
+      "page": 6,
+      "sourceName": "Eleventy",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "eleventy"
+      ]
+    },
+    {
+      "name": "EMILIO PUCCI",
+      "page": 6,
+      "sourceName": "EMILIO PUCCI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "emilio-pucci"
+      ]
+    },
+    {
+      "name": "ETON",
+      "page": 6,
+      "sourceName": "ETON",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "eton"
+      ]
+    },
+    {
+      "name": "Etro",
+      "page": 6,
+      "sourceName": "Etro",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "etro"
+      ]
+    },
+    {
+      "name": "Everything Kosher",
+      "page": 6,
+      "sourceName": "Everything Kosher",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-everything-kosher"
+    },
+    {
+      "name": "Express Factory Outlet",
+      "page": 6,
+      "sourceName": "Express Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "express"
+      ]
+    },
+    {
+      "name": "Fendi",
+      "page": 6,
+      "sourceName": "Fendi",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fendi"
+      ]
+    },
+    {
+      "name": "Ferragamo",
+      "page": 6,
+      "sourceName": "Ferragamo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ferragamo"
+      ]
+    },
+    {
+      "name": "Fragrance Outlet",
+      "page": 6,
+      "sourceName": "Fragrance Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fragrance-outlet"
+      ]
+    },
+    {
+      "name": "Frette",
+      "page": 6,
+      "sourceName": "Frette",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "frette"
+      ]
+    },
+    {
+      "name": "Furla",
+      "page": 6,
+      "sourceName": "Furla",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "furla"
+      ]
+    },
+    {
+      "name": "GANNI",
+      "page": 7,
+      "sourceName": "GANNI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ganni"
+      ]
+    },
+    {
+      "name": "Gap Factory",
+      "page": 7,
+      "sourceName": "Gap Factory",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gap"
+      ]
+    },
+    {
+      "name": "Gap Outlet - Kids & Baby",
+      "page": 7,
+      "sourceName": "Gap Outlet - Kids & Baby",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gap"
+      ]
+    },
+    {
+      "name": "Givenchy",
+      "page": 7,
+      "sourceName": "Givenchy",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "givenchy"
+      ]
+    },
+    {
+      "name": "Golden Goose",
+      "page": 7,
+      "sourceName": "Golden Goose",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "golden-goose"
+      ]
+    },
+    {
+      "name": "Gong Cha",
+      "page": 7,
+      "sourceName": "Gong Cha",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-gong-cha"
+    },
+    {
+      "name": "G-Star RAW",
+      "page": 7,
+      "sourceName": "G-Star RAW",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "g-star-raw"
+      ]
+    },
+    {
+      "name": "Gucci",
+      "page": 7,
+      "sourceName": "Gucci",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gucci"
+      ]
+    },
+    {
+      "name": "GUESS",
+      "page": 7,
+      "sourceName": "GUESS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "guess"
+      ]
+    },
+    {
+      "name": "Gymboree",
+      "page": 7,
+      "sourceName": "Gymboree",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gymboree"
+      ]
+    },
+    {
+      "name": "Haagen-Dazs",
+      "page": 7,
+      "sourceName": "Haagen-Dazs",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-haagen-dazs"
+    },
+    {
+      "name": "HARIBO",
+      "page": 7,
+      "sourceName": "HARIBO",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-haribo"
+    },
+    {
+      "name": "Helly Hansen(second location)",
+      "page": 7,
+      "sourceName": "Helly Hansen(second location)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "helly-hansen"
+      ]
+    },
+    {
+      "name": "Herno",
+      "page": 8,
+      "sourceName": "Herno",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "herno"
+      ]
+    },
+    {
+      "name": "Hobbs",
+      "page": 8,
+      "sourceName": "Hobbs",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hobbs"
+      ]
+    },
+    {
+      "name": "HOKA",
+      "page": 8,
+      "sourceName": "HOKA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hoka"
+      ]
+    },
+    {
+      "name": "Hollister Co. Outlet",
+      "page": 8,
+      "sourceName": "Hollister Co. Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hollister"
+      ]
+    },
+    {
+      "name": "Hour Passion: Balmain. Longines. Rado. Tissot. Mido. Hamilton. Swatch. Flik Flak.",
+      "page": 8,
+      "sourceName": "Hour Passion: Balmain. Longines. Rado. Tissot. Mido. Hamilton. Swatch. Flik Flak.",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hour-passion"
+      ]
+    },
+    {
+      "name": "Isabel Marant",
+      "page": 8,
+      "sourceName": "Isabel Marant",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "isabel-marant"
+      ]
+    },
+    {
+      "name": "ISAIA",
+      "page": 8,
+      "sourceName": "ISAIA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "isaia"
+      ]
+    },
+    {
+      "name": "J.Crew Factory",
+      "page": 8,
+      "sourceName": "J.Crew Factory",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "j-crew"
+      ]
+    },
+    {
+      "name": "J.Crew Factory Crewcuts",
+      "page": 8,
+      "sourceName": "J.Crew Factory Crewcuts",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "j-crew"
+      ]
+    },
+    {
+      "name": "Janie and Jack",
+      "page": 8,
+      "sourceName": "Janie and Jack",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "janie-and-jack"
+      ]
+    },
+    {
+      "name": "Jersey Mike's Subs",
+      "page": 8,
+      "sourceName": "Jersey Mike's Subs",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-jersey-mike-s-subs"
+    },
+    {
+      "name": "JIL SANDER",
+      "page": 8,
+      "sourceName": "JIL SANDER",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jil-sander"
+      ]
+    },
+    {
+      "name": "Jimmy Choo",
+      "page": 8,
+      "sourceName": "Jimmy Choo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jimmy-choo"
+      ]
+    },
+    {
+      "name": "John Varvatos",
+      "page": 8,
+      "sourceName": "John Varvatos",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "john-varvatos"
+      ]
+    },
+    {
+      "name": "Just Kosher",
+      "page": 9,
+      "sourceName": "Just Kosher",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-just-kosher"
+    },
+    {
+      "name": "Just Salad",
+      "page": 9,
+      "sourceName": "Just Salad",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-just-salad"
+    },
+    {
+      "name": "Karl Lagerfeld Paris",
+      "page": 9,
+      "sourceName": "Karl Lagerfeld Paris",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "karl-lagerfeld"
+      ]
+    },
+    {
+      "name": "Kate Spade New York Outlet",
+      "page": 9,
+      "sourceName": "Kate Spade New York Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kate-spade-new-york"
+      ]
+    },
+    {
+      "name": "Kay Jewelers Outlet",
+      "page": 9,
+      "sourceName": "Kay Jewelers Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kay-jewelers"
+      ]
+    },
+    {
+      "name": "K-Beauty Ave",
+      "page": 9,
+      "sourceName": "K-Beauty Ave",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "k-beauty-ave"
+      ]
+    },
+    {
+      "name": "Kenzo",
+      "page": 9,
+      "sourceName": "Kenzo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kenzo"
+      ]
+    },
+    {
+      "name": "Kids around",
+      "page": 9,
+      "sourceName": "Kids around",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kids-around"
+      ]
+    },
+    {
+      "name": "KINTON RAMEN",
+      "page": 9,
+      "sourceName": "KINTON RAMEN",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-kinton-ramen"
+    },
+    {
+      "name": "Kipling",
+      "page": 9,
+      "sourceName": "Kipling",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kipling"
+      ]
+    },
+    {
+      "name": "Kung Pao Wok",
+      "page": 9,
+      "sourceName": "Kung Pao Wok",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-kung-pao-wok"
+    },
+    {
+      "name": "LACOSTE Outlet",
+      "page": 9,
+      "sourceName": "LACOSTE Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lacoste"
+      ]
+    },
+    {
+      "name": "Laderach Chocolatier Suisse",
+      "page": 9,
+      "sourceName": "Laderach Chocolatier Suisse",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-laderach-chocolatier-suisse"
+    },
+    {
+      "name": "Ladurée",
+      "page": 9,
+      "sourceName": "Ladurée",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-laduree"
+    },
+    {
+      "name": "Lady M Cake Boutique",
+      "page": 9,
+      "sourceName": "Lady M Cake Boutique",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-lady-m-cake-boutique"
+    },
+    {
+      "name": "Lafayette 148 New York",
+      "page": 10,
+      "sourceName": "Lafayette 148 New York",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lafayette-148-new-york"
+      ]
+    },
+    {
+      "name": "L'Agence",
+      "page": 10,
+      "sourceName": "L'Agence",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "l-agence"
+      ]
+    },
+    {
+      "name": "Le Creuset",
+      "page": 10,
+      "sourceName": "Le Creuset",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "le-creuset"
+      ]
+    },
+    {
+      "name": "LensCrafters",
+      "page": 10,
+      "sourceName": "LensCrafters",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lenscrafters"
+      ]
+    },
+    {
+      "name": "Levi's® Outlet Store",
+      "page": 10,
+      "sourceName": "Levi's® Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "levis"
+      ]
+    },
+    {
+      "name": "Lids",
+      "page": 10,
+      "sourceName": "Lids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lids"
+      ]
+    },
+    {
+      "name": "Lindt Chocolate",
+      "page": 10,
+      "sourceName": "Lindt Chocolate",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-lindt-chocolate"
+    },
+    {
+      "name": "L'Occitane",
+      "page": 10,
+      "sourceName": "L'Occitane",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "l-occitane"
+      ]
+    },
+    {
+      "name": "Loewe",
+      "page": 10,
+      "sourceName": "Loewe",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "loewe"
+      ]
+    },
+    {
+      "name": "LOFT Outlet",
+      "page": 10,
+      "sourceName": "LOFT Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "loft"
+      ]
+    },
+    {
+      "name": "Longchamp",
+      "page": 10,
+      "sourceName": "Longchamp",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "longchamp"
+      ]
+    },
+    {
+      "name": "Loro Piana",
+      "page": 10,
+      "sourceName": "Loro Piana",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "loro-piana"
+      ]
+    },
+    {
+      "name": "LoveShackFancy",
+      "page": 10,
+      "sourceName": "LoveShackFancy",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "loveshackfancy"
+      ]
+    },
+    {
+      "name": "Lucky Brand Outlet",
+      "page": 11,
+      "sourceName": "Lucky Brand Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lucky-brand"
+      ]
+    },
+    {
+      "name": "LUKURË",
+      "page": 11,
+      "sourceName": "LUKURË",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lukure"
+      ]
+    },
+    {
+      "name": "lululemon",
+      "page": 11,
+      "sourceName": "lululemon",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lululemon"
+      ]
+    },
+    {
+      "name": "Mackage",
+      "page": 11,
+      "sourceName": "Mackage",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mackage"
+      ]
+    },
+    {
+      "name": "Maison Margiela",
+      "page": 11,
+      "sourceName": "Maison Margiela Now Open!",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "maison-margiela"
+      ]
+    },
+    {
+      "name": "Maje",
+      "page": 11,
+      "sourceName": "Maje",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "maje"
+      ]
+    },
+    {
+      "name": "Management Office",
+      "page": 11,
+      "sourceName": "Management Office",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Marc Jacobs",
+      "page": 11,
+      "sourceName": "Marc Jacobs",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "marc-jacobs"
+      ]
+    },
+    {
+      "name": "Market Hall",
+      "page": 11,
+      "sourceName": "Market Hall",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Marni",
+      "page": 11,
+      "sourceName": "Marni",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "marni"
+      ]
+    },
+    {
+      "name": "Max Mara",
+      "page": 11,
+      "sourceName": "Max Mara",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "max-mara"
+      ]
+    },
+    {
+      "name": "McDonald's",
+      "page": 11,
+      "sourceName": "McDonald's",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-mcdonald-s"
+    },
+    {
+      "name": "MCM",
+      "page": 11,
+      "sourceName": "MCM",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mcm"
+      ]
+    },
+    {
+      "name": "Melt Shop",
+      "page": 12,
+      "sourceName": "Melt Shop",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-melt-shop"
+    },
+    {
+      "name": "Michael Kors Outlet",
+      "page": 12,
+      "sourceName": "Michael Kors Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "Molton Brown",
+      "page": 12,
+      "sourceName": "Molton Brown",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "molton-brown"
+      ]
+    },
+    {
+      "name": "Moncler",
+      "page": 12,
+      "sourceName": "Moncler",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "moncler"
+      ]
+    },
+    {
+      "name": "Montblanc",
+      "page": 12,
+      "sourceName": "Montblanc",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "montblanc"
+      ]
+    },
+    {
+      "name": "Moose Knuckles",
+      "page": 12,
+      "sourceName": "Moose Knuckles",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "moose-knuckles"
+      ]
+    },
+    {
+      "name": "Movado Company Store",
+      "page": 12,
+      "sourceName": "Movado Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "movado"
+      ]
+    },
+    {
+      "name": "Mulberry",
+      "page": 12,
+      "sourceName": "Mulberry",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mulberry"
+      ]
+    },
+    {
+      "name": "New Balance Factory Store",
+      "page": 12,
+      "sourceName": "New Balance Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-balance"
+      ]
+    },
+    {
+      "name": "NIKE Factory Store",
+      "page": 12,
+      "sourceName": "NIKE Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nike"
+      ]
+    },
+    {
+      "name": "Oakley Vault",
+      "page": 12,
+      "sourceName": "Oakley Vault",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "oakley-vault"
+      ]
+    },
+    {
+      "name": "Off-White",
+      "page": 12,
+      "sourceName": "Off-White",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "off-white"
+      ]
+    },
+    {
+      "name": "Old Navy Outlet",
+      "page": 12,
+      "sourceName": "Old Navy Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "old-navy"
+      ]
+    },
+    {
+      "name": "On",
+      "page": 13,
+      "sourceName": "On",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "on"
+      ]
+    },
+    {
+      "name": "Pacsun",
+      "page": 13,
+      "sourceName": "Pacsun",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pacific-sunwear"
+      ]
+    },
+    {
+      "name": "Pagoda Asian Grill by P.F Chang's",
+      "page": 13,
+      "sourceName": "Pagoda Asian Grill by P.F Chang's",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-pagoda-asian-grill-by-p-f-chang-s"
+    },
+    {
+      "name": "PAIGE",
+      "page": 13,
+      "sourceName": "PAIGE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "paige"
+      ]
+    },
+    {
+      "name": "Pandora Outlet",
+      "page": 13,
+      "sourceName": "Pandora Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pandora"
+      ]
+    },
+    {
+      "name": "Parm",
+      "page": 13,
+      "sourceName": "Parm",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-parm"
+    },
+    {
+      "name": "Paul Smith",
+      "page": 13,
+      "sourceName": "Paul Smith",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "paul-smith"
+      ]
+    },
+    {
+      "name": "Perfumania",
+      "page": 13,
+      "sourceName": "Perfumania",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perfumania"
+      ]
+    },
+    {
+      "name": "Peserico",
+      "page": 13,
+      "sourceName": "Peserico",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "peserico"
+      ]
+    },
+    {
+      "name": "Philipp Plein",
+      "page": 13,
+      "sourceName": "Philipp Plein",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "philipp-plein"
+      ]
+    },
+    {
+      "name": "Pinkberry",
+      "page": 13,
+      "sourceName": "Pinkberry",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-pinkberry"
+    },
+    {
+      "name": "Play Area",
+      "page": 13,
+      "sourceName": "Play Area",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Playa Bowls",
+      "page": 13,
+      "sourceName": "Playa Bowls",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-playa-bowls"
+    },
+    {
+      "name": "Polo Ralph Lauren Children",
+      "page": 14,
+      "sourceName": "Polo Ralph Lauren Children",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "Polo Ralph Lauren Factory Store",
+      "page": 14,
+      "sourceName": "Polo Ralph Lauren Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "Pop Mart",
+      "page": 14,
+      "sourceName": "Pop Mart Now Open!",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pop-mart"
+      ]
+    },
+    {
+      "name": "Prada",
+      "page": 14,
+      "sourceName": "Prada",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "prada"
+      ]
+    },
+    {
+      "name": "Psycho Bunny",
+      "page": 14,
+      "sourceName": "Psycho Bunny",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "psycho-bunny"
+      ]
+    },
+    {
+      "name": "PUMA Outlet",
+      "page": 14,
+      "sourceName": "PUMA Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "puma"
+      ]
+    },
+    {
+      "name": "purple",
+      "page": 14,
+      "sourceName": "purple",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "purple"
+      ]
+    },
+    {
+      "name": "rag & bone New York",
+      "page": 14,
+      "sourceName": "rag & bone New York",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rag-and-bone"
+      ]
+    },
+    {
+      "name": "Ralph's Coffee",
+      "page": 14,
+      "sourceName": "Ralph's Coffee",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-ralph-s-coffee"
+    },
+    {
+      "name": "Reformation",
+      "page": 14,
+      "sourceName": "Reformation",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "reformation"
+      ]
+    },
+    {
+      "name": "Reiss",
+      "page": 14,
+      "sourceName": "Reiss",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "reiss"
+      ]
+    },
+    {
+      "name": "Robert Graham Outlet",
+      "page": 14,
+      "sourceName": "Robert Graham Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "robert-graham"
+      ]
+    },
+    {
+      "name": "Roberto Cavalli",
+      "page": 14,
+      "sourceName": "Roberto Cavalli",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "roberto-cavalli"
+      ]
+    },
+    {
+      "name": "Rothy's",
+      "page": 14,
+      "sourceName": "Rothy's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rothy-s"
+      ]
+    },
+    {
+      "name": "Rudsak",
+      "page": 14,
+      "sourceName": "Rudsak",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rudsak"
+      ]
+    },
+    {
+      "name": "Saint Laurent",
+      "page": 15,
+      "sourceName": "Saint Laurent",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "saint-laurent"
+      ]
+    },
+    {
+      "name": "Saks OFF 5TH",
+      "page": 15,
+      "sourceName": "Saks OFF 5TH",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "saks-off-5th"
+      ]
+    },
+    {
+      "name": "Salomon",
+      "page": 15,
+      "sourceName": "Salomon",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "salomon"
+      ]
+    },
+    {
+      "name": "Samsonite",
+      "page": 15,
+      "sourceName": "Samsonite",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsonite"
+      ]
+    },
+    {
+      "name": "Sandro",
+      "page": 15,
+      "sourceName": "Sandro",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sandro"
+      ]
+    },
+    {
+      "name": "Santoni",
+      "page": 15,
+      "sourceName": "Santoni",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "santoni"
+      ]
+    },
+    {
+      "name": "Sayki",
+      "page": 15,
+      "sourceName": "Sayki",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sayki"
+      ]
+    },
+    {
+      "name": "Sferra",
+      "page": 15,
+      "sourceName": "Sferra",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sferra"
+      ]
+    },
+    {
+      "name": "Shake Shack",
+      "page": 15,
+      "sourceName": "Shake Shack",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-shake-shack"
+    },
+    {
+      "name": "Shop The Sample",
+      "page": 15,
+      "sourceName": "Shop The Sample",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "shop-the-sample"
+      ]
+    },
+    {
+      "name": "Simon Guest Services",
+      "page": 15,
+      "sourceName": "Simon Guest Services",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Skechers",
+      "page": 15,
+      "sourceName": "Skechers",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skechers"
+      ]
+    },
+    {
+      "name": "Skims",
+      "page": 15,
+      "sourceName": "Skims",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skims"
+      ]
+    },
+    {
+      "name": "South Philly Cheesesteaks & Fries",
+      "page": 15,
+      "sourceName": "South Philly Cheesesteaks & Fries",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-south-philly-cheesesteaks-and-fries"
+    },
+    {
+      "name": "St. John",
+      "page": 16,
+      "sourceName": "St. John",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "st-john"
+      ]
+    },
+    {
+      "name": "Starbucks Coffee",
+      "page": 16,
+      "sourceName": "Starbucks Coffee",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-starbucks-coffee"
+    },
+    {
+      "name": "Stella McCartney",
+      "page": 16,
+      "sourceName": "Stella McCartney",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "stella-mccartney"
+      ]
+    },
+    {
+      "name": "Steve Madden Outlet",
+      "page": 16,
+      "sourceName": "Steve Madden Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "steve-madden"
+      ]
+    },
+    {
+      "name": "Stone Island",
+      "page": 16,
+      "sourceName": "Stone Island",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "stone-island"
+      ]
+    },
+    {
+      "name": "Stuart Weitzman",
+      "page": 16,
+      "sourceName": "Stuart Weitzman",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "stuart-weitzman"
+      ]
+    },
+    {
+      "name": "Sunglass Hut",
+      "page": 16,
+      "sourceName": "Sunglass Hut",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Sunglass Hut (Location 2)",
+      "page": 16,
+      "sourceName": "Sunglass Hut (Location 2)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Sunglass Hut (Third Location)",
+      "page": 16,
+      "sourceName": "Sunglass Hut (Third Location)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Swarovski",
+      "page": 16,
+      "sourceName": "Swarovski",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "swarovski"
+      ]
+    },
+    {
+      "name": "TAG Heuer",
+      "page": 16,
+      "sourceName": "TAG Heuer",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tag-heuer"
+      ]
+    },
+    {
+      "name": "The Children’s Place Outlet/Gymboree",
+      "page": 16,
+      "sourceName": "The Children’s Place Outlet/Gymboree",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-childrens-place",
+        "gymboree"
+      ]
+    },
+    {
+      "name": "The Coach Coffee Shop",
+      "page": 16,
+      "sourceName": "The Coach Coffee Shop",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-the-coach-coffee-shop"
+    },
+    {
+      "name": "The Cosmetics Company Store",
+      "page": 16,
+      "sourceName": "The Cosmetics Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-cosmetics-company-store"
+      ]
+    },
+    {
+      "name": "The Hudson Valley | Catskills Welcome Center",
+      "page": 16,
+      "sourceName": "The Hudson Valley | Catskills Welcome Center",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "The Magic Train",
+      "page": 17,
+      "sourceName": "The Magic Train",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "The North Face",
+      "page": 17,
+      "sourceName": "The North Face",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-north-face"
+      ]
+    },
+    {
+      "name": "Theory Outlet",
+      "page": 17,
+      "sourceName": "Theory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "theory"
+      ]
+    },
+    {
+      "name": "Theory Outlet Men's",
+      "page": 17,
+      "sourceName": "Theory Outlet Men's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "theory"
+      ]
+    },
+    {
+      "name": "Timberland",
+      "page": 17,
+      "sourceName": "Timberland",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "timberland"
+      ]
+    },
+    {
+      "name": "TOD'S",
+      "page": 17,
+      "sourceName": "TOD'S",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tods"
+      ]
+    },
+    {
+      "name": "Tom Ford",
+      "page": 17,
+      "sourceName": "Tom Ford",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tom-ford"
+      ]
+    },
+    {
+      "name": "Tommy Bahama Outlet",
+      "page": 17,
+      "sourceName": "Tommy Bahama Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-bahama"
+      ]
+    },
+    {
+      "name": "Tommy Hilfiger",
+      "page": 17,
+      "sourceName": "Tommy Hilfiger",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-hilfiger"
+      ]
+    },
+    {
+      "name": "Tony + Benny's",
+      "page": 17,
+      "sourceName": "Tony + Benny's",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-tony-benny-s"
+    },
+    {
+      "name": "Tory Burch",
+      "page": 17,
+      "sourceName": "Tory Burch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tory-burch"
+      ]
+    },
+    {
+      "name": "True Religion Outlet",
+      "page": 17,
+      "sourceName": "True Religion Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "true-religion"
+      ]
+    },
+    {
+      "name": "TUMI",
+      "page": 17,
+      "sourceName": "TUMI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tumi"
+      ]
+    },
+    {
+      "name": "TWP Clothing",
+      "page": 17,
+      "sourceName": "TWP Clothing",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "twp-clothing"
+      ]
+    },
+    {
+      "name": "U.S. Polo Assn. Outlet",
+      "page": 18,
+      "sourceName": "U.S. Polo Assn. Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "u-s-polo-assn"
+      ]
+    },
+    {
+      "name": "UGG Footwear",
+      "page": 18,
+      "sourceName": "UGG Footwear",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ugg"
+      ]
+    },
+    {
+      "name": "Umi Teriyaki",
+      "page": 18,
+      "sourceName": "Umi Teriyaki",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-umi-teriyaki"
+    },
+    {
+      "name": "Under Armour Factory House",
+      "page": 18,
+      "sourceName": "Under Armour Factory House",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "under-armour"
+      ]
+    },
+    {
+      "name": "Valentino",
+      "page": 18,
+      "sourceName": "Valentino",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "valentino"
+      ]
+    },
+    {
+      "name": "Vans Outlet",
+      "page": 18,
+      "sourceName": "Vans Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vans"
+      ]
+    },
+    {
+      "name": "Vera Bradley Factory Outlet",
+      "page": 18,
+      "sourceName": "Vera Bradley Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vera-bradley"
+      ]
+    },
+    {
+      "name": "Versace",
+      "page": 18,
+      "sourceName": "Versace",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "versace"
+      ]
+    },
+    {
+      "name": "Victoria's Secret",
+      "page": 18,
+      "sourceName": "Victoria's Secret",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "victorias-secret"
+      ]
+    },
+    {
+      "name": "Vilebrequin",
+      "page": 18,
+      "sourceName": "Vilebrequin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vilebrequin"
+      ]
+    },
+    {
+      "name": "Vince",
+      "page": 18,
+      "sourceName": "Vince",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vince"
+      ]
+    },
+    {
+      "name": "Vineyard Vines",
+      "page": 18,
+      "sourceName": "Vineyard Vines",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vineyard-vines"
+      ]
+    },
+    {
+      "name": "Wetzel's Pretzels",
+      "page": 18,
+      "sourceName": "Wetzel's Pretzels",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "woodbury-common-premium-outlets-wetzel-s-pretzels"
+    },
+    {
+      "name": "Wilson Sporting Goods",
+      "page": 18,
+      "sourceName": "Wilson Sporting Goods",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "wilson"
+      ]
+    },
+    {
+      "name": "Yankee Candle",
+      "page": 18,
+      "sourceName": "Yankee Candle",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "yankee-candle"
+      ]
+    },
+    {
+      "name": "Zadig&Voltaire",
+      "page": 19,
+      "sourceName": "Zadig&Voltaire",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zadig-and-voltaire"
+      ]
+    },
+    {
+      "name": "Zales Outlet",
+      "page": 19,
+      "sourceName": "Zales Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zales"
+      ]
+    },
+    {
+      "name": "ZEGNA",
+      "page": 19,
+      "sourceName": "ZEGNA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zegna"
+      ]
+    },
+    {
+      "name": "Zimmermann",
+      "page": 19,
+      "sourceName": "Zimmermann",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zimmermann"
+      ]
+    },
+    {
+      "name": "Zwilling J.A. Henckels",
+      "page": 19,
+      "sourceName": "Zwilling J.A. Henckels",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zwilling"
+      ]
+    }
+  ]
+}

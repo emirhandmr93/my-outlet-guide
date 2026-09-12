@@ -1,0 +1,2987 @@
+{
+  "outletId": "sawgrass-mills",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.simon.com/mall/sawgrass-mills/stores/print",
+  "sourceRecordCount": 312,
+  "rows": [
+    {
+      "name": "7 for All Mankind",
+      "page": 1,
+      "sourceName": "7 for All Mankind",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "7-for-all-mankind"
+      ]
+    },
+    {
+      "name": "Abercrombie Kids",
+      "page": 1,
+      "sourceName": "Abercrombie Kids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "abercrombie-and-fitch"
+      ]
+    },
+    {
+      "name": "AC Hotel Fort Lauderdale Sawgrass Mills/Sunrise",
+      "page": 1,
+      "sourceName": "AC Hotel Fort Lauderdale Sawgrass Mills/Sunrise",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "adidas Outlet Store",
+      "page": 1,
+      "sourceName": "adidas Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "adidas"
+      ]
+    },
+    {
+      "name": "Aerie by American Eagle Outfitters",
+      "page": 1,
+      "sourceName": "Aerie by American Eagle Outfitters",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aerie"
+      ]
+    },
+    {
+      "name": "Aeropostale",
+      "page": 1,
+      "sourceName": "Aeropostale",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aeropostale"
+      ]
+    },
+    {
+      "name": "aguabendita",
+      "page": 1,
+      "sourceName": "aguabendita",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aguabendita"
+      ]
+    },
+    {
+      "name": "ALDO Outlet",
+      "page": 1,
+      "sourceName": "ALDO Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aldo"
+      ]
+    },
+    {
+      "name": "AllSaints",
+      "page": 1,
+      "sourceName": "AllSaints",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "allsaints"
+      ]
+    },
+    {
+      "name": "American Eagle",
+      "page": 1,
+      "sourceName": "American Eagle",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "american-eagle"
+      ]
+    },
+    {
+      "name": "AMIRI",
+      "page": 2,
+      "sourceName": "AMIRI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "amiri"
+      ]
+    },
+    {
+      "name": "Anine Bing",
+      "page": 2,
+      "sourceName": "Anine Bing",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "anine-bing"
+      ]
+    },
+    {
+      "name": "Ann Taylor Factory Store",
+      "page": 2,
+      "sourceName": "Ann Taylor Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ann-taylor"
+      ]
+    },
+    {
+      "name": "Apropo Crepes",
+      "page": 2,
+      "sourceName": "Apropo Crepes",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-apropo-crepes"
+    },
+    {
+      "name": "Arepasmania",
+      "page": 2,
+      "sourceName": "Arepasmania",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-arepasmania"
+    },
+    {
+      "name": "Argentinian Empanadas on the Grill & Grill Stop",
+      "page": 2,
+      "sourceName": "Argentinian Empanadas on the Grill & Grill Stop",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-argentinian-empanadas-on-the-grill-and-grill-stop"
+    },
+    {
+      "name": "Ariat",
+      "page": 2,
+      "sourceName": "Ariat",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ariat"
+      ]
+    },
+    {
+      "name": "Aritzia",
+      "page": 2,
+      "sourceName": "Aritzia Coming Soon!",
+      "kind": "retail",
+      "status": "coming-soon",
+      "brandIds": [
+        "aritzia"
+      ]
+    },
+    {
+      "name": "Armani",
+      "page": 2,
+      "sourceName": "Armani",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "armani"
+      ]
+    },
+    {
+      "name": "Armani Exchange Outlet",
+      "page": 2,
+      "sourceName": "Armani Exchange Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "armani-exchange"
+      ]
+    },
+    {
+      "name": "Asian Chao",
+      "page": 2,
+      "sourceName": "Asian Chao",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-asian-chao"
+    },
+    {
+      "name": "Asian Chao",
+      "page": 2,
+      "sourceName": "Asian Chao",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-asian-chao-2"
+    },
+    {
+      "name": "ASICS",
+      "page": 2,
+      "sourceName": "ASICS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "asics"
+      ]
+    },
+    {
+      "name": "Auntie Anne's Pretzels",
+      "page": 2,
+      "sourceName": "Auntie Anne's Pretzels",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-auntie-anne-s-pretzels"
+    },
+    {
+      "name": "Baba's Halal",
+      "page": 3,
+      "sourceName": "Baba's Halal",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-baba-s-halal"
+    },
+    {
+      "name": "babycottons",
+      "page": 3,
+      "sourceName": "babycottons",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "babycottons"
+      ]
+    },
+    {
+      "name": "Balenciaga",
+      "page": 3,
+      "sourceName": "Balenciaga",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "balenciaga"
+      ]
+    },
+    {
+      "name": "Balmain",
+      "page": 3,
+      "sourceName": "Balmain",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "balmain"
+      ]
+    },
+    {
+      "name": "Banana Republic Factory Store",
+      "page": 3,
+      "sourceName": "Banana Republic Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "banana-republic"
+      ]
+    },
+    {
+      "name": "Banter by Piercing Pagoda",
+      "page": 3,
+      "sourceName": "Banter by Piercing Pagoda",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "banter-by-piercing-pagoda"
+      ]
+    },
+    {
+      "name": "Bath & Body Works",
+      "page": 3,
+      "sourceName": "Bath & Body Works",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bath-and-body-works"
+      ]
+    },
+    {
+      "name": "Birkenstock",
+      "page": 3,
+      "sourceName": "Birkenstock",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "birkenstock"
+      ]
+    },
+    {
+      "name": "Bloomingdale's - The Outlet Store",
+      "page": 3,
+      "sourceName": "Bloomingdale's - The Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bloomingdales"
+      ]
+    },
+    {
+      "name": "Books-A-Million",
+      "page": 3,
+      "sourceName": "Books-A-Million",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "books-a-million"
+      ]
+    },
+    {
+      "name": "BOSS Outlet",
+      "page": 3,
+      "sourceName": "BOSS Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boss"
+      ]
+    },
+    {
+      "name": "BoxLunch",
+      "page": 3,
+      "sourceName": "BoxLunch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boxlunch"
+      ]
+    },
+    {
+      "name": "BrandsMart USA",
+      "page": 3,
+      "sourceName": "BrandsMart USA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brandsmart-usa"
+      ]
+    },
+    {
+      "name": "Breitling Company Store",
+      "page": 3,
+      "sourceName": "Breitling Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "breitling"
+      ]
+    },
+    {
+      "name": "Brooks Brothers Factory Store",
+      "page": 4,
+      "sourceName": "Brooks Brothers Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brooks-brothers"
+      ]
+    },
+    {
+      "name": "Brunello Cucinelli",
+      "page": 4,
+      "sourceName": "Brunello Cucinelli",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brunello-cucinelli"
+      ]
+    },
+    {
+      "name": "Burberry Factory Outlet",
+      "page": 4,
+      "sourceName": "Burberry Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "burberry"
+      ]
+    },
+    {
+      "name": "Burger King (East Dining Pavilion)",
+      "page": 4,
+      "sourceName": "Burger King (East Dining Pavilion)",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-burger-king-east-dining-pavilion"
+    },
+    {
+      "name": "Burger King (West Dining Pavilion)",
+      "page": 4,
+      "sourceName": "Burger King (West Dining Pavilion)",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-burger-king-west-dining-pavilion"
+    },
+    {
+      "name": "Burlington",
+      "page": 4,
+      "sourceName": "Burlington",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "burlington"
+      ]
+    },
+    {
+      "name": "BYLT",
+      "page": 4,
+      "sourceName": "BYLT",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bylt"
+      ]
+    },
+    {
+      "name": "Calvin Klein",
+      "page": 4,
+      "sourceName": "Calvin Klein",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calvin-klein"
+      ]
+    },
+    {
+      "name": "Calvin Klein Underwear",
+      "page": 4,
+      "sourceName": "Calvin Klein Underwear",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calvin-klein-underwear"
+      ]
+    },
+    {
+      "name": "Calzedonia",
+      "page": 4,
+      "sourceName": "Calzedonia",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calzedonia"
+      ]
+    },
+    {
+      "name": "Carter's Childrens Wear",
+      "page": 4,
+      "sourceName": "Carter's Childrens Wear",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carters"
+      ]
+    },
+    {
+      "name": "Cellaxs Phone Repair",
+      "page": 4,
+      "sourceName": "Cellaxs Phone Repair",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "CH Carolina Herrera",
+      "page": 4,
+      "sourceName": "CH Carolina Herrera",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carolina-herrera"
+      ]
+    },
+    {
+      "name": "Champs Sports",
+      "page": 4,
+      "sourceName": "Champs Sports",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "champs-sports"
+      ]
+    },
+    {
+      "name": "chargeFUZE",
+      "page": 4,
+      "sourceName": "chargeFUZE",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Charleys Philly Steaks",
+      "page": 5,
+      "sourceName": "Charleys Philly Steaks",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-charleys-philly-steaks"
+    },
+    {
+      "name": "Charleys Philly Steaks (Location 2)",
+      "page": 5,
+      "sourceName": "Charleys Philly Steaks (Location 2)",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-charleys-philly-steaks-location-2"
+    },
+    {
+      "name": "Charlotte Russe",
+      "page": 5,
+      "sourceName": "Charlotte Russe",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "charlotte-russe"
+      ]
+    },
+    {
+      "name": "Chico's Off The Rack",
+      "page": 5,
+      "sourceName": "Chico's Off The Rack",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "chicos"
+      ]
+    },
+    {
+      "name": "Chipotle Mexican Grill",
+      "page": 5,
+      "sourceName": "Chipotle Mexican Grill",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-chipotle-mexican-grill"
+    },
+    {
+      "name": "Christian Louboutin",
+      "page": 5,
+      "sourceName": "Christian Louboutin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "christian-louboutin"
+      ]
+    },
+    {
+      "name": "Churromania",
+      "page": 5,
+      "sourceName": "Churromania",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-churromania"
+    },
+    {
+      "name": "Cinnabon",
+      "page": 5,
+      "sourceName": "Cinnabon",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-cinnabon"
+    },
+    {
+      "name": "Citizen",
+      "page": 5,
+      "sourceName": "Citizen",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "citizen"
+      ]
+    },
+    {
+      "name": "Claire's (Entrance 2)",
+      "page": 5,
+      "sourceName": "Claire's (Entrance 2)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "claires"
+      ]
+    },
+    {
+      "name": "Clarins Factory Store",
+      "page": 5,
+      "sourceName": "Clarins Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "clarins"
+      ]
+    },
+    {
+      "name": "Clarks Bostonian Outlet",
+      "page": 5,
+      "sourceName": "Clarks Bostonian Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "clarks"
+      ]
+    },
+    {
+      "name": "Coach Outlet",
+      "page": 5,
+      "sourceName": "Coach Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "coach"
+      ]
+    },
+    {
+      "name": "Cole Haan Outlet",
+      "page": 5,
+      "sourceName": "Cole Haan Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "cole-haan"
+      ]
+    },
+    {
+      "name": "Columbia Clearance Store",
+      "page": 6,
+      "sourceName": "Columbia Clearance Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "columbia"
+      ]
+    },
+    {
+      "name": "Columbia Factory Store",
+      "page": 6,
+      "sourceName": "Columbia Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "columbia"
+      ]
+    },
+    {
+      "name": "Converse",
+      "page": 6,
+      "sourceName": "Converse",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "converse"
+      ]
+    },
+    {
+      "name": "Cotton Natural",
+      "page": 6,
+      "sourceName": "Cotton Natural",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "cotton-natural"
+      ]
+    },
+    {
+      "name": "Crepe Delicious",
+      "page": 6,
+      "sourceName": "Crepe Delicious",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-crepe-delicious"
+    },
+    {
+      "name": "Crocs",
+      "page": 6,
+      "sourceName": "Crocs",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "crocs"
+      ]
+    },
+    {
+      "name": "Cubavera",
+      "page": 6,
+      "sourceName": "Cubavera",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "cubavera"
+      ]
+    },
+    {
+      "name": "Cult Gaia",
+      "page": 6,
+      "sourceName": "Cult Gaia",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "cult-gaia"
+      ]
+    },
+    {
+      "name": "Currency Exchange International",
+      "page": 6,
+      "sourceName": "Currency Exchange International",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Currito Burrito",
+      "page": 6,
+      "sourceName": "Currito Burrito",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-currito-burrito"
+    },
+    {
+      "name": "CVI.CHE 105",
+      "page": 6,
+      "sourceName": "CVI.CHE 105",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-cvi-che-105"
+    },
+    {
+      "name": "David Yurman",
+      "page": 6,
+      "sourceName": "David Yurman",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "david-yurman"
+      ]
+    },
+    {
+      "name": "Designers Jewelry Collection",
+      "page": 6,
+      "sourceName": "Designers Jewelry Collection",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "designers-jewelry-collection"
+      ]
+    },
+    {
+      "name": "Diamonds International",
+      "page": 6,
+      "sourceName": "Diamonds International",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "diamonds-international"
+      ]
+    },
+    {
+      "name": "Dick's Sporting Goods",
+      "page": 7,
+      "sourceName": "Dick's Sporting Goods",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dick-s-sporting-goods"
+      ]
+    },
+    {
+      "name": "Diesel",
+      "page": 7,
+      "sourceName": "Diesel",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "diesel"
+      ]
+    },
+    {
+      "name": "Dolce & Gabbana",
+      "page": 7,
+      "sourceName": "Dolce & Gabbana",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dolce-and-gabbana"
+      ]
+    },
+    {
+      "name": "Don Jediondo",
+      "page": 7,
+      "sourceName": "Don Jediondo",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-don-jediondo"
+    },
+    {
+      "name": "Don Jediondo (West)",
+      "page": 7,
+      "sourceName": "Don Jediondo (West)",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-don-jediondo-west"
+    },
+    {
+      "name": "Dunkin Baskin Robbins",
+      "page": 7,
+      "sourceName": "Dunkin Baskin Robbins",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-dunkin-baskin-robbins"
+    },
+    {
+      "name": "Elegance Perfumes",
+      "page": 7,
+      "sourceName": "Elegance Perfumes",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "elegance-perfumes"
+      ]
+    },
+    {
+      "name": "Etro",
+      "page": 7,
+      "sourceName": "Etro",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "etro"
+      ]
+    },
+    {
+      "name": "EXPRESS Factory Outlet",
+      "page": 7,
+      "sourceName": "EXPRESS Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "express"
+      ]
+    },
+    {
+      "name": "Fabletics",
+      "page": 7,
+      "sourceName": "Fabletics",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fabletics"
+      ]
+    },
+    {
+      "name": "Famous Footwear",
+      "page": 7,
+      "sourceName": "Famous Footwear",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "famous-footwear"
+      ]
+    },
+    {
+      "name": "Fashion Q",
+      "page": 7,
+      "sourceName": "Fashion Q",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fashion-q"
+      ]
+    },
+    {
+      "name": "Fendi",
+      "page": 7,
+      "sourceName": "Fendi",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fendi"
+      ]
+    },
+    {
+      "name": "Ferragamo",
+      "page": 7,
+      "sourceName": "Ferragamo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ferragamo"
+      ]
+    },
+    {
+      "name": "Firehouse Subs",
+      "page": 7,
+      "sourceName": "Firehouse Subs",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-firehouse-subs"
+    },
+    {
+      "name": "Five Below",
+      "page": 7,
+      "sourceName": "Five Below",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "five-below"
+      ]
+    },
+    {
+      "name": "Five Guys",
+      "page": 8,
+      "sourceName": "Five Guys",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-five-guys"
+    },
+    {
+      "name": "Florsheim Shoes",
+      "page": 8,
+      "sourceName": "Florsheim Shoes",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "florsheim"
+      ]
+    },
+    {
+      "name": "Food Court",
+      "page": 8,
+      "sourceName": "Food Court",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Food Court (Location 2)",
+      "page": 8,
+      "sourceName": "Food Court (Location 2)",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Foot Locker",
+      "page": 8,
+      "sourceName": "Foot Locker",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "foot-locker"
+      ]
+    },
+    {
+      "name": "Foot Locker (second location)",
+      "page": 8,
+      "sourceName": "Foot Locker (second location)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "foot-locker"
+      ]
+    },
+    {
+      "name": "FOSSIL",
+      "page": 8,
+      "sourceName": "FOSSIL",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fossil"
+      ]
+    },
+    {
+      "name": "Fragrance Outlet (Location 1)",
+      "page": 8,
+      "sourceName": "Fragrance Outlet (Location 1)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fragrance-outlet"
+      ]
+    },
+    {
+      "name": "Fragrance Outlet (Location 2)",
+      "page": 8,
+      "sourceName": "Fragrance Outlet (Location 2)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fragrance-outlet"
+      ]
+    },
+    {
+      "name": "Frette",
+      "page": 8,
+      "sourceName": "Frette",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "frette"
+      ]
+    },
+    {
+      "name": "G by Guess",
+      "page": 8,
+      "sourceName": "G by Guess",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "guess"
+      ]
+    },
+    {
+      "name": "Gap Factory",
+      "page": 8,
+      "sourceName": "Gap Factory",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gap"
+      ]
+    },
+    {
+      "name": "Garage",
+      "page": 8,
+      "sourceName": "Garage",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "garage"
+      ]
+    },
+    {
+      "name": "Giorgio Armani",
+      "page": 8,
+      "sourceName": "Giorgio Armani",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "armani"
+      ]
+    },
+    {
+      "name": "GNC General Nutrition Center",
+      "page": 8,
+      "sourceName": "GNC General Nutrition Center",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gnc"
+      ]
+    },
+    {
+      "name": "Grand Lux Cafe",
+      "page": 8,
+      "sourceName": "Grand Lux Cafe",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-grand-lux-cafe"
+    },
+    {
+      "name": "Green Leaf's & Bananas",
+      "page": 9,
+      "sourceName": "Green Leaf's & Bananas",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-green-leaf-s-and-bananas"
+    },
+    {
+      "name": "Greg Norman",
+      "page": 9,
+      "sourceName": "Greg Norman",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "greg-norman"
+      ]
+    },
+    {
+      "name": "G-Star RAW",
+      "page": 9,
+      "sourceName": "G-Star RAW",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "g-star-raw"
+      ]
+    },
+    {
+      "name": "Gucci",
+      "page": 9,
+      "sourceName": "Gucci",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gucci"
+      ]
+    },
+    {
+      "name": "GUESS",
+      "page": 9,
+      "sourceName": "GUESS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "guess"
+      ]
+    },
+    {
+      "name": "H & M",
+      "page": 9,
+      "sourceName": "H & M",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "h-and-m"
+      ]
+    },
+    {
+      "name": "Haagen-Dazs",
+      "page": 9,
+      "sourceName": "Haagen-Dazs",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-haagen-dazs"
+    },
+    {
+      "name": "Haagen-Dazs",
+      "page": 9,
+      "sourceName": "Haagen-Dazs",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-haagen-dazs-2"
+    },
+    {
+      "name": "Herve Leger",
+      "page": 9,
+      "sourceName": "Herve Leger",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "herve-leger"
+      ]
+    },
+    {
+      "name": "Hollister Co.",
+      "page": 9,
+      "sourceName": "Hollister Co.",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hollister"
+      ]
+    },
+    {
+      "name": "Homesense",
+      "page": 9,
+      "sourceName": "Homesense",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "homesense"
+      ]
+    },
+    {
+      "name": "Hot Topic",
+      "page": 9,
+      "sourceName": "Hot Topic",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hot-topic"
+      ]
+    },
+    {
+      "name": "HUGO Outlet",
+      "page": 9,
+      "sourceName": "HUGO Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hugo"
+      ]
+    },
+    {
+      "name": "HUK",
+      "page": 9,
+      "sourceName": "HUK",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "huk"
+      ]
+    },
+    {
+      "name": "Hurley",
+      "page": 9,
+      "sourceName": "Hurley",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hurley"
+      ]
+    },
+    {
+      "name": "Intimissimi",
+      "page": 10,
+      "sourceName": "Intimissimi",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "intimissimi"
+      ]
+    },
+    {
+      "name": "Invicta",
+      "page": 10,
+      "sourceName": "Invicta",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "invicta"
+      ]
+    },
+    {
+      "name": "J.Crew Factory",
+      "page": 10,
+      "sourceName": "J.Crew Factory",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "j-crew"
+      ]
+    },
+    {
+      "name": "J.Crew Factory Crewcuts",
+      "page": 10,
+      "sourceName": "J.Crew Factory Crewcuts",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "j-crew"
+      ]
+    },
+    {
+      "name": "James Bark",
+      "page": 10,
+      "sourceName": "James Bark",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "james-bark"
+      ]
+    },
+    {
+      "name": "Janie and Jack",
+      "page": 10,
+      "sourceName": "Janie and Jack",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "janie-and-jack"
+      ]
+    },
+    {
+      "name": "Japan Cafe",
+      "page": 10,
+      "sourceName": "Japan Cafe",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-japan-cafe"
+    },
+    {
+      "name": "JD",
+      "page": 10,
+      "sourceName": "JD",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jd-sports"
+      ]
+    },
+    {
+      "name": "Jimmy Choo",
+      "page": 10,
+      "sourceName": "Jimmy Choo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jimmy-choo"
+      ]
+    },
+    {
+      "name": "Johnny Was",
+      "page": 10,
+      "sourceName": "Johnny Was",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "johnny-was"
+      ]
+    },
+    {
+      "name": "Journeys",
+      "page": 10,
+      "sourceName": "Journeys",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "journeys"
+      ]
+    },
+    {
+      "name": "Juan Valdez Colombian Coffee",
+      "page": 10,
+      "sourceName": "Juan Valdez Colombian Coffee",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-juan-valdez-colombian-coffee"
+    },
+    {
+      "name": "Karl Lagerfeld Paris",
+      "page": 10,
+      "sourceName": "Karl Lagerfeld Paris",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "karl-lagerfeld"
+      ]
+    },
+    {
+      "name": "Kate Spade New York Outlet",
+      "page": 10,
+      "sourceName": "Kate Spade New York Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kate-spade-new-york"
+      ]
+    },
+    {
+      "name": "Kays Jewelers Outlet",
+      "page": 10,
+      "sourceName": "Kays Jewelers Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kay-jewelers"
+      ]
+    },
+    {
+      "name": "Kelly's Cajun Grill",
+      "page": 11,
+      "sourceName": "Kelly's Cajun Grill",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-kelly-s-cajun-grill"
+    },
+    {
+      "name": "Kiko Milano Cosmetics",
+      "page": 11,
+      "sourceName": "Kiko Milano Cosmetics",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kiko-milano"
+      ]
+    },
+    {
+      "name": "Kipling",
+      "page": 11,
+      "sourceName": "Kipling",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kipling"
+      ]
+    },
+    {
+      "name": "Komma Tea",
+      "page": 11,
+      "sourceName": "Komma Tea",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-komma-tea"
+    },
+    {
+      "name": "La Doña Mexican Seafood & Grill",
+      "page": 11,
+      "sourceName": "La Doña Mexican Seafood & Grill",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-la-dona-mexican-seafood-and-grill"
+    },
+    {
+      "name": "LACOSTE Outlet.",
+      "page": 11,
+      "sourceName": "LACOSTE Outlet.",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lacoste"
+      ]
+    },
+    {
+      "name": "Laderach Chocolatier Suisse",
+      "page": 11,
+      "sourceName": "Laderach Chocolatier Suisse",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-laderach-chocolatier-suisse"
+    },
+    {
+      "name": "Lafayette 148 New York",
+      "page": 11,
+      "sourceName": "Lafayette 148 New York",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lafayette-148-new-york"
+      ]
+    },
+    {
+      "name": "Le Creuset",
+      "page": 11,
+      "sourceName": "Le Creuset",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "le-creuset"
+      ]
+    },
+    {
+      "name": "LEGO® Store",
+      "page": 11,
+      "sourceName": "LEGO® Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lego"
+      ]
+    },
+    {
+      "name": "Lelior",
+      "page": 11,
+      "sourceName": "Lelior",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lelior"
+      ]
+    },
+    {
+      "name": "Levi's® Outlet Store",
+      "page": 11,
+      "sourceName": "Levi's® Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "levis"
+      ]
+    },
+    {
+      "name": "Lids",
+      "page": 11,
+      "sourceName": "Lids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lids"
+      ]
+    },
+    {
+      "name": "L'Occitane",
+      "page": 11,
+      "sourceName": "L'Occitane",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "l-occitane"
+      ]
+    },
+    {
+      "name": "Locker Room by Lids",
+      "page": 11,
+      "sourceName": "Locker Room by Lids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lids"
+      ]
+    },
+    {
+      "name": "Loro Piana",
+      "page": 12,
+      "sourceName": "Loro Piana",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "loro-piana"
+      ]
+    },
+    {
+      "name": "Lucciano’s Il Maestro del Gelato",
+      "page": 12,
+      "sourceName": "Lucciano’s Il Maestro del Gelato",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-luccianos-il-maestro-del-gelato"
+    },
+    {
+      "name": "Lucky Brand Outlet",
+      "page": 12,
+      "sourceName": "Lucky Brand Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lucky-brand"
+      ]
+    },
+    {
+      "name": "Luli Fama",
+      "page": 12,
+      "sourceName": "Luli Fama",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "luli-fama"
+      ]
+    },
+    {
+      "name": "lululemon",
+      "page": 12,
+      "sourceName": "lululemon",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lululemon"
+      ]
+    },
+    {
+      "name": "Maje",
+      "page": 12,
+      "sourceName": "Maje",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "maje"
+      ]
+    },
+    {
+      "name": "Mall Management Office",
+      "page": 12,
+      "sourceName": "Mall Management Office",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Mall Security",
+      "page": 12,
+      "sourceName": "Mall Security",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Mania Jeans",
+      "page": 12,
+      "sourceName": "Mania Jeans",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mania-jeans"
+      ]
+    },
+    {
+      "name": "Marc Jacobs",
+      "page": 12,
+      "sourceName": "Marc Jacobs",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "marc-jacobs"
+      ]
+    },
+    {
+      "name": "Marshalls",
+      "page": 12,
+      "sourceName": "Marshalls",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "marshalls"
+      ]
+    },
+    {
+      "name": "MiaFruta",
+      "page": 12,
+      "sourceName": "MiaFruta",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-miafruta"
+    },
+    {
+      "name": "Michael Kors Apparel",
+      "page": 12,
+      "sourceName": "Michael Kors Apparel",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "Michael Kors Mens",
+      "page": 12,
+      "sourceName": "Michael Kors Mens",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "Michael Kors Outlet",
+      "page": 12,
+      "sourceName": "Michael Kors Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "Moida",
+      "page": 13,
+      "sourceName": "Moida Coming Soon!",
+      "kind": "retail",
+      "status": "coming-soon",
+      "brandIds": [
+        "moida"
+      ]
+    },
+    {
+      "name": "Moncler",
+      "page": 13,
+      "sourceName": "Moncler",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "moncler"
+      ]
+    },
+    {
+      "name": "Monnalisa",
+      "page": 13,
+      "sourceName": "Monnalisa",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "monnalisa"
+      ]
+    },
+    {
+      "name": "Montblanc",
+      "page": 13,
+      "sourceName": "Montblanc",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "montblanc"
+      ]
+    },
+    {
+      "name": "Movado Company Store",
+      "page": 13,
+      "sourceName": "Movado Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "movado"
+      ]
+    },
+    {
+      "name": "Nathan's Famous",
+      "page": 13,
+      "sourceName": "Nathan's Famous",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-nathan-s-famous"
+    },
+    {
+      "name": "Nautica",
+      "page": 13,
+      "sourceName": "Nautica",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nautica"
+      ]
+    },
+    {
+      "name": "New Balance Factory Store",
+      "page": 13,
+      "sourceName": "New Balance Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-balance"
+      ]
+    },
+    {
+      "name": "Nike Factory Store",
+      "page": 13,
+      "sourceName": "Nike Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nike"
+      ]
+    },
+    {
+      "name": "Nini and Loli",
+      "page": 13,
+      "sourceName": "Nini and Loli",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nini-and-loli"
+      ]
+    },
+    {
+      "name": "Nordstrom Rack",
+      "page": 13,
+      "sourceName": "Nordstrom Rack",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nordstrom-rack"
+      ]
+    },
+    {
+      "name": "Oakley Vault",
+      "page": 13,
+      "sourceName": "Oakley Vault",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "oakley-vault"
+      ]
+    },
+    {
+      "name": "Oasis Cigar",
+      "page": 13,
+      "sourceName": "Oasis Cigar",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "oasis-cigar"
+      ]
+    },
+    {
+      "name": "Off Broadway Shoe Warehouse",
+      "page": 13,
+      "sourceName": "Off Broadway Shoe Warehouse",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "off-broadway-shoe-warehouse"
+      ]
+    },
+    {
+      "name": "Old Navy Outlet",
+      "page": 14,
+      "sourceName": "Old Navy Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "old-navy"
+      ]
+    },
+    {
+      "name": "Original Penguin",
+      "page": 14,
+      "sourceName": "Original Penguin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "original-penguin"
+      ]
+    },
+    {
+      "name": "Osh Kosh B'Gosh Outlet",
+      "page": 14,
+      "sourceName": "Osh Kosh B'Gosh Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carters"
+      ]
+    },
+    {
+      "name": "Osmow's Shawarma",
+      "page": 14,
+      "sourceName": "Osmow's Shawarma",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-osmow-s-shawarma"
+    },
+    {
+      "name": "P.F. Chang's",
+      "page": 14,
+      "sourceName": "P.F. Chang's",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-p-f-chang-s"
+    },
+    {
+      "name": "Pacsun",
+      "page": 14,
+      "sourceName": "Pacsun",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pacific-sunwear"
+      ]
+    },
+    {
+      "name": "Pandora",
+      "page": 14,
+      "sourceName": "Pandora",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pandora"
+      ]
+    },
+    {
+      "name": "Perfumania",
+      "page": 14,
+      "sourceName": "Perfumania",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perfumania"
+      ]
+    },
+    {
+      "name": "Perfumania",
+      "page": 14,
+      "sourceName": "Perfumania",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perfumania"
+      ]
+    },
+    {
+      "name": "Perfumania",
+      "page": 14,
+      "sourceName": "Perfumania",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perfumania"
+      ]
+    },
+    {
+      "name": "Perfumes 4U",
+      "page": 14,
+      "sourceName": "Perfumes 4U",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perfumes-4u"
+      ]
+    },
+    {
+      "name": "Perry Ellis",
+      "page": 14,
+      "sourceName": "Perry Ellis",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perry-ellis"
+      ]
+    },
+    {
+      "name": "Peserico",
+      "page": 14,
+      "sourceName": "Peserico",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "peserico"
+      ]
+    },
+    {
+      "name": "Philipp Plein",
+      "page": 14,
+      "sourceName": "Philipp Plein",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "philipp-plein"
+      ]
+    },
+    {
+      "name": "Plein Sport",
+      "page": 14,
+      "sourceName": "Plein Sport",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "plein-sport"
+      ]
+    },
+    {
+      "name": "Polo Ralph Lauren Children",
+      "page": 15,
+      "sourceName": "Polo Ralph Lauren Children",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "Polo Ralph Lauren Factory Store",
+      "page": 15,
+      "sourceName": "Polo Ralph Lauren Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "Popeyes Louisiana Kitchen",
+      "page": 15,
+      "sourceName": "Popeyes Louisiana Kitchen",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-popeyes-louisiana-kitchen"
+    },
+    {
+      "name": "Popeyes Louisiana Kitchen (Second Location)",
+      "page": 15,
+      "sourceName": "Popeyes Louisiana Kitchen (Second Location)",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-popeyes-louisiana-kitchen-second-location"
+    },
+    {
+      "name": "Prada",
+      "page": 15,
+      "sourceName": "Prada",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "prada"
+      ]
+    },
+    {
+      "name": "Premier by Showtime",
+      "page": 15,
+      "sourceName": "Premier by Showtime",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "premier-by-showtime"
+      ]
+    },
+    {
+      "name": "Primark",
+      "page": 15,
+      "sourceName": "Primark",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "primark"
+      ]
+    },
+    {
+      "name": "PRO TECH - GARMIN",
+      "page": 15,
+      "sourceName": "PRO TECH - GARMIN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "garmin"
+      ]
+    },
+    {
+      "name": "Psycho Bunny",
+      "page": 15,
+      "sourceName": "Psycho Bunny",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "psycho-bunny"
+      ]
+    },
+    {
+      "name": "PUMA Outlet",
+      "page": 15,
+      "sourceName": "PUMA Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "puma"
+      ]
+    },
+    {
+      "name": "Pure Green",
+      "page": 15,
+      "sourceName": "Pure Green",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-pure-green"
+    },
+    {
+      "name": "Purificación García",
+      "page": 15,
+      "sourceName": "Purificación García",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "purificacion-garcia"
+      ]
+    },
+    {
+      "name": "Racing Miami",
+      "page": 15,
+      "sourceName": "Racing Miami",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "racing-miami"
+      ]
+    },
+    {
+      "name": "Rack Room Shoes",
+      "page": 16,
+      "sourceName": "Rack Room Shoes",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rack-room-shoes"
+      ]
+    },
+    {
+      "name": "rag & bone New York",
+      "page": 16,
+      "sourceName": "rag & bone New York",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rag-and-bone"
+      ]
+    },
+    {
+      "name": "Rainforest Cafe",
+      "page": 16,
+      "sourceName": "Rainforest Cafe",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-rainforest-cafe"
+    },
+    {
+      "name": "Rebag",
+      "page": 16,
+      "sourceName": "Rebag",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rebag"
+      ]
+    },
+    {
+      "name": "Reebok Outlet",
+      "page": 16,
+      "sourceName": "Reebok Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "reebok"
+      ]
+    },
+    {
+      "name": "Regal Cinemas & IMAX",
+      "page": 16,
+      "sourceName": "Regal Cinemas & IMAX",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Robert Graham Outlet",
+      "page": 16,
+      "sourceName": "Robert Graham Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "robert-graham"
+      ]
+    },
+    {
+      "name": "Roberto Cavalli",
+      "page": 16,
+      "sourceName": "Roberto Cavalli",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "roberto-cavalli"
+      ]
+    },
+    {
+      "name": "Runner's Depot",
+      "page": 16,
+      "sourceName": "Runner's Depot",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "runner-s-depot"
+      ]
+    },
+    {
+      "name": "Saint Laurent",
+      "page": 16,
+      "sourceName": "Saint Laurent",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "saint-laurent"
+      ]
+    },
+    {
+      "name": "Saks OFF 5TH",
+      "page": 16,
+      "sourceName": "Saks OFF 5TH",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "saks-off-5th"
+      ]
+    },
+    {
+      "name": "Samsonite",
+      "page": 16,
+      "sourceName": "Samsonite",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsonite"
+      ]
+    },
+    {
+      "name": "Samsonite Travel Expo",
+      "page": 16,
+      "sourceName": "Samsonite Travel Expo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsonite"
+      ]
+    },
+    {
+      "name": "Samsung",
+      "page": 16,
+      "sourceName": "Samsung",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsung"
+      ]
+    },
+    {
+      "name": "Sandro",
+      "page": 16,
+      "sourceName": "Sandro",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sandro"
+      ]
+    },
+    {
+      "name": "Sbarro (West)",
+      "page": 17,
+      "sourceName": "Sbarro (West)",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-sbarro-west"
+    },
+    {
+      "name": "Sbarro The Italian Eatery",
+      "page": 17,
+      "sourceName": "Sbarro The Italian Eatery",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-sbarro-the-italian-eatery"
+    },
+    {
+      "name": "Seasons 52",
+      "page": 17,
+      "sourceName": "Seasons 52",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-seasons-52"
+    },
+    {
+      "name": "Sephora",
+      "page": 17,
+      "sourceName": "Sephora",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sephora"
+      ]
+    },
+    {
+      "name": "SFERRA",
+      "page": 17,
+      "sourceName": "SFERRA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sferra"
+      ]
+    },
+    {
+      "name": "Shake Shack",
+      "page": 17,
+      "sourceName": "Shake Shack",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-shake-shack"
+    },
+    {
+      "name": "Shoe Palace",
+      "page": 17,
+      "sourceName": "Shoe Palace",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "shoe-palace"
+      ]
+    },
+    {
+      "name": "Simon Guest Services",
+      "page": 17,
+      "sourceName": "Simon Guest Services",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Skechers USA",
+      "page": 17,
+      "sourceName": "Skechers USA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skechers"
+      ]
+    },
+    {
+      "name": "Skims",
+      "page": 17,
+      "sourceName": "Skims",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skims"
+      ]
+    },
+    {
+      "name": "Sneaker Lovers",
+      "page": 17,
+      "sourceName": "Sneaker Lovers",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sneaker-lovers"
+      ]
+    },
+    {
+      "name": "Solaris",
+      "page": 17,
+      "sourceName": "Solaris",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "solaris"
+      ]
+    },
+    {
+      "name": "Spencer Gifts",
+      "page": 17,
+      "sourceName": "Spencer Gifts",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "spencer-gifts"
+      ]
+    },
+    {
+      "name": "Splendid",
+      "page": 17,
+      "sourceName": "Splendid",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "splendid"
+      ]
+    },
+    {
+      "name": "Sportive",
+      "page": 17,
+      "sourceName": "Sportive",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sportive"
+      ]
+    },
+    {
+      "name": "St. John Outlet",
+      "page": 17,
+      "sourceName": "St. John Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "st-john"
+      ]
+    },
+    {
+      "name": "Starbucks Coffee",
+      "page": 18,
+      "sourceName": "Starbucks Coffee",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-starbucks-coffee"
+    },
+    {
+      "name": "Steve Madden Outlet",
+      "page": 18,
+      "sourceName": "Steve Madden Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "steve-madden"
+      ]
+    },
+    {
+      "name": "Stuart Weitzman",
+      "page": 18,
+      "sourceName": "Stuart Weitzman",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "stuart-weitzman"
+      ]
+    },
+    {
+      "name": "Sunglass Hut",
+      "page": 18,
+      "sourceName": "Sunglass Hut",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Sunglass Hut (Entrance 1)",
+      "page": 18,
+      "sourceName": "Sunglass Hut (Entrance 1)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Sunglass Hut (Entrance 2)",
+      "page": 18,
+      "sourceName": "Sunglass Hut (Entrance 2)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Sunglass Hut (Entrance 3)",
+      "page": 18,
+      "sourceName": "Sunglass Hut (Entrance 3)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Super Bins",
+      "page": 18,
+      "sourceName": "Super Bins",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "super-bins"
+      ]
+    },
+    {
+      "name": "Super Target",
+      "page": 18,
+      "sourceName": "Super Target",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "target"
+      ]
+    },
+    {
+      "name": "SushiGami",
+      "page": 18,
+      "sourceName": "SushiGami",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-sushigami"
+    },
+    {
+      "name": "Swarovski",
+      "page": 18,
+      "sourceName": "Swarovski",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "swarovski"
+      ]
+    },
+    {
+      "name": "Swatch",
+      "page": 18,
+      "sourceName": "Swatch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "swatch"
+      ]
+    },
+    {
+      "name": "T.J. Maxx",
+      "page": 18,
+      "sourceName": "T.J. Maxx",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tj-maxx"
+      ]
+    },
+    {
+      "name": "TAG Heuer",
+      "page": 18,
+      "sourceName": "TAG Heuer",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tag-heuer"
+      ]
+    },
+    {
+      "name": "Texas de Brazil",
+      "page": 19,
+      "sourceName": "Texas de Brazil",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-texas-de-brazil"
+    },
+    {
+      "name": "The Baked Bear",
+      "page": 19,
+      "sourceName": "The Baked Bear",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-the-baked-bear"
+    },
+    {
+      "name": "The Cheesecake Factory",
+      "page": 19,
+      "sourceName": "The Cheesecake Factory",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-the-cheesecake-factory"
+    },
+    {
+      "name": "The Children’s Place Outlet/Gymboree",
+      "page": 19,
+      "sourceName": "The Children’s Place Outlet/Gymboree",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-childrens-place",
+        "gymboree"
+      ]
+    },
+    {
+      "name": "The Cosmetics Company Store",
+      "page": 19,
+      "sourceName": "The Cosmetics Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-cosmetics-company-store"
+      ]
+    },
+    {
+      "name": "The Escape Game",
+      "page": 19,
+      "sourceName": "The Escape Game",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "The North Face",
+      "page": 19,
+      "sourceName": "The North Face",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-north-face"
+      ]
+    },
+    {
+      "name": "The Taco Stand",
+      "page": 19,
+      "sourceName": "The Taco Stand",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-the-taco-stand"
+    },
+    {
+      "name": "Theory Outlet",
+      "page": 19,
+      "sourceName": "Theory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "theory"
+      ]
+    },
+    {
+      "name": "Timberland",
+      "page": 19,
+      "sourceName": "Timberland",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "timberland"
+      ]
+    },
+    {
+      "name": "Tissot",
+      "page": 19,
+      "sourceName": "Tissot",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tissot"
+      ]
+    },
+    {
+      "name": "T-Mobile",
+      "page": 19,
+      "sourceName": "T-Mobile",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "t-mobile"
+      ]
+    },
+    {
+      "name": "T-Mobile II",
+      "page": 19,
+      "sourceName": "T-Mobile II",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "t-mobile"
+      ]
+    },
+    {
+      "name": "TNS-USA",
+      "page": 19,
+      "sourceName": "TNS-USA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tns-usa"
+      ]
+    },
+    {
+      "name": "Tobu",
+      "page": 19,
+      "sourceName": "Tobu",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-tobu"
+    },
+    {
+      "name": "Tod's",
+      "page": 19,
+      "sourceName": "Tod's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tods"
+      ]
+    },
+    {
+      "name": "Tommy Bahama Marlin Bar",
+      "page": 20,
+      "sourceName": "Tommy Bahama Marlin Bar",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-tommy-bahama-marlin-bar"
+    },
+    {
+      "name": "Tommy Bahama Outlet",
+      "page": 20,
+      "sourceName": "Tommy Bahama Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-bahama"
+      ]
+    },
+    {
+      "name": "Tommy Hilfiger",
+      "page": 20,
+      "sourceName": "Tommy Hilfiger",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-hilfiger"
+      ]
+    },
+    {
+      "name": "Tory Burch",
+      "page": 20,
+      "sourceName": "Tory Burch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tory-burch"
+      ]
+    },
+    {
+      "name": "Toys \"R\" Us",
+      "page": 20,
+      "sourceName": "Toys \"R\" Us",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "toys-r-us"
+      ]
+    },
+    {
+      "name": "Traveltino",
+      "page": 20,
+      "sourceName": "Traveltino",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "traveltino"
+      ]
+    },
+    {
+      "name": "TUMI",
+      "page": 20,
+      "sourceName": "TUMI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tumi"
+      ]
+    },
+    {
+      "name": "U.S. Polo Assn.",
+      "page": 20,
+      "sourceName": "U.S. Polo Assn.",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "u-s-polo-assn"
+      ]
+    },
+    {
+      "name": "U.S. Polo Assn. Outlet",
+      "page": 20,
+      "sourceName": "U.S. Polo Assn. Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "u-s-polo-assn"
+      ]
+    },
+    {
+      "name": "Under Armour Factory House",
+      "page": 20,
+      "sourceName": "Under Armour Factory House",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "under-armour"
+      ]
+    },
+    {
+      "name": "Uniform Advantage",
+      "page": 20,
+      "sourceName": "Uniform Advantage",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "uniform-advantage"
+      ]
+    },
+    {
+      "name": "United States Post Office",
+      "page": 20,
+      "sourceName": "United States Post Office",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "UNOde50",
+      "page": 20,
+      "sourceName": "UNOde50",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "unode50"
+      ]
+    },
+    {
+      "name": "Valentino",
+      "page": 20,
+      "sourceName": "Valentino",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "valentino"
+      ]
+    },
+    {
+      "name": "Valet Parking",
+      "page": 20,
+      "sourceName": "Valet Parking",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Valet Parking - The Oasis",
+      "page": 20,
+      "sourceName": "Valet Parking - The Oasis",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Vans Outlet",
+      "page": 20,
+      "sourceName": "Vans Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vans"
+      ]
+    },
+    {
+      "name": "Versace",
+      "page": 21,
+      "sourceName": "Versace",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "versace"
+      ]
+    },
+    {
+      "name": "Victoria's Secret PINK",
+      "page": 21,
+      "sourceName": "Victoria's Secret PINK",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pink-victorias-secret"
+      ]
+    },
+    {
+      "name": "Vilebrequin",
+      "page": 21,
+      "sourceName": "Vilebrequin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vilebrequin"
+      ]
+    },
+    {
+      "name": "Villagio",
+      "page": 21,
+      "sourceName": "Villagio",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-villagio"
+    },
+    {
+      "name": "Vince",
+      "page": 21,
+      "sourceName": "Vince",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vince"
+      ]
+    },
+    {
+      "name": "Vineyard Vines",
+      "page": 21,
+      "sourceName": "Vineyard Vines",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vineyard-vines"
+      ]
+    },
+    {
+      "name": "VX Technologies",
+      "page": 21,
+      "sourceName": "VX Technologies",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vx-technologies"
+      ]
+    },
+    {
+      "name": "Watch Station International",
+      "page": 21,
+      "sourceName": "Watch Station International",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "watch-station-international"
+      ]
+    },
+    {
+      "name": "Wetzel's Pretzels",
+      "page": 21,
+      "sourceName": "Wetzel's Pretzels",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-wetzel-s-pretzels"
+    },
+    {
+      "name": "Windsor",
+      "page": 21,
+      "sourceName": "Windsor",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "windsor"
+      ]
+    },
+    {
+      "name": "Wolford Outlet",
+      "page": 21,
+      "sourceName": "Wolford Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "wolford"
+      ]
+    },
+    {
+      "name": "Yard House",
+      "page": 21,
+      "sourceName": "Yard House",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-yard-house"
+    },
+    {
+      "name": "Yummy Jungle Candy Shop",
+      "page": 21,
+      "sourceName": "Yummy Jungle Candy Shop",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "sawgrass-mills-yummy-jungle-candy-shop"
+    },
+    {
+      "name": "Zadig&Voltaire",
+      "page": 21,
+      "sourceName": "Zadig&Voltaire",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zadig-and-voltaire"
+      ]
+    },
+    {
+      "name": "Zales Outlet, The Diamond Store",
+      "page": 21,
+      "sourceName": "Zales Outlet, The Diamond Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zales"
+      ]
+    },
+    {
+      "name": "ZEGNA",
+      "page": 22,
+      "sourceName": "ZEGNA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zegna"
+      ]
+    },
+    {
+      "name": "Zimmermann",
+      "page": 22,
+      "sourceName": "Zimmermann",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zimmermann"
+      ]
+    },
+    {
+      "name": "Zumiez",
+      "page": 22,
+      "sourceName": "Zumiez",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zumiez"
+      ]
+    },
+    {
+      "name": "Zwilling J.A. Henckels",
+      "page": 22,
+      "sourceName": "Zwilling J.A. Henckels",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zwilling"
+      ]
+    }
+  ]
+}

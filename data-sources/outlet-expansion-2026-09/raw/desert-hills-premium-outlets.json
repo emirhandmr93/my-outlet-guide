@@ -1,0 +1,908 @@
+{
+  "outletId": "desert-hills-premium-outlets",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.premiumoutlets.com/outlet/desert-hills/stores/print",
+  "sourceRecordCount": 180,
+  "rows": [
+    {
+      "name": "&Pasta",
+      "page": 1,
+      "sourceLine": 13
+    },
+    {
+      "name": "7 for All Mankind",
+      "page": 1,
+      "sourceLine": 17
+    },
+    {
+      "name": "Acne Studios",
+      "page": 1,
+      "sourceLine": 22
+    },
+    {
+      "name": "adidas Outlet Store",
+      "page": 1,
+      "sourceLine": 25
+    },
+    {
+      "name": "AG Jeans",
+      "page": 1,
+      "sourceLine": 26
+    },
+    {
+      "name": "Alexander McQueen",
+      "page": 1,
+      "sourceLine": 30
+    },
+    {
+      "name": "AllSaints",
+      "page": 1,
+      "sourceLine": 35
+    },
+    {
+      "name": "American Eagle",
+      "page": 2,
+      "sourceLine": 39
+    },
+    {
+      "name": "AMIRI",
+      "page": 2,
+      "sourceLine": 44
+    },
+    {
+      "name": "Ann Taylor Factory Store",
+      "page": 2,
+      "sourceLine": 48
+    },
+    {
+      "name": "Anne Fontaine",
+      "page": 2,
+      "sourceLine": 51
+    },
+    {
+      "name": "Arc'teryx Coming Soon!",
+      "page": 2,
+      "sourceLine": 56
+    },
+    {
+      "name": "Aritzia",
+      "page": 2,
+      "sourceLine": 58
+    },
+    {
+      "name": "Armani Exchange Outlet",
+      "page": 2,
+      "sourceLine": 63
+    },
+    {
+      "name": "Armani Outlet",
+      "page": 2,
+      "sourceLine": 68
+    },
+    {
+      "name": "Balenciaga",
+      "page": 2,
+      "sourceLine": 73
+    },
+    {
+      "name": "Balmain",
+      "page": 2,
+      "sourceLine": 77
+    },
+    {
+      "name": "Banana Republic Factory Store",
+      "page": 3,
+      "sourceLine": 82
+    },
+    {
+      "name": "BAPE",
+      "page": 3,
+      "sourceLine": 86
+    },
+    {
+      "name": "Bath & Body Works",
+      "page": 3,
+      "sourceLine": 90
+    },
+    {
+      "name": "Birba",
+      "page": 3,
+      "sourceLine": 95
+    },
+    {
+      "name": "BKK78 STREET FOOD",
+      "page": 3,
+      "sourceLine": 99
+    },
+    {
+      "name": "BKK78 West Village",
+      "page": 3,
+      "sourceLine": 101
+    },
+    {
+      "name": "Boba Station Now Open!",
+      "page": 3,
+      "sourceLine": 102
+    },
+    {
+      "name": "Bonpoint",
+      "page": 3,
+      "sourceLine": 104
+    },
+    {
+      "name": "BOSS Outlet",
+      "page": 3,
+      "sourceLine": 108
+    },
+    {
+      "name": "Bottega Veneta",
+      "page": 3,
+      "sourceLine": 113
+    },
+    {
+      "name": "Breitling",
+      "page": 4,
+      "sourceLine": 117
+    },
+    {
+      "name": "Brunello Cucinelli",
+      "page": 4,
+      "sourceLine": 122
+    },
+    {
+      "name": "Buck Mason",
+      "page": 4,
+      "sourceLine": 127
+    },
+    {
+      "name": "Burberry",
+      "page": 4,
+      "sourceLine": 131
+    },
+    {
+      "name": "Calvin Klein",
+      "page": 4,
+      "sourceLine": 135
+    },
+    {
+      "name": "Carter's",
+      "page": 4,
+      "sourceLine": 140
+    },
+    {
+      "name": "Celine",
+      "page": 4,
+      "sourceLine": 145
+    },
+    {
+      "name": "Cellular Explosion",
+      "page": 4,
+      "sourceLine": 149
+    },
+    {
+      "name": "CH Carolina Herrera",
+      "page": 4,
+      "sourceLine": 150
+    },
+    {
+      "name": "Chico's Off The Rack",
+      "page": 5,
+      "sourceLine": 155
+    },
+    {
+      "name": "Chloé",
+      "page": 5,
+      "sourceLine": 159
+    },
+    {
+      "name": "Christian Louboutin",
+      "page": 5,
+      "sourceLine": 164
+    },
+    {
+      "name": "Citizen",
+      "page": 5,
+      "sourceLine": 169
+    },
+    {
+      "name": "Claire's",
+      "page": 5,
+      "sourceLine": 174
+    },
+    {
+      "name": "Clarins Factory Store",
+      "page": 5,
+      "sourceLine": 177
+    },
+    {
+      "name": "Clarks",
+      "page": 5,
+      "sourceLine": 182
+    },
+    {
+      "name": "Coach Outlet",
+      "page": 5,
+      "sourceLine": 186
+    },
+    {
+      "name": "Cole Haan Outlet",
+      "page": 5,
+      "sourceLine": 190
+    },
+    {
+      "name": "Columbia Factory Store",
+      "page": 5,
+      "sourceLine": 194
+    },
+    {
+      "name": "Crazy Cup Taquitos",
+      "page": 6,
+      "sourceLine": 197
+    },
+    {
+      "name": "Crocs",
+      "page": 6,
+      "sourceLine": 198
+    },
+    {
+      "name": "David Yurman",
+      "page": 6,
+      "sourceLine": 203
+    },
+    {
+      "name": "Diesel",
+      "page": 6,
+      "sourceLine": 208
+    },
+    {
+      "name": "Dolce & Gabbana",
+      "page": 6,
+      "sourceLine": 212
+    },
+    {
+      "name": "East Village Food Pavilion",
+      "page": 6,
+      "sourceLine": 217
+    },
+    {
+      "name": "Eleventy Coming Soon!",
+      "page": 6,
+      "sourceLine": 218
+    },
+    {
+      "name": "ETON",
+      "page": 6,
+      "sourceLine": 221
+    },
+    {
+      "name": "Etro",
+      "page": 6,
+      "sourceLine": 225
+    },
+    {
+      "name": "Fabletics",
+      "page": 6,
+      "sourceLine": 234
+    },
+    {
+      "name": "Fendi",
+      "page": 7,
+      "sourceLine": 238
+    },
+    {
+      "name": "Ferragamo",
+      "page": 7,
+      "sourceLine": 242
+    },
+    {
+      "name": "Five Guys",
+      "page": 7,
+      "sourceLine": 248
+    },
+    {
+      "name": "Footwork",
+      "page": 7,
+      "sourceLine": 250
+    },
+    {
+      "name": "Fragrance Bay",
+      "page": 7,
+      "sourceLine": 251
+    },
+    {
+      "name": "Fragrance Outlet",
+      "page": 7,
+      "sourceLine": 252
+    },
+    {
+      "name": "Frankies Bikinis",
+      "page": 7,
+      "sourceLine": 254
+    },
+    {
+      "name": "Frette",
+      "page": 7,
+      "sourceLine": 255
+    },
+    {
+      "name": "GANNI",
+      "page": 7,
+      "sourceLine": 259
+    },
+    {
+      "name": "Gap Factory",
+      "page": 7,
+      "sourceLine": 264
+    },
+    {
+      "name": "Givenchy",
+      "page": 7,
+      "sourceLine": 268
+    },
+    {
+      "name": "Golden Goose",
+      "page": 7,
+      "sourceLine": 272
+    },
+    {
+      "name": "Golf Apparel Shop",
+      "page": 8,
+      "sourceLine": 276
+    },
+    {
+      "name": "Gucci",
+      "page": 8,
+      "sourceLine": 281
+    },
+    {
+      "name": "Gucci Kids",
+      "page": 8,
+      "sourceLine": 286
+    },
+    {
+      "name": "GUESS",
+      "page": 8,
+      "sourceLine": 290
+    },
+    {
+      "name": "Gymboree",
+      "page": 8,
+      "sourceLine": 291
+    },
+    {
+      "name": "Hokulia",
+      "page": 8,
+      "sourceLine": 293
+    },
+    {
+      "name": "Hurley",
+      "page": 8,
+      "sourceLine": 298
+    },
+    {
+      "name": "Isabel Marant",
+      "page": 8,
+      "sourceLine": 303
+    },
+    {
+      "name": "Janie and Jack",
+      "page": 8,
+      "sourceLine": 308
+    },
+    {
+      "name": "Jimmy Choo",
+      "page": 8,
+      "sourceLine": 312
+    },
+    {
+      "name": "Joe's Jeans",
+      "page": 9,
+      "sourceLine": 316
+    },
+    {
+      "name": "John Varvatos",
+      "page": 9,
+      "sourceLine": 321
+    },
+    {
+      "name": "Journeys",
+      "page": 9,
+      "sourceLine": 325
+    },
+    {
+      "name": "Kahala Coffee Traders",
+      "page": 9,
+      "sourceLine": 330
+    },
+    {
+      "name": "Karl Lagerfeld Paris",
+      "page": 9,
+      "sourceLine": 332
+    },
+    {
+      "name": "Kate Spade New York Outlet",
+      "page": 9,
+      "sourceLine": 337
+    },
+    {
+      "name": "Kay Jewelers Outlet",
+      "page": 9,
+      "sourceLine": 341
+    },
+    {
+      "name": "Kenzo",
+      "page": 9,
+      "sourceLine": 346
+    },
+    {
+      "name": "Kevin Jewelers Outlet",
+      "page": 9,
+      "sourceLine": 351
+    },
+    {
+      "name": "Khanbogd Coming Soon!",
+      "page": 10,
+      "sourceLine": 355
+    },
+    {
+      "name": "Kipling",
+      "page": 10,
+      "sourceLine": 357
+    },
+    {
+      "name": "Kurt Geiger Coming Soon!",
+      "page": 10,
+      "sourceLine": 360
+    },
+    {
+      "name": "LACOSTE Outlet",
+      "page": 10,
+      "sourceLine": 362
+    },
+    {
+      "name": "Levi's® Outlet Store",
+      "page": 10,
+      "sourceLine": 363
+    },
+    {
+      "name": "L'Occitane",
+      "page": 10,
+      "sourceLine": 364
+    },
+    {
+      "name": "Locker Room by Lids",
+      "page": 10,
+      "sourceLine": 367
+    },
+    {
+      "name": "Loewe",
+      "page": 10,
+      "sourceLine": 371
+    },
+    {
+      "name": "LOFT Outlet",
+      "page": 10,
+      "sourceLine": 375
+    },
+    {
+      "name": "Longchamp",
+      "page": 10,
+      "sourceLine": 379
+    },
+    {
+      "name": "Loro Piana",
+      "page": 10,
+      "sourceLine": 384
+    },
+    {
+      "name": "Louis Castel",
+      "page": 11,
+      "sourceLine": 388
+    },
+    {
+      "name": "Lucky Brand Outlet",
+      "page": 11,
+      "sourceLine": 391
+    },
+    {
+      "name": "lululemon",
+      "page": 11,
+      "sourceLine": 395
+    },
+    {
+      "name": "Mackage",
+      "page": 11,
+      "sourceLine": 400
+    },
+    {
+      "name": "Maison Margiela",
+      "page": 11,
+      "sourceLine": 405
+    },
+    {
+      "name": "Maje",
+      "page": 11,
+      "sourceLine": 409
+    },
+    {
+      "name": "Management Office",
+      "page": 11,
+      "sourceLine": 415
+    },
+    {
+      "name": "Marc Jacobs",
+      "page": 11,
+      "sourceLine": 416
+    },
+    {
+      "name": "Marni",
+      "page": 11,
+      "sourceLine": 420
+    },
+    {
+      "name": "Max Mara",
+      "page": 11,
+      "sourceLine": 421
+    },
+    {
+      "name": "MCM",
+      "page": 11,
+      "sourceLine": 425
+    },
+    {
+      "name": "Meat Me",
+      "page": 12,
+      "sourceLine": 430
+    },
+    {
+      "name": "Michael Kors Outlet",
+      "page": 12,
+      "sourceLine": 431
+    },
+    {
+      "name": "Moncler (New Location)",
+      "page": 12,
+      "sourceLine": 435
+    },
+    {
+      "name": "Montblanc",
+      "page": 12,
+      "sourceLine": 436
+    },
+    {
+      "name": "moodytiger",
+      "page": 12,
+      "sourceLine": 441
+    },
+    {
+      "name": "Movado Company Store",
+      "page": 12,
+      "sourceLine": 445
+    },
+    {
+      "name": "NIKE Factory Store",
+      "page": 12,
+      "sourceLine": 450
+    },
+    {
+      "name": "Old Navy Outlet Coming Soon!",
+      "page": 12,
+      "sourceLine": 455
+    },
+    {
+      "name": "Outerknown",
+      "page": 12,
+      "sourceLine": 457
+    },
+    {
+      "name": "PAIGE",
+      "page": 12,
+      "sourceLine": 458
+    },
+    {
+      "name": "Pandora",
+      "page": 12,
+      "sourceLine": 462
+    },
+    {
+      "name": "Paradise Toys",
+      "page": 13,
+      "sourceLine": 467
+    },
+    {
+      "name": "Paul Smith",
+      "page": 13,
+      "sourceLine": 468
+    },
+    {
+      "name": "Peserico",
+      "page": 13,
+      "sourceLine": 472
+    },
+    {
+      "name": "Philipp Plein Kids",
+      "page": 13,
+      "sourceLine": 475
+    },
+    {
+      "name": "Philipp Plein.",
+      "page": 13,
+      "sourceLine": 476
+    },
+    {
+      "name": "Polo Ralph Lauren Children",
+      "page": 13,
+      "sourceLine": 480
+    },
+    {
+      "name": "Polo Ralph Lauren Factory Store",
+      "page": 13,
+      "sourceLine": 484
+    },
+    {
+      "name": "Porsche Design",
+      "page": 13,
+      "sourceLine": 489
+    },
+    {
+      "name": "Prada",
+      "page": 13,
+      "sourceLine": 494
+    },
+    {
+      "name": "Psycho Bunny",
+      "page": 13,
+      "sourceLine": 498
+    },
+    {
+      "name": "PUMA Outlet",
+      "page": 13,
+      "sourceLine": 501
+    },
+    {
+      "name": "rag & bone New York",
+      "page": 14,
+      "sourceLine": 505
+    },
+    {
+      "name": "Rails",
+      "page": 14,
+      "sourceLine": 509
+    },
+    {
+      "name": "Rebag",
+      "page": 14,
+      "sourceLine": 514
+    },
+    {
+      "name": "Reformation",
+      "page": 14,
+      "sourceLine": 517
+    },
+    {
+      "name": "Reiss",
+      "page": 14,
+      "sourceLine": 521
+    },
+    {
+      "name": "Saint Laurent",
+      "page": 14,
+      "sourceLine": 526
+    },
+    {
+      "name": "Samsonite",
+      "page": 14,
+      "sourceLine": 529
+    },
+    {
+      "name": "Sandro",
+      "page": 14,
+      "sourceLine": 533
+    },
+    {
+      "name": "Sbarro",
+      "page": 14,
+      "sourceLine": 537
+    },
+    {
+      "name": "SFERRA",
+      "page": 14,
+      "sourceLine": 539
+    },
+    {
+      "name": "Shades In The Desert",
+      "page": 15,
+      "sourceLine": 544
+    },
+    {
+      "name": "Skechers",
+      "page": 15,
+      "sourceLine": 548
+    },
+    {
+      "name": "Skims",
+      "page": 15,
+      "sourceLine": 552
+    },
+    {
+      "name": "St. John",
+      "page": 15,
+      "sourceLine": 555
+    },
+    {
+      "name": "Stuart Weitzman",
+      "page": 15,
+      "sourceLine": 560
+    },
+    {
+      "name": "Sunglass Hut",
+      "page": 15,
+      "sourceLine": 565
+    },
+    {
+      "name": "Sunglass Hut West",
+      "page": 15,
+      "sourceLine": 569
+    },
+    {
+      "name": "Swarovski",
+      "page": 15,
+      "sourceLine": 573
+    },
+    {
+      "name": "TAG Heuer",
+      "page": 15,
+      "sourceLine": 578
+    },
+    {
+      "name": "The Cosmetics Company Store",
+      "page": 16,
+      "sourceLine": 583
+    },
+    {
+      "name": "The North Face",
+      "page": 16,
+      "sourceLine": 588
+    },
+    {
+      "name": "The Wok 360",
+      "page": 16,
+      "sourceLine": 593
+    },
+    {
+      "name": "Theory Outlet",
+      "page": 16,
+      "sourceLine": 597
+    },
+    {
+      "name": "Theory Outlet Men's",
+      "page": 16,
+      "sourceLine": 601
+    },
+    {
+      "name": "Thom Browne",
+      "page": 16,
+      "sourceLine": 606
+    },
+    {
+      "name": "Tod's",
+      "page": 16,
+      "sourceLine": 611
+    },
+    {
+      "name": "Tokyo Beauty",
+      "page": 16,
+      "sourceLine": 616
+    },
+    {
+      "name": "Tom Ford",
+      "page": 16,
+      "sourceLine": 620
+    },
+    {
+      "name": "Tommy Hilfiger",
+      "page": 17,
+      "sourceLine": 625
+    },
+    {
+      "name": "Tory Burch",
+      "page": 17,
+      "sourceLine": 628
+    },
+    {
+      "name": "TravisMathew",
+      "page": 17,
+      "sourceLine": 631
+    },
+    {
+      "name": "True Religion Outlet",
+      "page": 17,
+      "sourceLine": 634
+    },
+    {
+      "name": "TUMI",
+      "page": 17,
+      "sourceLine": 638
+    },
+    {
+      "name": "U.S. Polo Assn. Outlet",
+      "page": 17,
+      "sourceLine": 643
+    },
+    {
+      "name": "UGG",
+      "page": 17,
+      "sourceLine": 646
+    },
+    {
+      "name": "Valentino",
+      "page": 17,
+      "sourceLine": 650
+    },
+    {
+      "name": "Vans Outlet",
+      "page": 17,
+      "sourceLine": 656
+    },
+    {
+      "name": "Versace",
+      "page": 17,
+      "sourceLine": 660
+    },
+    {
+      "name": "Victoria's Secret",
+      "page": 17,
+      "sourceLine": 664
+    },
+    {
+      "name": "Vilebrequin",
+      "page": 18,
+      "sourceLine": 668
+    },
+    {
+      "name": "Vince",
+      "page": 18,
+      "sourceLine": 673
+    },
+    {
+      "name": "Wetzel's Pretzels",
+      "page": 18,
+      "sourceLine": 676
+    },
+    {
+      "name": "Wetzel's Pretzels West Village",
+      "page": 18,
+      "sourceLine": 680
+    },
+    {
+      "name": "Wilson",
+      "page": 18,
+      "sourceLine": 681
+    },
+    {
+      "name": "Y-3",
+      "page": 18,
+      "sourceLine": 686
+    },
+    {
+      "name": "Zadig&Voltaire",
+      "page": 18,
+      "sourceLine": 691
+    },
+    {
+      "name": "ZEGNA",
+      "page": 18,
+      "sourceLine": 695
+    },
+    {
+      "name": "Zimmermann",
+      "page": 18,
+      "sourceLine": 698
+    },
+    {
+      "name": "Zumiez",
+      "page": 18,
+      "sourceLine": 702
+    }
+  ]
+}

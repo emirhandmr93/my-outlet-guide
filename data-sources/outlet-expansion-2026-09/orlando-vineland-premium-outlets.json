@@ -1,0 +1,1712 @@
+{
+  "outletId": "orlando-vineland-premium-outlets",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.premiumoutlets.com/outlet/orlando-vineland/stores/print",
+  "sourceRecordCount": 159,
+  "rows": [
+    {
+      "name": "7 for All Mankind",
+      "page": 1,
+      "sourceLine": 11,
+      "sourceName": "7 for All Mankind",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "7-for-all-mankind"
+      ]
+    },
+    {
+      "name": "adidas Outlet Store",
+      "page": 1,
+      "sourceLine": 12,
+      "sourceName": "adidas Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "adidas"
+      ]
+    },
+    {
+      "name": "Aeropostale",
+      "page": 1,
+      "sourceLine": 13,
+      "sourceName": "Aeropostale",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aeropostale"
+      ]
+    },
+    {
+      "name": "AG Jeans",
+      "page": 1,
+      "sourceLine": 14,
+      "sourceName": "AG Jeans",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ag-jeans"
+      ]
+    },
+    {
+      "name": "AllSaints",
+      "page": 1,
+      "sourceLine": 15,
+      "sourceName": "AllSaints",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "allsaints"
+      ]
+    },
+    {
+      "name": "American Eagle",
+      "page": 1,
+      "sourceLine": 16,
+      "sourceName": "American Eagle",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "american-eagle"
+      ]
+    },
+    {
+      "name": "AMIRI",
+      "page": 1,
+      "sourceLine": 17,
+      "sourceName": "AMIRI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "amiri"
+      ]
+    },
+    {
+      "name": "Ann Taylor Factory Store",
+      "page": 1,
+      "sourceLine": 18,
+      "sourceName": "Ann Taylor Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ann-taylor"
+      ]
+    },
+    {
+      "name": "Anne Fontaine",
+      "page": 1,
+      "sourceLine": 19,
+      "sourceName": "Anne Fontaine",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "anne-fontaine"
+      ]
+    },
+    {
+      "name": "APEX by Sunglass Hut",
+      "page": 1,
+      "sourceLine": 20,
+      "sourceName": "APEX by Sunglass Hut",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Armani Exchange Outlet",
+      "page": 1,
+      "sourceLine": 21,
+      "sourceName": "Armani Exchange Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "armani-exchange"
+      ]
+    },
+    {
+      "name": "Armani Outlet",
+      "page": 1,
+      "sourceLine": 22,
+      "sourceName": "Armani Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "armani-outlet"
+      ]
+    },
+    {
+      "name": "Asian Chao",
+      "page": 1,
+      "sourceLine": 23,
+      "sourceName": "Asian Chao",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-asian-chao"
+    },
+    {
+      "name": "ASICS",
+      "page": 1,
+      "sourceLine": 24,
+      "sourceName": "ASICS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "asics"
+      ]
+    },
+    {
+      "name": "Auntie Anne's Pretzels",
+      "page": 2,
+      "sourceLine": 25,
+      "sourceName": "Auntie Anne's Pretzels",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-auntie-anne-s-pretzels"
+    },
+    {
+      "name": "Banana Republic Factory Store",
+      "page": 2,
+      "sourceLine": 26,
+      "sourceName": "Banana Republic Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "banana-republic"
+      ]
+    },
+    {
+      "name": "Birkenstock",
+      "page": 2,
+      "sourceLine": 27,
+      "sourceName": "Birkenstock",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "birkenstock"
+      ]
+    },
+    {
+      "name": "BOSS Outlet",
+      "page": 2,
+      "sourceLine": 28,
+      "sourceName": "BOSS Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boss"
+      ]
+    },
+    {
+      "name": "Bottega Veneta",
+      "page": 2,
+      "sourceLine": 29,
+      "sourceName": "Bottega Veneta",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bottega-veneta"
+      ]
+    },
+    {
+      "name": "Brooks Brothers Factory Store",
+      "page": 2,
+      "sourceLine": 30,
+      "sourceName": "Brooks Brothers Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brooks-brothers"
+      ]
+    },
+    {
+      "name": "Brunello Cucinelli",
+      "page": 2,
+      "sourceLine": 31,
+      "sourceName": "Brunello Cucinelli",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brunello-cucinelli"
+      ]
+    },
+    {
+      "name": "Bulova Company Store",
+      "page": 2,
+      "sourceLine": 32,
+      "sourceName": "Bulova Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bulova"
+      ]
+    },
+    {
+      "name": "Burberry",
+      "page": 2,
+      "sourceLine": 33,
+      "sourceName": "Burberry",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "burberry"
+      ]
+    },
+    {
+      "name": "Burnin' Mouth",
+      "page": 2,
+      "sourceLine": 34,
+      "sourceName": "Burnin' Mouth",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-burnin-mouth"
+    },
+    {
+      "name": "Calvin Klein Men's",
+      "page": 2,
+      "sourceLine": 35,
+      "sourceName": "Calvin Klein Men's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calvin-klein"
+      ]
+    },
+    {
+      "name": "Calvin Klein Men's and Women's",
+      "page": 2,
+      "sourceLine": 36,
+      "sourceName": "Calvin Klein Men's and Women's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calvin-klein"
+      ]
+    },
+    {
+      "name": "Camilla",
+      "page": 2,
+      "sourceLine": 39,
+      "sourceName": "Camilla",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "camilla"
+      ]
+    },
+    {
+      "name": "Caribbean Moonshine",
+      "page": 2,
+      "sourceLine": 40,
+      "sourceName": "Caribbean Moonshine",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-caribbean-moonshine"
+    },
+    {
+      "name": "Carter's",
+      "page": 2,
+      "sourceLine": 41,
+      "sourceName": "Carter's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carters"
+      ]
+    },
+    {
+      "name": "CH Carolina Herrera",
+      "page": 2,
+      "sourceLine": 42,
+      "sourceName": "CH Carolina Herrera",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carolina-herrera"
+      ]
+    },
+    {
+      "name": "Charleys Philly Steaks",
+      "page": 2,
+      "sourceLine": 43,
+      "sourceName": "Charleys Philly Steaks",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-charleys-philly-steaks"
+    },
+    {
+      "name": "Citizen",
+      "page": 2,
+      "sourceLine": 44,
+      "sourceName": "Citizen",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "citizen"
+      ]
+    },
+    {
+      "name": "Claire's",
+      "page": 2,
+      "sourceLine": 45,
+      "sourceName": "Claire's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "claires"
+      ]
+    },
+    {
+      "name": "Clarins Factory Store",
+      "page": 2,
+      "sourceLine": 46,
+      "sourceName": "Clarins Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "clarins"
+      ]
+    },
+    {
+      "name": "Clarks",
+      "page": 2,
+      "sourceLine": 47,
+      "sourceName": "Clarks",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "clarks"
+      ]
+    },
+    {
+      "name": "Coach Men's",
+      "page": 3,
+      "sourceLine": 48,
+      "sourceName": "Coach Men's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "coach"
+      ]
+    },
+    {
+      "name": "Coach Outlet",
+      "page": 3,
+      "sourceLine": 49,
+      "sourceName": "Coach Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "coach"
+      ]
+    },
+    {
+      "name": "Cole Haan Outlet",
+      "page": 3,
+      "sourceLine": 52,
+      "sourceName": "Cole Haan Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "cole-haan"
+      ]
+    },
+    {
+      "name": "Columbia Factory Store",
+      "page": 3,
+      "sourceLine": 53,
+      "sourceName": "Columbia Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "columbia"
+      ]
+    },
+    {
+      "name": "Columbia Footwear",
+      "page": 3,
+      "sourceLine": 56,
+      "sourceName": "Columbia Footwear",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "columbia"
+      ]
+    },
+    {
+      "name": "Converse",
+      "page": 3,
+      "sourceLine": 57,
+      "sourceName": "Converse",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "converse"
+      ]
+    },
+    {
+      "name": "Crocs",
+      "page": 3,
+      "sourceLine": 58,
+      "sourceName": "Crocs",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "crocs"
+      ]
+    },
+    {
+      "name": "Diesel",
+      "page": 3,
+      "sourceLine": 59,
+      "sourceName": "Diesel",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "diesel"
+      ]
+    },
+    {
+      "name": "Disney's Character Warehouse",
+      "page": 3,
+      "sourceLine": 60,
+      "sourceName": "Disney's Character Warehouse",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "disney-store"
+      ]
+    },
+    {
+      "name": "DKNY",
+      "page": 3,
+      "sourceLine": 63,
+      "sourceName": "DKNY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dkny"
+      ]
+    },
+    {
+      "name": "Dolce & Gabbana",
+      "page": 3,
+      "sourceLine": 64,
+      "sourceName": "Dolce & Gabbana",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dolce-and-gabbana"
+      ]
+    },
+    {
+      "name": "Express Factory Outlet",
+      "page": 3,
+      "sourceLine": 67,
+      "sourceName": "Express Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "express"
+      ]
+    },
+    {
+      "name": "Fabletics",
+      "page": 3,
+      "sourceLine": 68,
+      "sourceName": "Fabletics",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fabletics"
+      ]
+    },
+    {
+      "name": "Ferragamo",
+      "page": 3,
+      "sourceLine": 69,
+      "sourceName": "Ferragamo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ferragamo"
+      ]
+    },
+    {
+      "name": "Ferrari Store",
+      "page": 3,
+      "sourceLine": 70,
+      "sourceName": "Ferrari Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ferrari"
+      ]
+    },
+    {
+      "name": "Food Court",
+      "page": 3,
+      "sourceLine": 71,
+      "sourceName": "Food Court",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "FORD'S GARAGE",
+      "page": 3,
+      "sourceLine": 72,
+      "sourceName": "FORD'S GARAGE",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-ford-s-garage"
+    },
+    {
+      "name": "Fragrance Outlet",
+      "page": 3,
+      "sourceLine": 73,
+      "sourceName": "Fragrance Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fragrance-outlet"
+      ]
+    },
+    {
+      "name": "Gap Factory",
+      "page": 3,
+      "sourceLine": 74,
+      "sourceName": "Gap Factory",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gap"
+      ]
+    },
+    {
+      "name": "Gap Outlet - Kids & Baby",
+      "page": 4,
+      "sourceLine": 75,
+      "sourceName": "Gap Outlet - Kids & Baby",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gap"
+      ]
+    },
+    {
+      "name": "Green Beat",
+      "page": 4,
+      "sourceLine": 76,
+      "sourceName": "Green Beat",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-green-beat"
+    },
+    {
+      "name": "GUCCI",
+      "page": 4,
+      "sourceLine": 77,
+      "sourceName": "GUCCI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gucci"
+      ]
+    },
+    {
+      "name": "GUESS",
+      "page": 4,
+      "sourceLine": 78,
+      "sourceName": "GUESS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "guess"
+      ]
+    },
+    {
+      "name": "Haagen-Dazs",
+      "page": 4,
+      "sourceLine": 79,
+      "sourceName": "Haagen-Dazs",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-haagen-dazs"
+    },
+    {
+      "name": "HEYDUDE",
+      "page": 4,
+      "sourceLine": 80,
+      "sourceName": "HEYDUDE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "heydude"
+      ]
+    },
+    {
+      "name": "Hoka",
+      "page": 4,
+      "sourceLine": 81,
+      "sourceName": "Hoka",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hoka"
+      ]
+    },
+    {
+      "name": "Hurley",
+      "page": 4,
+      "sourceLine": 82,
+      "sourceName": "Hurley",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hurley"
+      ]
+    },
+    {
+      "name": "IT'SUGAR",
+      "page": 4,
+      "sourceLine": 83,
+      "sourceName": "IT'SUGAR",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-it-sugar"
+    },
+    {
+      "name": "J.Crew Factory",
+      "page": 4,
+      "sourceLine": 84,
+      "sourceName": "J.Crew Factory",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "j-crew"
+      ]
+    },
+    {
+      "name": "Janie and Jack",
+      "page": 4,
+      "sourceLine": 85,
+      "sourceName": "Janie and Jack",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "janie-and-jack"
+      ]
+    },
+    {
+      "name": "JD",
+      "page": 4,
+      "sourceLine": 86,
+      "sourceName": "JD",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jd-sports"
+      ]
+    },
+    {
+      "name": "Jimmy Choo",
+      "page": 4,
+      "sourceLine": 87,
+      "sourceName": "Jimmy Choo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jimmy-choo"
+      ]
+    },
+    {
+      "name": "Johnston & Murphy Factory Store",
+      "page": 4,
+      "sourceLine": 88,
+      "sourceName": "Johnston & Murphy Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "johnston-and-murphy"
+      ]
+    },
+    {
+      "name": "Journeys",
+      "page": 4,
+      "sourceLine": 93,
+      "sourceName": "Journeys",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "journeys"
+      ]
+    },
+    {
+      "name": "Karl Lagerfeld Paris",
+      "page": 4,
+      "sourceLine": 94,
+      "sourceName": "Karl Lagerfeld Paris",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "karl-lagerfeld"
+      ]
+    },
+    {
+      "name": "Kate Spade New York Outlet",
+      "page": 4,
+      "sourceLine": 95,
+      "sourceName": "Kate Spade New York Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kate-spade-new-york"
+      ]
+    },
+    {
+      "name": "Kays Jewelers Outlet",
+      "page": 4,
+      "sourceLine": 96,
+      "sourceName": "Kays Jewelers Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kay-jewelers"
+      ]
+    },
+    {
+      "name": "Kipling",
+      "page": 4,
+      "sourceLine": 99,
+      "sourceName": "Kipling",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kipling"
+      ]
+    },
+    {
+      "name": "LACOSTE Outlet",
+      "page": 4,
+      "sourceLine": 100,
+      "sourceName": "LACOSTE Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lacoste"
+      ]
+    },
+    {
+      "name": "Levi's® Outlet Store",
+      "page": 4,
+      "sourceLine": 101,
+      "sourceName": "Levi's® Outlet Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "levis"
+      ]
+    },
+    {
+      "name": "Lids",
+      "page": 5,
+      "sourceLine": 102,
+      "sourceName": "Lids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lids"
+      ]
+    },
+    {
+      "name": "LOFT Outlet",
+      "page": 5,
+      "sourceLine": 103,
+      "sourceName": "LOFT Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "loft"
+      ]
+    },
+    {
+      "name": "Longchamp",
+      "page": 5,
+      "sourceLine": 104,
+      "sourceName": "Longchamp",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "longchamp"
+      ]
+    },
+    {
+      "name": "Lucciano’s Il Maestro del Gelato",
+      "page": 5,
+      "sourceLine": 105,
+      "sourceName": "Lucciano’s Il Maestro del Gelato",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-luccianos-il-maestro-del-gelato"
+    },
+    {
+      "name": "Lucky Brand Outlet",
+      "page": 5,
+      "sourceLine": 107,
+      "sourceName": "Lucky Brand Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lucky-brand"
+      ]
+    },
+    {
+      "name": "lululemon",
+      "page": 5,
+      "sourceLine": 108,
+      "sourceName": "lululemon",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lululemon"
+      ]
+    },
+    {
+      "name": "Management Office",
+      "page": 5,
+      "sourceLine": 109,
+      "sourceName": "Management Office",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Marc Jacobs",
+      "page": 5,
+      "sourceLine": 113,
+      "sourceName": "Marc Jacobs",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "marc-jacobs"
+      ]
+    },
+    {
+      "name": "Max Mara",
+      "page": 5,
+      "sourceLine": 114,
+      "sourceName": "Max Mara",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "max-mara"
+      ]
+    },
+    {
+      "name": "MCM",
+      "page": 5,
+      "sourceLine": 115,
+      "sourceName": "MCM",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mcm"
+      ]
+    },
+    {
+      "name": "Mercedes-Benz EV Charging",
+      "page": 5,
+      "sourceLine": 116,
+      "sourceName": "Mercedes-Benz EV Charging",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Michael Kors Mens",
+      "page": 5,
+      "sourceLine": 118,
+      "sourceName": "Michael Kors Mens",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "Michael Kors Outlet",
+      "page": 5,
+      "sourceLine": 119,
+      "sourceName": "Michael Kors Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "Moncler",
+      "page": 5,
+      "sourceLine": 122,
+      "sourceName": "Moncler",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "moncler"
+      ]
+    },
+    {
+      "name": "Movado Company Store",
+      "page": 5,
+      "sourceLine": 123,
+      "sourceName": "Movado Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "movado"
+      ]
+    },
+    {
+      "name": "Nautica",
+      "page": 5,
+      "sourceLine": 124,
+      "sourceName": "Nautica",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nautica"
+      ]
+    },
+    {
+      "name": "Nautica | Kids",
+      "page": 5,
+      "sourceLine": 125,
+      "sourceName": "Nautica | Kids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nautica"
+      ]
+    },
+    {
+      "name": "New Balance Factory Store",
+      "page": 5,
+      "sourceLine": 126,
+      "sourceName": "New Balance Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-balance"
+      ]
+    },
+    {
+      "name": "NIKE Factory Store",
+      "page": 6,
+      "sourceLine": 127,
+      "sourceName": "NIKE Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nike"
+      ]
+    },
+    {
+      "name": "Oakley Vault",
+      "page": 6,
+      "sourceLine": 128,
+      "sourceName": "Oakley Vault",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "oakley-vault"
+      ]
+    },
+    {
+      "name": "Old Navy Outlet",
+      "page": 6,
+      "sourceLine": 129,
+      "sourceName": "Old Navy Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "old-navy"
+      ]
+    },
+    {
+      "name": "Original Penguin",
+      "page": 6,
+      "sourceLine": 130,
+      "sourceName": "Original Penguin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "original-penguin"
+      ]
+    },
+    {
+      "name": "OshKosh B'Gosh",
+      "page": 6,
+      "sourceLine": 131,
+      "sourceName": "OshKosh B'Gosh",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carters"
+      ]
+    },
+    {
+      "name": "Pacsun",
+      "page": 6,
+      "sourceLine": 132,
+      "sourceName": "Pacsun",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pacific-sunwear"
+      ]
+    },
+    {
+      "name": "Pandora",
+      "page": 6,
+      "sourceLine": 133,
+      "sourceName": "Pandora",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pandora"
+      ]
+    },
+    {
+      "name": "Perfumania",
+      "page": 6,
+      "sourceLine": 134,
+      "sourceName": "Perfumania",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perfumania"
+      ]
+    },
+    {
+      "name": "Perfumes 4U",
+      "page": 6,
+      "sourceLine": 135,
+      "sourceName": "Perfumes 4U",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perfumes-4u"
+      ]
+    },
+    {
+      "name": "Perry Ellis",
+      "page": 6,
+      "sourceLine": 136,
+      "sourceName": "Perry Ellis",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "perry-ellis"
+      ]
+    },
+    {
+      "name": "Pier 17",
+      "page": 6,
+      "sourceLine": 137,
+      "sourceName": "Pier 17",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-pier-17"
+    },
+    {
+      "name": "Play Area",
+      "page": 6,
+      "sourceLine": 138,
+      "sourceName": "Play Area",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Poki One N Half",
+      "page": 6,
+      "sourceLine": 141,
+      "sourceName": "Poki One N Half",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-poki-one-n-half"
+    },
+    {
+      "name": "Polo Ralph Lauren Children",
+      "page": 6,
+      "sourceLine": 142,
+      "sourceName": "Polo Ralph Lauren Children",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "Polo Ralph Lauren Factory Store",
+      "page": 6,
+      "sourceLine": 143,
+      "sourceName": "Polo Ralph Lauren Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "Prada",
+      "page": 6,
+      "sourceLine": 146,
+      "sourceName": "Prada",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "prada"
+      ]
+    },
+    {
+      "name": "Primark",
+      "page": 6,
+      "sourceLine": 147,
+      "sourceName": "Primark Now Open!",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "primark"
+      ]
+    },
+    {
+      "name": "Primicia Luggage",
+      "page": 6,
+      "sourceLine": 150,
+      "sourceName": "Primicia Luggage",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "primicia-luggage"
+      ]
+    },
+    {
+      "name": "PRO TECH - GARMIN",
+      "page": 6,
+      "sourceLine": 151,
+      "sourceName": "PRO TECH - GARMIN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "garmin"
+      ]
+    },
+    {
+      "name": "Psycho Bunny",
+      "page": 6,
+      "sourceLine": 152,
+      "sourceName": "Psycho Bunny",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "psycho-bunny"
+      ]
+    },
+    {
+      "name": "Puma Kids",
+      "page": 7,
+      "sourceLine": 156,
+      "sourceName": "Puma Kids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "puma"
+      ]
+    },
+    {
+      "name": "PUMA Outlet",
+      "page": 7,
+      "sourceLine": 157,
+      "sourceName": "PUMA Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "puma"
+      ]
+    },
+    {
+      "name": "Racing Miami",
+      "page": 7,
+      "sourceLine": 158,
+      "sourceName": "Racing Miami",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "racing-miami"
+      ]
+    },
+    {
+      "name": "Rack Room Shoes",
+      "page": 7,
+      "sourceLine": 159,
+      "sourceName": "Rack Room Shoes",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rack-room-shoes"
+      ]
+    },
+    {
+      "name": "Samsonite",
+      "page": 7,
+      "sourceLine": 160,
+      "sourceName": "Samsonite",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsonite"
+      ]
+    },
+    {
+      "name": "Sarku Japan",
+      "page": 7,
+      "sourceLine": 161,
+      "sourceName": "Sarku Japan",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-sarku-japan"
+    },
+    {
+      "name": "Shake Shack",
+      "page": 7,
+      "sourceLine": 162,
+      "sourceName": "Shake Shack",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-shake-shack"
+    },
+    {
+      "name": "Simon Guest Services",
+      "page": 7,
+      "sourceLine": 163,
+      "sourceName": "Simon Guest Services",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Skechers",
+      "page": 7,
+      "sourceLine": 165,
+      "sourceName": "Skechers",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skechers"
+      ]
+    },
+    {
+      "name": "Starbucks Coffee",
+      "page": 7,
+      "sourceLine": 166,
+      "sourceName": "Starbucks Coffee",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-starbucks-coffee"
+    },
+    {
+      "name": "Steve Madden",
+      "page": 7,
+      "sourceLine": 167,
+      "sourceName": "Steve Madden",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "steve-madden"
+      ]
+    },
+    {
+      "name": "Sundial Café",
+      "page": 7,
+      "sourceLine": 168,
+      "sourceName": "Sundial Café",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-sundial-cafe"
+    },
+    {
+      "name": "Sunglass Hut",
+      "page": 7,
+      "sourceLine": 169,
+      "sourceName": "Sunglass Hut",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Sunglass Hut (Second Location)",
+      "page": 7,
+      "sourceLine": 170,
+      "sourceName": "Sunglass Hut (Second Location)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "Swarovski",
+      "page": 7,
+      "sourceLine": 171,
+      "sourceName": "Swarovski",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "swarovski"
+      ]
+    },
+    {
+      "name": "TAG Heuer",
+      "page": 7,
+      "sourceLine": 172,
+      "sourceName": "TAG Heuer",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tag-heuer"
+      ]
+    },
+    {
+      "name": "The Children’s Place Outlet/Gymboree",
+      "page": 7,
+      "sourceLine": 173,
+      "sourceName": "The Children’s Place Outlet/Gymboree",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-childrens-place",
+        "gymboree"
+      ]
+    },
+    {
+      "name": "The Cosmetics Company Store",
+      "page": 7,
+      "sourceLine": 175,
+      "sourceName": "The Cosmetics Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-cosmetics-company-store"
+      ]
+    },
+    {
+      "name": "The North Face",
+      "page": 7,
+      "sourceLine": 176,
+      "sourceName": "The North Face",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-north-face"
+      ]
+    },
+    {
+      "name": "Theory Outlet",
+      "page": 8,
+      "sourceLine": 177,
+      "sourceName": "Theory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "theory"
+      ]
+    },
+    {
+      "name": "Timberland",
+      "page": 8,
+      "sourceLine": 178,
+      "sourceName": "Timberland",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "timberland"
+      ]
+    },
+    {
+      "name": "Tommy Bahama Outlet",
+      "page": 8,
+      "sourceLine": 179,
+      "sourceName": "Tommy Bahama Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-bahama"
+      ]
+    },
+    {
+      "name": "Tommy Hilfiger",
+      "page": 8,
+      "sourceLine": 180,
+      "sourceName": "Tommy Hilfiger",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-hilfiger"
+      ]
+    },
+    {
+      "name": "Tory Burch",
+      "page": 8,
+      "sourceLine": 181,
+      "sourceName": "Tory Burch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tory-burch"
+      ]
+    },
+    {
+      "name": "True Religion Outlet",
+      "page": 8,
+      "sourceLine": 182,
+      "sourceName": "True Religion Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "true-religion"
+      ]
+    },
+    {
+      "name": "TUMI",
+      "page": 8,
+      "sourceLine": 183,
+      "sourceName": "TUMI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tumi"
+      ]
+    },
+    {
+      "name": "U.S. Polo Assn. Outlet",
+      "page": 8,
+      "sourceLine": 184,
+      "sourceName": "U.S. Polo Assn. Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "u-s-polo-assn"
+      ]
+    },
+    {
+      "name": "UGG",
+      "page": 8,
+      "sourceLine": 185,
+      "sourceName": "UGG",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ugg"
+      ]
+    },
+    {
+      "name": "Under Armour Factory House",
+      "page": 8,
+      "sourceLine": 186,
+      "sourceName": "Under Armour Factory House",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "under-armour"
+      ]
+    },
+    {
+      "name": "Under Armour Footwear",
+      "page": 8,
+      "sourceLine": 188,
+      "sourceName": "Under Armour Footwear",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "under-armour"
+      ]
+    },
+    {
+      "name": "Valentino",
+      "page": 8,
+      "sourceLine": 189,
+      "sourceName": "Valentino",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "valentino"
+      ]
+    },
+    {
+      "name": "Valet Parking",
+      "page": 8,
+      "sourceLine": 190,
+      "sourceName": "Valet Parking",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Vans Outlet",
+      "page": 8,
+      "sourceLine": 191,
+      "sourceName": "Vans Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vans"
+      ]
+    },
+    {
+      "name": "Vera Bradley Factory Outlet",
+      "page": 8,
+      "sourceLine": 192,
+      "sourceName": "Vera Bradley Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vera-bradley"
+      ]
+    },
+    {
+      "name": "Versace",
+      "page": 8,
+      "sourceLine": 193,
+      "sourceName": "Versace",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "versace"
+      ]
+    },
+    {
+      "name": "Victoria's Secret",
+      "page": 8,
+      "sourceLine": 194,
+      "sourceName": "Victoria's Secret Now Open!",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "victorias-secret"
+      ]
+    },
+    {
+      "name": "Vilebrequin",
+      "page": 8,
+      "sourceLine": 197,
+      "sourceName": "Vilebrequin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vilebrequin"
+      ]
+    },
+    {
+      "name": "Villa Fresh Italian Kitchen",
+      "page": 8,
+      "sourceLine": 198,
+      "sourceName": "Villa Fresh Italian Kitchen",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "orlando-vineland-premium-outlets-villa-fresh-italian-kitchen"
+    },
+    {
+      "name": "Vineyard Vines",
+      "page": 8,
+      "sourceLine": 199,
+      "sourceName": "Vineyard Vines",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vineyard-vines"
+      ]
+    },
+    {
+      "name": "Vitamin World",
+      "page": 9,
+      "sourceLine": 200,
+      "sourceName": "Vitamin World",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vitamin-world"
+      ]
+    },
+    {
+      "name": "Vuori",
+      "page": 9,
+      "sourceLine": 201,
+      "sourceName": "Vuori",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vuori"
+      ]
+    },
+    {
+      "name": "Zadig&Voltaire",
+      "page": 9,
+      "sourceLine": 202,
+      "sourceName": "Zadig&Voltaire",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zadig-and-voltaire"
+      ]
+    },
+    {
+      "name": "Zales Outlet",
+      "page": 9,
+      "sourceLine": 203,
+      "sourceName": "Zales Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zales"
+      ]
+    },
+    {
+      "name": "ZEGNA",
+      "page": 9,
+      "sourceLine": 204,
+      "sourceName": "ZEGNA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zegna"
+      ]
+    },
+    {
+      "name": "Zumiez",
+      "page": 9,
+      "sourceLine": 205,
+      "sourceName": "Zumiez",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zumiez"
+      ]
+    },
+    {
+      "name": "Zwilling J.A. Henckels",
+      "page": 9,
+      "sourceLine": 206,
+      "sourceName": "Zwilling J.A. Henckels",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zwilling"
+      ]
+    }
+  ]
+}

@@ -4664,7 +4664,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "hero",
 "assetPath": "assets/outlet-images/siam-premium-outlet/hero.webp",
 "sourceStatus": "project-owned",
@@ -4674,7 +4674,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "gallery",
 "assetPath": "assets/outlet-images/siam-premium-outlet/gallery1.webp",
 "sourceStatus": "project-owned",
@@ -4684,7 +4684,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "gallery",
 "assetPath": "assets/outlet-images/siam-premium-outlet/gallery2.webp",
 "sourceStatus": "project-owned",
@@ -4694,7 +4694,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "gallery",
 "assetPath": "assets/outlet-images/siam-premium-outlet/gallery3.webp",
 "sourceStatus": "project-owned",

@@ -1,3 +1,4 @@
+import { unitedStatesOutletBrands } from "./united-states";
 import { chinaOutletBrands } from "./china";
 import { hongKongOutletBrands } from "./hong-kong";
 import { taiwanOutletBrands } from "./taiwan";
@@ -79,6 +80,7 @@ export {
 };
 
 export const outletBrands: OutletBrand[] = [
+  ...unitedStatesOutletBrands,
   ...japanOutletBrands,
   ...chinaOutletBrands,
  ...hongKongOutletBrands,
@@ -113,6 +115,5 @@ export const outletBrands: OutletBrand[] = [
   ...kuwaitOutletBrands,
   ...southKoreaOutletBrands,
  ...malaysiaOutletBrands,
- // Thailand relations remain available as source inventory, but are excluded
- // until a matching source-backed outlet entity is part of the runtime catalog.
+  ...thailandOutletBrands,
 ];

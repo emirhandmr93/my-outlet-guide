@@ -1,3 +1,4 @@
+import { expansionQuickInfo, localizeExpansionGuide } from "./expansionOutletLocalization";
 import { shanghaiVillageQuickInfo, localizeShanghaiGuide } from "./shanghaiVillageLocalization";
 import { finalizeRecentQuickInfo, localizeRecentOutletGuide } from "./recentOutletLocalization";
 import type { TransportationGuide } from "./transportationGuides";
@@ -364,9 +365,11 @@ const bus66Notes:Record<TargetContentLanguage,{note:string;link:string}>={
  ru:{note:"AED 5–7,50 — ориентировочная стоимость по анонимной карте nol Silver; применимый тариф зависит от числа зон поездки. Отправления по дням работы и последний обратный рейс различаются.",link:"Открыть официальный график RTA / центра"},
  zh:{note:"AED 5–7.50 是匿名 nol Silver 卡的估算票价；实际票价取决于行程跨越的分区数量。不同运营日的班次及末班返程时间会有变化。",link:"打开 RTA / 商场官方班次表"},
 };
-export function localizeTargetGuide(guide:TransportationGuide,language:TargetContentLanguage):LocalizedGuideCopy|undefined{const recentGuide=localizeRecentOutletGuide(guide,language);if(recentGuide)return recentGuide;if(guide.outletId==="al-khiran-hybrid-outlet-mall"&&language==="tr")return localizeAlKhiranGuideTr(guide);if(guide.outletId==="yeoju-premium-outlets"&&language==="tr")return localizeYeojuGuideTr(guide);if(guide.outletId==="shanghai-village")return localizeShanghaiGuide(guide,language);const route=routes[guide.guideId];if(!route)return;const busNote=guide.guideId==="al-ghubaiba-to-dubai-outlet-mall-rta-bus-66"?bus66Notes[language]:undefined;return{title:titleTemplates[language]({...route,start:localizeRouteOrigin(route.start,language)}),estimatedDuration:localizeEstimate(guide.estimatedDuration,language),estimatedCost:localizeEstimate(guide.estimatedCost,language),steps:language==="en"?[...guide.steps].sort((a,b)=>a.order-b.order).map(step=>step.description):localizeSteps(guide,language)??[],routeNote:busNote?.note,officialLinkLabel:busNote?.link}}
+export function localizeTargetGuide(guide:TransportationGuide,language:TargetContentLanguage):LocalizedGuideCopy|undefined{const expansionGuide=localizeExpansionGuide(guide,language);if(expansionGuide)return expansionGuide;const recentGuide=localizeRecentOutletGuide(guide,language);if(recentGuide)return recentGuide;if(guide.outletId==="al-khiran-hybrid-outlet-mall"&&language==="tr")return localizeAlKhiranGuideTr(guide);if(guide.outletId==="yeoju-premium-outlets"&&language==="tr")return localizeYeojuGuideTr(guide);if(guide.outletId==="shanghai-village")return localizeShanghaiGuide(guide,language);const route=routes[guide.guideId];if(!route)return;const busNote=guide.guideId==="al-ghubaiba-to-dubai-outlet-mall-rta-bus-66"?bus66Notes[language]:undefined;return{title:titleTemplates[language]({...route,start:localizeRouteOrigin(route.start,language)}),estimatedDuration:localizeEstimate(guide.estimatedDuration,language),estimatedCost:localizeEstimate(guide.estimatedCost,language),steps:language==="en"?[...guide.steps].sort((a,b)=>a.order-b.order).map(step=>step.description):localizeSteps(guide,language)??[],routeNote:busNote?.note,officialLinkLabel:busNote?.link}}
 export function getTargetQuickInfo(outletId:string,language:string){
 const lang=(targetContentLanguages.includes(language as TargetContentLanguage)?language:"en") as TargetContentLanguage;
+const expansion=expansionQuickInfo(outletId,lang);
+if(expansion)return expansion;
 let base:QuickInfo|undefined;
 
 if(outletId==="yeoju-premium-outlets"){

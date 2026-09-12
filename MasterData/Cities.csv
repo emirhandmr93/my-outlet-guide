@@ -1,24 +1,55 @@
-﻿cityId,cityName,countryId
+cityId,cityName,countryId
+new-york,New York,united-states
+fort-lauderdale,Fort Lauderdale,united-states
+orlando,Orlando,united-states
+las-vegas,Las Vegas,united-states
+palm-springs,Palm Springs,united-states
+san-francisco,San Francisco,united-states
+bangkok,Bangkok,thailand
+sano,Sano,japan
+shisui,Shisui,japan
+kobe,Kobe,japan
+tung-chung,Tung Chung,hong-kong
+linkou,Linkou,taiwan
+yeoju,Yeoju,south-korea
+shanghai,Shanghai,china
+kisarazu,Kisarazu,japan
+izumisano,Izumisano,japan
 amsterdam,Amsterdam,netherlands
 ashford,Ashford,united-kingdom
 banbridge,Banbridge,united-kingdom
 berlin,Berlin,germany
 birmingham,Birmingham,united-kingdom
+budapest,Budapest,hungary
 cardiff,Cardiff,united-kingdom
 cologne,Cologne,germany
+prague,Prague,czech-republic
 doncaster,Doncaster,united-kingdom
 durham,Durham,united-kingdom
+dubai,Dubai,united-arab-emirates
+al-khiran,Al Khiran,kuwait
+fleetwood,Fleetwood,united-kingdom
 florence,Florence,italy
+foiano-della-chiana,Foiano della Chiana,italy
 frankfurt,Frankfurt,germany
 gloucester,Gloucester,united-kingdom
+gothenburg,Gothenburg,sweden
 gretna,Gretna,united-kingdom
 hamburg,Hamburg,germany
 hannover,Hannover,germany
+halle-leipzig,Halle-Leipzig,germany
 hatfield,Hatfield,united-kingdom
+istanbul,Istanbul,turkey
+izmir,Izmir,turkey
+antalya,Antalya,turkey
+kildare,Kildare,ireland
 leeds,Leeds,united-kingdom
+lisbon,Lisbon,portugal
 liverpool,Liverpool,united-kingdom
+livingston,Livingston,united-kingdom
 london,London,united-kingdom
 maasmechelen,Maasmechelen,belgium
+messancy,Messancy,belgium
 madrid,Madrid,spain
 malaga,Malaga,spain
 marseille,Marseille,france
@@ -27,14 +58,67 @@ munich,Munich,germany
 naples,Naples,italy
 nottingham,Nottingham,united-kingdom
 paris,Paris,france
+porto,Porto,portugal
 portsmouth,Portsmouth,united-kingdom
+ringsted,Ringsted,denmark
 rome,Rome,italy
 rotterdam,Rotterdam,netherlands
 spalding,Spalding,united-kingdom
+mendrisio,Mendrisio,switzerland
+landquart,Landquart,switzerland
+schoenenwerd,Schönenwerd,switzerland
+spata,Spata,greece
 street,Street,united-kingdom
 stuttgart,Stuttgart,germany
 swindon,Swindon,united-kingdom
+lempaala,Lempäälä,finland
 venice,Venice,italy
+vestby,Vestby,norway
 vienna,Vienna,austria
+warsaw,Warsaw,poland
+zagreb,Zagreb,croatia
 york,York,united-kingdom
-yeoju,Yeoju,south-korea
+bucharest,Bucharest,romania
+palmanova,Palmanova,italy
+roppenheim,Roppenheim,france
+sofia,Sofia,bulgaria
+tallinn,Tallinn,estonia
+bagnolo-san-vito,Bagnolo San Vito,italy
+douains,Douains,france
+pinki,Piņķi,latvia
+rodengo-saiano,Rodengo Saiano,italy
+viladecans,Viladecans,spain
+vilnius,Vilnius,lithuania
+salzburg,Salzburg,austria
+barcelona,Barcelona,spain
+lelystad,Lelystad,netherlands
+vicolungo,Vicolungo,italy
+castel-guelfo-di-bologna,Castel Guelfo di Bologna,italy
+wroclaw,Wrocław,poland
+ochtrup,Ochtrup,germany
+marratxi,Marratxí,spain
+seville,Seville,spain
+getafe,Getafe,spain
+san-sebastian-de-los-reyes,San Sebastián de los Reyes,spain
+gdansk,Gdańsk,poland
+sosnowiec,Sosnowiec,poland
+piaseczno,Piaseczno,poland
+villefontaine,Villefontaine,france
+roubaix,Roubaix,france
+a-coruna,A Coruña,spain
+les-clayes-sous-bois,Les Clayes-sous-Bois,france
+molfetta,Molfetta,italy
+agira,Agira,italy
+locate-triulzi,Locate di Triulzi,italy
+settimo-torinese,Settimo Torinese,italy
+mondovi,Mondovì,italy
+brugnato,Brugnato,italy
+braintree,Braintree,united-kingdom
+tillicoultry,Tillicoultry,united-kingdom
+valmontone,Valmontone,italy
+eboli,Eboli,italy
+citta-sant-angelo,Città Sant'Angelo,italy
+gotemba,Gotemba,japan
+paju,Paju,south-korea
+busan,Busan,south-korea
+genting-highlands,Genting Highlands,malaysia

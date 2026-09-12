@@ -1,3 +1,4 @@
+import { expansionTransportationGuides, expansionGuideIds } from "../expansionTransportation";
 import { chinaTransportationGuides } from "./china";
 import { hongKongTransportationGuides } from "./hong-kong";
 import { taiwanTransportationGuides } from "./taiwan";
@@ -96,7 +97,7 @@ export {
 malaysiaTransportationGuides,
 };
 
-export const transportationGuides: TransportationGuide[] = [
+const legacyTransportationGuides: TransportationGuide[] = [
   ...japanTransportationGuides,
   ...chinaTransportationGuides,
  ...hongKongTransportationGuides,
@@ -132,3 +133,5 @@ export const transportationGuides: TransportationGuide[] = [
   ...southKoreaTransportationGuides,
 ...malaysiaTransportationGuides,
 ];
+
+export const transportationGuides: TransportationGuide[] = [...legacyTransportationGuides.filter(guide => !expansionGuideIds.has(guide.guideId)), ...expansionTransportationGuides];

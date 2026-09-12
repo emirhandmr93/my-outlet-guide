@@ -1,4 +1,12 @@
 export const cities = [
+ {"cityId": "new-york", "cityName": "New York", "countryId": "united-states"},
+ {"cityId": "fort-lauderdale", "cityName": "Fort Lauderdale", "countryId": "united-states"},
+ {"cityId": "orlando", "cityName": "Orlando", "countryId": "united-states"},
+ {"cityId": "las-vegas", "cityName": "Las Vegas", "countryId": "united-states"},
+ {"cityId": "palm-springs", "cityName": "Palm Springs", "countryId": "united-states"},
+ {"cityId": "san-francisco", "cityName": "San Francisco", "countryId": "united-states"},
+ {"cityId": "bangkok", "cityName": "Bangkok", "countryId": "thailand"},
+
  { cityId: "sano", cityName: "Sano", countryId: "japan" },
  { cityId: "shisui", cityName: "Shisui", countryId: "japan" },
  { cityId: "kobe", cityName: "Kobe", countryId: "japan" },

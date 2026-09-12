@@ -1,3 +1,5 @@
+import { thailandRestaurants } from "./thailand";
+import { unitedStatesRestaurants } from "./united-states";
 import { hongKongRestaurants } from "./hong-kong";
 import { taiwanRestaurants } from "./taiwan";
 import { chinaRestaurants } from "./china";
@@ -68,6 +70,10 @@ export {
 };
 
 export const restaurants = [
+  ...hongKongRestaurants,
+  ...taiwanRestaurants,
+  ...thailandRestaurants,
+  ...unitedStatesRestaurants,
   ...japanRestaurants,
   ...chinaRestaurants,
   ...austriaRestaurants,
