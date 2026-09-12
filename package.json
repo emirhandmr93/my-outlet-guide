@@ -68,7 +68,7 @@
     "web:perf:check": "tsx tools/checkWebPerformanceBudget.ts",
     "web:links": "tsx tools/checkInternalLinksFast.ts",
     "web:seo:coverage": "tsx tools/checkSeoEnhancementCoverage.ts && tsx tools/checkEntityIntentSeo.ts && tsx tools/checkBrandCountryIntentSeo.ts && tsx tools/checkCountryTaxFreeSeo.ts && tsx tools/checkOutletBrandIntentSeo.ts && tsx tools/checkDestinationAnchorIntentSeo.ts && tsx tools/checkPriorityEditorialSeo.ts && tsx tools/checkResearchTrustSeo.ts",
-    "generate": "tsx tools/generateConstants.ts",
+    "generate": "node --import tsx tools/generateConstants.ts",
     "web:prepare": "tsx tools/prepareWebsiteAssets.ts",
     "web:generate": "tsx tools/generateWebsite.ts",
     "web:check": "tsx tools/checkMinimumWebSite.ts",
@@ -76,7 +76,10 @@
     "web:poc:start": "tsx tools/startWebPoc.ts",
     "web:poc:export": "tsx tools/exportWebPoc.ts",
     "validate:yeoju": "tsx tools/validateYeojuDirectory.ts",
-    "test:restaurant-categories": "tsx tools/testRestaurantCategoryFormatter.ts"
+    "test:restaurant-categories": "tsx tools/testRestaurantCategoryFormatter.ts",
+    "data:sync": "node --import tsx tools/syncMasterData.ts",
+    "data:check": "node --import tsx tools/syncMasterData.ts --check",
+    "validate:outlet-expansion": "node --import tsx tools/checkOutletExpansion.ts"
   },
   "private": true,
   "devDependencies": {

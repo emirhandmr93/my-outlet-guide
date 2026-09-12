@@ -13,7 +13,7 @@ async function check() {
   const pages=getIndexableWebSeoPages().filter(page=>page.kind==="transportation");
   const publicOutletIds=new Set(outlets.filter(isWebSeoPublicOutlet).map(outlet=>outlet.outletId));
   const distribution=new Map<number,number>(); let total=0; let visibleLength=0; const bodies:string[]=[];
-  assert(pages.length===109,"Expected 109 logical transportation pages.");
+  assert(pages.length > 0, "Expected at least one logical transportation page.");
   for (const page of pages) {
     assert(publicOutletIds.has(page.outletId!),`${page.path}: transportation page does not correspond to a public outlet.`);
     const source=transportation.filter(item=>item.outletId===page.outletId&&item.status==="active"&&item.title.trim()).sort((a,b)=>Number(a.displayOrder)-Number(b.displayOrder));

@@ -759,7 +759,7 @@ require("../../assets/outlet-images/shisui-premium-outlets/gallery1.webp"),
 require("../../assets/outlet-images/shisui-premium-outlets/gallery2.webp"),
 require("../../assets/outlet-images/shisui-premium-outlets/gallery3.webp"),
 ],
- "siam-premium-outlet": [
+ "siam-premium-outlets": [
 require("../../assets/outlet-images/siam-premium-outlet/hero.webp"),
 require("../../assets/outlet-images/siam-premium-outlet/gallery1.webp"),
 require("../../assets/outlet-images/siam-premium-outlet/gallery2.webp"),

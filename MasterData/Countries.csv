@@ -1,18 +1,39 @@
-﻿countryId,countryName,countryFlag,continent,currency,taxFreeAvailable
-austria,Austria,🇦🇹,Europe,EUR,TRUE
-canada,Canada,🇨🇦,North America,CAD,TRUE
-china,China,🇨🇳,Asia,CNY,TRUE
-denmark,Denmark,🇩🇰,Europe,DKK,TRUE
-france,France,🇫🇷,Europe,EUR,TRUE
-germany,Germany,🇩🇪,Europe,EUR,TRUE
-italy,Italy,🇮🇹,Europe,EUR,TRUE
-japan,Japan,🇯🇵,Asia,JPY,TRUE
-netherlands,Netherlands,🇳🇱,Europe,EUR,TRUE
-south-korea,South Korea,🇰🇷,Asia,KRW,TRUE
-spain,Spain,🇪🇸,Europe,EUR,TRUE
-sweden,Sweden,🇸🇪,Europe,SEK,TRUE
-switzerland,Switzerland,🇨🇭,Europe,CHF,TRUE
-thailand,Thailand,🇹🇭,Asia,THB,TRUE
-united-arab-emirates,United Arab Emirates,🇦🇪,Asia,AED,TRUE
-united-kingdom,United Kingdom,🇬🇧,Europe,GBP,TRUE
-united-states,United States,🇺🇸,North America,USD,FALSE
+countryId,taxFreeStatus,countryName,countryFlag,continent,currency,taxFreeAvailable
+austria,available,Austria,🇦🇹,Europe,EUR,TRUE
+belgium,available,Belgium,🇧🇪,Europe,EUR,TRUE
+canada,not_available,Canada,🇨🇦,North America,CAD,FALSE
+china,available,China,🇨🇳,Asia,CNY,TRUE
+croatia,available,Croatia,🇭🇷,Europe,EUR,TRUE
+czech-republic,available,Czech Republic,🇨🇿,Europe,CZK,TRUE
+denmark,available,Denmark,🇩🇰,Europe,DKK,TRUE
+finland,available,Finland,🇫🇮,Europe,EUR,TRUE
+bulgaria,available,Bulgaria,🇧🇬,Europe,EUR,TRUE
+estonia,available,Estonia,🇪🇪,Europe,EUR,TRUE
+romania,available,Romania,🇷🇴,Europe,RON,TRUE
+france,available,France,🇫🇷,Europe,EUR,TRUE
+germany,available,Germany,🇩🇪,Europe,EUR,TRUE
+greece,available,Greece,🇬🇷,Europe,EUR,TRUE
+hungary,available,Hungary,🇭🇺,Europe,HUF,TRUE
+ireland,available,Ireland,🇮🇪,Europe,EUR,TRUE
+italy,available,Italy,🇮🇹,Europe,EUR,TRUE
+japan,available,Japan,🇯🇵,Asia,JPY,TRUE
+latvia,available,Latvia,🇱🇻,Europe,EUR,TRUE
+kuwait,not_available,Kuwait,🇰🇼,Asia,KWD,FALSE
+lithuania,available,Lithuania,🇱🇹,Europe,EUR,TRUE
+netherlands,available,Netherlands,🇳🇱,Europe,EUR,TRUE
+norway,available,Norway,🇳🇴,Europe,NOK,TRUE
+poland,available,Poland,🇵🇱,Europe,PLN,TRUE
+portugal,available,Portugal,🇵🇹,Europe,EUR,TRUE
+slovakia,available,Slovakia,🇸🇰,Europe,EUR,TRUE
+south-korea,available,South Korea,🇰🇷,Asia,KRW,TRUE
+spain,available,Spain,🇪🇸,Europe,EUR,TRUE
+sweden,available,Sweden,🇸🇪,Europe,SEK,TRUE
+switzerland,available,Switzerland,🇨🇭,Europe,CHF,TRUE
+thailand,available,Thailand,🇹🇭,Asia,THB,TRUE
+turkey,available,Turkey,🇹🇷,Europe,TRY,TRUE
+united-arab-emirates,available,United Arab Emirates,🇦🇪,Asia,AED,TRUE
+united-kingdom,not_available,United Kingdom,🇬🇧,Europe,GBP,FALSE
+united-states,not_available,United States,🇺🇸,North America,USD,FALSE
+hong-kong,not_available,Hong Kong,🇭🇰,Asia,HKD,FALSE
+taiwan,available,Taiwan,🇹🇼,Asia,TWD,TRUE
+malaysia,not_available,Malaysia,🇲🇾,Asia,MYR,FALSE

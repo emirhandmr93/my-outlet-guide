@@ -1,3 +1,5 @@
+import { expansionDistanceLabel } from "../constants/expansionOutletLocalization";
+import { localizeExpansionPlace } from "../constants/expansionPlaceNames";
 import { RouteProp, useNavigation, useRoute } from "@react-navigation/native";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
@@ -632,6 +634,8 @@ export function OutletDetailScreen() {
             taxFreeStatus={taxFreeStatus}
             taxFreeSummary={taxFreeSummary}
             cityCenterDistanceKm={outlet.cityCenterDistanceKm}
+            cityCenterName={outlet.cityCenterInfo?.name ? localizeExpansionPlace(outlet.cityCenterInfo.name, language) : undefined}
+            distanceNote={outlet.distanceBasis === "straight-line" ? expansionDistanceLabel(language) : undefined}
             airportDistanceKm={outlet.airportDistanceKm}
             reviewCountLabel={t("outlet.reviewCount")}
             reviewCount={outletReviews.length}

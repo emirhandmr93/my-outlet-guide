@@ -3,7 +3,7 @@ Run after node --import tsx tools/exportDirectoryBaseline.ts has exported the gl
 """
 import json,re,pathlib,unicodedata,hashlib
 ROOT=pathlib.Path(__file__).resolve().parent.parent
-SRC=ROOT/'data-sources/outlet-expansion-2026-09';BASE=ROOT.parent/'research'
+SRC=ROOT/'data-sources/outlet-expansion-2026-09';BASE=SRC/'baseline'
 def norm(s):return ''.join(c for c in unicodedata.normalize('NFKD',s.lower().replace('&','and')) if c.isalnum())
 def slug(s):return re.sub('[^a-z0-9]+','-',unicodedata.normalize('NFKD',s).encode('ascii','ignore').decode().lower().replace('&',' and ')).strip('-')
 def dump(p,x):p.write_text(json.dumps(x,ensure_ascii=False,indent=2)+'\n')
@@ -80,7 +80,7 @@ for f in sorted((SRC/'raw').glob('*.json')):
  old=[r for r in json.loads((BASE/'baseline-outletBrands.json').read_text()) if r['outletId']==oid]
  if is_siam:
   import subprocess
-  text=subprocess.check_output(['git','show','origin/main:src/constants/outletBrands/thailand.ts'],cwd=ROOT,text=True)
+  text=(BASE/'thailand-outletBrands.ts').read_text()
   old=[{'outletId':oid,'brandId':b,'featured':False} for b in re.findall(r'brandId: "([^"]+)"',text)]
  for r in old:
   if r['brandId'] not in rels:rels[r['brandId']]={**r,'relationStatus':'inactive'}
@@ -92,7 +92,7 @@ for oid,country,var in [('siam-premium-outlets','thailand','thailand'),('citygat
  ts(ROOT/f'src/constants/outletBrands/{country}.ts',var+'OutletBrands',[r for r in allrels if r['outletId']==oid]);ts(ROOT/f'src/constants/restaurants/{country}.ts',var+'Restaurants',[r for r in allrest if r['outletId']==oid])
 asia={'siam-premium-outlets','citygate-outlets','mitsui-outlet-park-linkou'}
 ts(ROOT/'src/constants/outletBrands/united-states.ts','unitedStatesOutletBrands',[r for r in allrels if r['outletId'] not in asia]);ts(ROOT/'src/constants/restaurants/united-states.ts','unitedStatesRestaurants',[r for r in allrest if r['outletId'] not in asia])
-for folder,symbol,file,marker in [('brands','expansionBrands','brands-expansion','const allBrands: Brand[] = ['),('outletBrands','unitedStatesOutletBrands','united-states','export const outletBrands: OutletBrand[] = ['),('restaurants','unitedStatesRestaurants','united-states','export const restaurants = ['),('restaurants','thailandRestaurants','thailand','export const restaurants = [')]:
+for folder,symbol,file,marker in [('brands','expansionBrands','brands-expansion','const allBrands: Brand[] = ['),('outletBrands','unitedStatesOutletBrands','united-states','export const outletBrands: OutletBrand[] = ['),('restaurants','unitedStatesRestaurants','united-states','export const restaurants = ['),('restaurants','thailandRestaurants','thailand','export const restaurants = ['),('restaurants','hongKongRestaurants','hong-kong','export const restaurants = ['),('restaurants','taiwanRestaurants','taiwan','export const restaurants = [')]:
  p=ROOT/f'src/constants/{folder}/index.ts';s=p.read_text()
  if f'import {{ {symbol} }}' not in s:s=f'import {{ {symbol} }} from "./{file}";\n'+s;s=s.replace(marker,marker+'\n  ...'+symbol+',');p.write_text(s)
 p=ROOT/'src/constants/outletBrands/index.ts';s=p.read_text().replace(' // Thailand relations remain available as source inventory, but are excluded\n // until a matching source-backed outlet entity is part of the runtime catalog.','  ...thailandOutletBrands,');p.write_text(s)

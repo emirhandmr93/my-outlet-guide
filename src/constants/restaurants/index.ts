@@ -70,6 +70,8 @@ export {
 };
 
 export const restaurants = [
+  ...hongKongRestaurants,
+  ...taiwanRestaurants,
   ...thailandRestaurants,
   ...unitedStatesRestaurants,
   ...japanRestaurants,
