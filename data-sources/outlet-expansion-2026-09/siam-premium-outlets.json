@@ -1,0 +1,1197 @@
+{
+  "outletId": "siam-premium-outlets",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.siampremiumoutlets.com/en/store",
+  "sourceRecordCount": 121,
+  "rows": [
+    {
+      "name": ".LIFE",
+      "category": "IT & Gadget",
+      "sourceName": ".LIFE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "life"
+      ]
+    },
+    {
+      "name": "7-ELEVEN",
+      "category": "Convenience Store",
+      "sourceName": "7-ELEVEN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "7-eleven"
+      ]
+    },
+    {
+      "name": "ADIDAS FACTORY OUTLET",
+      "category": "Sportswear",
+      "sourceName": "ADIDAS FACTORY OUTLET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "adidas"
+      ]
+    },
+    {
+      "name": "ALBEDO",
+      "category": "Bag",
+      "sourceName": "ALBEDO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "albedo"
+      ]
+    },
+    {
+      "name": "ALDO",
+      "category": "Women's Shoes, Handbags & Accessories",
+      "sourceName": "ALDO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aldo"
+      ]
+    },
+    {
+      "name": "ALPHAKID",
+      "category": "Alpha Kid Toy Shop",
+      "sourceName": "ALPHAKID",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "alphakid"
+      ]
+    },
+    {
+      "name": "AMAZON CAFÉ",
+      "category": "Beverage",
+      "sourceName": "AMAZON CAFÉ",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-amazon-cafe"
+    },
+    {
+      "name": "AMERICAN EAGLE",
+      "category": "Trendy fashions for men, women",
+      "sourceName": "AMERICAN EAGLE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "american-eagle"
+      ]
+    },
+    {
+      "name": "AMERICAN TOURISTER",
+      "category": "Clothing, Shoes, Bags, Travel Product",
+      "sourceName": "AMERICAN TOURISTER",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "american-tourister"
+      ]
+    },
+    {
+      "name": "ANTA",
+      "category": "Sportswear",
+      "sourceName": "ANTA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "anta"
+      ]
+    },
+    {
+      "name": "ARROW",
+      "category": "Clothing, Trendy fashions",
+      "sourceName": "ARROW",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "arrow"
+      ]
+    },
+    {
+      "name": "ASICS",
+      "category": "Running Shoes, Clothing & Sport Accessories",
+      "sourceName": "ASICS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "asics"
+      ]
+    },
+    {
+      "name": "BALENCIAGA",
+      "category": "Clothing, Footwear, Bag, Accessories",
+      "sourceName": "BALENCIAGA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "balenciaga"
+      ]
+    },
+    {
+      "name": "BATH&BODY WORKS",
+      "category": "Body & Bath Products",
+      "sourceName": "BATH&BODY WORKS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bath-and-body-works"
+      ]
+    },
+    {
+      "name": "BEVERLY HILLS POLO CLUB",
+      "category": "Clothing",
+      "sourceName": "BEVERLY HILLS POLO CLUB",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "beverly-hills-polo-club"
+      ]
+    },
+    {
+      "name": "BODY GLOVE",
+      "category": "Sportswear, Athletic",
+      "sourceName": "BODY GLOVE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "body-glove"
+      ]
+    },
+    {
+      "name": "BONCHON",
+      "category": "Korean Chicken Wings Restaurant",
+      "sourceName": "BONCHON",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-bonchon"
+    },
+    {
+      "name": "BOOTS",
+      "category": "Beauty, Healthcare Items, Personal Care",
+      "sourceName": "BOOTS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boots"
+      ]
+    },
+    {
+      "name": "BOSS",
+      "category": "Clothing, Footwear, Bag",
+      "sourceName": "BOSS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boss"
+      ]
+    },
+    {
+      "name": "BP WORLD",
+      "category": "Travel bag, backpack",
+      "sourceName": "BP WORLD",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bp-world"
+      ]
+    },
+    {
+      "name": "BRANDZALE",
+      "category": "American brand of canvas shoes",
+      "sourceName": "BRANDZALE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brandzale"
+      ]
+    },
+    {
+      "name": "BREAD TALK",
+      "category": "Bakery",
+      "sourceName": "BREAD TALK",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-bread-talk"
+    },
+    {
+      "name": "ELLE",
+      "category": "",
+      "sourceName": "ELLE (Soon)",
+      "kind": "retail",
+      "status": "coming-soon",
+      "brandIds": [
+        "elle"
+      ]
+    },
+    {
+      "name": "BURBERRY",
+      "category": "Clothing, Footwear, Bag",
+      "sourceName": "BURBERRY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "burberry"
+      ]
+    },
+    {
+      "name": "B’ME BY WACOAL",
+      "category": "Underwear",
+      "sourceName": "B’ME BY WACOAL",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "b-me-by-wacoal"
+      ]
+    },
+    {
+      "name": "CALVIN KLEIN",
+      "category": "Ready-to-wear clothing for men, women",
+      "sourceName": "CALVIN KLEIN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calvin-klein"
+      ]
+    },
+    {
+      "name": "CAMPER",
+      "category": "Shoes, Boots, Sneakers",
+      "sourceName": "CAMPER",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "camper"
+      ]
+    },
+    {
+      "name": "CARNIVAL",
+      "category": "Sneakers, Street wear, Sportswear",
+      "sourceName": "CARNIVAL",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "carnival"
+      ]
+    },
+    {
+      "name": "CHA TRA MUE",
+      "category": "Beverage",
+      "sourceName": "CHA TRA MUE",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-cha-tra-mue"
+    },
+    {
+      "name": "CHAMPION",
+      "category": "Athletic Apparel, Workout Clothes",
+      "sourceName": "CHAMPION",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "champion"
+      ]
+    },
+    {
+      "name": "COACH OUTLET",
+      "category": "Clothing, Footwear, Bag",
+      "sourceName": "COACH OUTLET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "coach"
+      ]
+    },
+    {
+      "name": "CONVERSE",
+      "category": "American sneakers",
+      "sourceName": "CONVERSE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "converse"
+      ]
+    },
+    {
+      "name": "CROCS",
+      "category": "Footwear, Jibbitz",
+      "sourceName": "CROCS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "crocs"
+      ]
+    },
+    {
+      "name": "DAKS LONDON",
+      "category": "Clothing Fashion for Men & Women",
+      "sourceName": "DAKS LONDON",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "daks"
+      ]
+    },
+    {
+      "name": "DICKIES",
+      "category": "Men and Women Clothing",
+      "sourceName": "DICKIES",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dickies"
+      ]
+    },
+    {
+      "name": "DOSH",
+      "category": "Authentic licensed prints from superhero",
+      "sourceName": "DOSH",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dosh"
+      ]
+    },
+    {
+      "name": "DR.MARTENS",
+      "category": "British footwear and clothing brand",
+      "sourceName": "DR.MARTENS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dr-martens"
+      ]
+    },
+    {
+      "name": "DVF - DIANE VON FURSTENBERG",
+      "category": "Shop women's Clothing",
+      "sourceName": "DVF - DIANE VON FURSTENBERG",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "diane-von-furstenberg"
+      ]
+    },
+    {
+      "name": "ECCO",
+      "category": "Comfort footwear for men, women",
+      "sourceName": "ECCO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ecco"
+      ]
+    },
+    {
+      "name": "ELEMENT 72",
+      "category": "Multi-Brand Store for Urban Outdoor & Urban Lifestyle",
+      "sourceName": "ELEMENT 72",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "element-72"
+      ]
+    },
+    {
+      "name": "EMILIO PUCCI",
+      "category": "Clothing",
+      "sourceName": "EMILIO PUCCI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "emilio-pucci"
+      ]
+    },
+    {
+      "name": "ERA WON",
+      "category": "Men's Wear Brand",
+      "sourceName": "ERA WON",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "era-won"
+      ]
+    },
+    {
+      "name": "EVEANDBOY",
+      "category": "Makeup / Beauty Shop",
+      "sourceName": "EVEANDBOY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "eveandboy"
+      ]
+    },
+    {
+      "name": "FERRAGAMO",
+      "category": "Footwear, Bag",
+      "sourceName": "FERRAGAMO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ferragamo"
+      ]
+    },
+    {
+      "name": "FITFLOP",
+      "category": "Bag",
+      "sourceName": "FITFLOP",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fitflop"
+      ]
+    },
+    {
+      "name": "FRANK LUNETTE",
+      "category": "Eyewear and Sunglasses",
+      "sourceName": "FRANK LUNETTE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "frank-lunette"
+      ]
+    },
+    {
+      "name": "FRED PERRY",
+      "category": "Clothing for Men, Women",
+      "sourceName": "FRED PERRY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fred-perry"
+      ]
+    },
+    {
+      "name": "FURLA",
+      "category": "Bag",
+      "sourceName": "FURLA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "furla"
+      ]
+    },
+    {
+      "name": "GIVENCHY",
+      "category": "Luxury fashion, Ready-to-wear clothing, accessories",
+      "sourceName": "GIVENCHY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "givenchy"
+      ]
+    },
+    {
+      "name": "GLASSAHOLIC",
+      "category": "Eyewear and Sunglasses",
+      "sourceName": "GLASSAHOLIC",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "glassaholic"
+      ]
+    },
+    {
+      "name": "GOLF REVOLUTION",
+      "category": "Sports equipment, Sports clothing",
+      "sourceName": "GOLF REVOLUTION",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "golf-revolution"
+      ]
+    },
+    {
+      "name": "GQ",
+      "category": "Men's fashion and style trends clothing",
+      "sourceName": "GQ",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gq"
+      ]
+    },
+    {
+      "name": "HAVAIANAS",
+      "category": "Popular fashion sandals from Brazil",
+      "sourceName": "HAVAIANAS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "havaianas"
+      ]
+    },
+    {
+      "name": "HOKA OUTLET",
+      "category": "Running Shoes, Clothing & Sport Accessories",
+      "sourceName": "HOKA OUTLET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hoka"
+      ]
+    },
+    {
+      "name": "HYBRID OUTFITTERS",
+      "category": "Clothing, Trendy fashions",
+      "sourceName": "HYBRID OUTFITTERS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hybrid-outfitters"
+      ]
+    },
+    {
+      "name": "JELLY BUNNY",
+      "category": "Lifestyle shoes from many famous brands. for all ages",
+      "sourceName": "JELLY BUNNY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jelly-bunny"
+      ]
+    },
+    {
+      "name": "JIM THOMPSON",
+      "category": "Thai silk products including luxury interior",
+      "sourceName": "JIM THOMPSON",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jim-thompson"
+      ]
+    },
+    {
+      "name": "JOSILINS",
+      "category": "Sleepwear and Loungewear",
+      "sourceName": "JOSILINS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "josilins"
+      ]
+    },
+    {
+      "name": "JUBILEE DIAMOND",
+      "category": "Diamond, High Jewelry Collection",
+      "sourceName": "JUBILEE DIAMOND",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jubilee-diamond"
+      ]
+    },
+    {
+      "name": "KARL LAGERFELD",
+      "category": "Clothing, Footwear, Bag, Accessories",
+      "sourceName": "KARL LAGERFELD",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "karl-lagerfeld"
+      ]
+    },
+    {
+      "name": "KATE SPADE OUTLET",
+      "category": "Clothing, Footwear, Bag, Accessories",
+      "sourceName": "KATE SPADE OUTLET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kate-spade-new-york"
+      ]
+    },
+    {
+      "name": "KFC",
+      "category": "The Spiciest Fried Chicken in Thailand",
+      "sourceName": "KFC",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-kfc"
+    },
+    {
+      "name": "KIPLING",
+      "category": "Handbags, Backpacks & Luggage",
+      "sourceName": "KIPLING",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kipling"
+      ]
+    },
+    {
+      "name": "LACOSTE",
+      "category": "Polos, Clothing, Shoes, Bags,",
+      "sourceName": "LACOSTE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lacoste"
+      ]
+    },
+    {
+      "name": "LE COQ SPORTIF",
+      "category": "LE COQ SPORTIF",
+      "sourceName": "LE COQ SPORTIF",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "le-coq-sportif"
+      ]
+    },
+    {
+      "name": "LE CREUSET",
+      "category": "The French creator cast iron cookware",
+      "sourceName": "LE CREUSET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "le-creuset"
+      ]
+    },
+    {
+      "name": "LEVI'S",
+      "category": "Jeans, Denim Jackets & Clothing",
+      "sourceName": "LEVI'S",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "levis"
+      ]
+    },
+    {
+      "name": "LONGCHAMP",
+      "category": "Bag, Clothing, Footwear,",
+      "sourceName": "LONGCHAMP",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "longchamp"
+      ]
+    },
+    {
+      "name": "MANGO OUTLET",
+      "category": "Women’s, Men’s clothing and accessories",
+      "sourceName": "MANGO OUTLET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mango"
+      ]
+    },
+    {
+      "name": "MARC JACOBS",
+      "category": "Clothing, Footwear, Bag, Accessories",
+      "sourceName": "MARC JACOBS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "marc-jacobs"
+      ]
+    },
+    {
+      "name": "MaxMara OUTLET",
+      "category": "Fashion, Bag",
+      "sourceName": "MaxMara OUTLET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "max-mara"
+      ]
+    },
+    {
+      "name": "MICHAEL KORS",
+      "category": "Clothing, Footwear, Bag, Accessories",
+      "sourceName": "MICHAEL KORS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "MLAB",
+      "category": "Multibrand",
+      "sourceName": "MLAB (Soon)",
+      "kind": "retail",
+      "status": "coming-soon",
+      "brandIds": [
+        "mlab"
+      ]
+    },
+    {
+      "name": "MONTBLANC",
+      "category": "Writing Instruments, Bags & Accessories",
+      "sourceName": "MONTBLANC",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "montblanc"
+      ]
+    },
+    {
+      "name": "NEW BALANCE",
+      "category": "Shoes, Sneakers, and Athletic Wear.",
+      "sourceName": "NEW BALANCE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-balance"
+      ]
+    },
+    {
+      "name": "NEW ERA",
+      "category": "Sport Apparel",
+      "sourceName": "NEW ERA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-era"
+      ]
+    },
+    {
+      "name": "NIKE UNITE SPO",
+      "category": "Athletic, Sportswear and Sport Accessories",
+      "sourceName": "NIKE UNITE SPO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nike"
+      ]
+    },
+    {
+      "name": "O&B OUTLET STORE, GEOX",
+      "category": "Shoe, high-heels, Bag",
+      "sourceName": "O&B OUTLET STORE, GEOX",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "o-and-b",
+        "geox"
+      ]
+    },
+    {
+      "name": "OAKLEY",
+      "category": "Sunglasses, Goggles, & Apparel",
+      "sourceName": "OAKLEY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "oakley"
+      ]
+    },
+    {
+      "name": "OASIS EATERY FOOD COURT",
+      "category": "Food Center, Dine-in, Halal Food.",
+      "sourceName": "OASIS EATERY FOOD COURT",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-oasis-eatery-food-court"
+    },
+    {
+      "name": "OLINO CREPE & TEA",
+      "category": "Crepe & Tea Shop",
+      "sourceName": "OLINO CREPE & TEA",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-olino-crepe-and-tea"
+    },
+    {
+      "name": "OMAZZ",
+      "category": "Mattress Consists Finest Natural-Based Material",
+      "sourceName": "OMAZZ",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "omazz"
+      ]
+    },
+    {
+      "name": "ONITSUKA TIGER",
+      "category": "Shoes, Apparel, and Accessories",
+      "sourceName": "ONITSUKA TIGER",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "onitsuka-tiger"
+      ]
+    },
+    {
+      "name": "ORIGANI",
+      "category": "Skincare and beauty products",
+      "sourceName": "ORIGANI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "origani"
+      ]
+    },
+    {
+      "name": "OUTLET BY CLUB 21",
+      "category": "Clothing, Footwear, Bag, Accessories",
+      "sourceName": "OUTLET BY CLUB 21",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "outlet-by-club-21"
+      ]
+    },
+    {
+      "name": "OWNDAYS",
+      "category": "Spectacle Frames and Sunglasses",
+      "sourceName": "OWNDAYS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "owndays"
+      ]
+    },
+    {
+      "name": "PASAYA",
+      "category": "Bed Sheet, Duvet Cover, Bolster, Body Pillow.",
+      "sourceName": "PASAYA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pasaya"
+      ]
+    },
+    {
+      "name": "POLO RALPH LAUREN",
+      "category": "Ready-to-wear clothing for men, women",
+      "sourceName": "POLO RALPH LAUREN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "POLO WORLD",
+      "category": "Lifestyle travelers' store",
+      "sourceName": "POLO WORLD",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-world"
+      ]
+    },
+    {
+      "name": "POMELO OUTLET",
+      "category": "Fashion, Dresses, tops, knits, jackets and accessories",
+      "sourceName": "POMELO OUTLET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pomelo-outlet"
+      ]
+    },
+    {
+      "name": "PP SPACE",
+      "category": "Multi-Brand Store",
+      "sourceName": "PP SPACE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pp-space"
+      ]
+    },
+    {
+      "name": "PRO EXCHANGE",
+      "category": "Currency Exchange",
+      "sourceName": "PRO EXCHANGE",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "PUMA",
+      "category": "Athletic, Sportswear and Sport Accessories",
+      "sourceName": "PUMA (Soon)",
+      "kind": "retail",
+      "status": "coming-soon",
+      "brandIds": [
+        "puma"
+      ]
+    },
+    {
+      "name": "REV RUNNR",
+      "category": "Home of Running Shoe",
+      "sourceName": "REV RUNNR",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rev-runnr"
+      ]
+    },
+    {
+      "name": "S&P",
+      "category": "Restaurant and Bakery",
+      "sourceName": "S&P",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-s-and-p"
+    },
+    {
+      "name": "SABINA",
+      "category": "Women's Clothes, Lingerie & Underwear",
+      "sourceName": "SABINA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sabina"
+      ]
+    },
+    {
+      "name": "SALOMON",
+      "category": "Running shoes and clothing",
+      "sourceName": "SALOMON",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "salomon"
+      ]
+    },
+    {
+      "name": "SAMSONITE",
+      "category": "Suitcases, Backpacks, Bags and Travel Accessories",
+      "sourceName": "SAMSONITE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsonite"
+      ]
+    },
+    {
+      "name": "SANTAS",
+      "category": "The high quality luxury bed & bath linen and white fillings.",
+      "sourceName": "SANTAS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "santas"
+      ]
+    },
+    {
+      "name": "SKECHERS",
+      "category": "Performance and Lifestyle Footwear",
+      "sourceName": "SKECHERS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skechers"
+      ]
+    },
+    {
+      "name": "SMILEY",
+      "category": "",
+      "sourceName": "SMILEY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "smiley"
+      ]
+    },
+    {
+      "name": "STARBUCKS",
+      "category": "Beverage",
+      "sourceName": "STARBUCKS",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-starbucks"
+    },
+    {
+      "name": "SUNGLASS HUT",
+      "category": "Sunglasses",
+      "sourceName": "SUNGLASS HUT",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sunglass-hut"
+      ]
+    },
+    {
+      "name": "SUSHI PLUS",
+      "category": "Japanese Restaurant",
+      "sourceName": "SUSHI PLUS",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "siam-premium-outlets-sushi-plus"
+    },
+    {
+      "name": "SWAROVSKI",
+      "category": "Charming jewelry and sparkling crystal products.",
+      "sourceName": "SWAROVSKI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "swarovski"
+      ]
+    },
+    {
+      "name": "SWISS WATCH",
+      "category": "WATCH",
+      "sourceName": "SWISS WATCH",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "swiss-watch"
+      ]
+    },
+    {
+      "name": "TAKEO KIKUCHI",
+      "category": "High-spirited and voluptuous Tokyo brand,",
+      "sourceName": "TAKEO KIKUCHI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "takeo-kikuchi"
+      ]
+    },
+    {
+      "name": "TEVA",
+      "category": "Footwear Store",
+      "sourceName": "TEVA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "teva"
+      ]
+    },
+    {
+      "name": "The Cosmetics Company Store",
+      "category": "Premium makeup, fragrances, skincare",
+      "sourceName": "The Cosmetics Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-cosmetics-company-store"
+      ]
+    },
+    {
+      "name": "THE NORTH FACE",
+      "category": "Activewear and outdoor sports gear",
+      "sourceName": "THE NORTH FACE (Open 12 Sep'26)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-north-face"
+      ]
+    },
+    {
+      "name": "TIMBERLAND",
+      "category": "Boots, shoes, clothing & accessories",
+      "sourceName": "TIMBERLAND",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "timberland"
+      ]
+    },
+    {
+      "name": "TOMMY HILFIGER",
+      "category": "Clothing & Accessories",
+      "sourceName": "TOMMY HILFIGER",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-hilfiger"
+      ]
+    },
+    {
+      "name": "TORY BURCH",
+      "category": "Bags, shoes, ready-to-wear, and accessories",
+      "sourceName": "TORY BURCH",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tory-burch"
+      ]
+    },
+    {
+      "name": "TUMI",
+      "category": "Bags, Backpack and Travel accessories",
+      "sourceName": "TUMI",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tumi"
+      ]
+    },
+    {
+      "name": "UNDER ARMOUR",
+      "category": "Sportswear, Athletic Shoes and Accessories",
+      "sourceName": "UNDER ARMOUR",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "under-armour"
+      ]
+    },
+    {
+      "name": "VANS",
+      "category": "Skateboarding shoes, clothing and accessories",
+      "sourceName": "VANS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vans"
+      ]
+    },
+    {
+      "name": "VERSACE",
+      "category": "Clothing, Footwear, Bag, Accessories",
+      "sourceName": "VERSACE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "versace"
+      ]
+    },
+    {
+      "name": "WACOAL",
+      "category": "Women's Clothes, Lingerie & Underwear",
+      "sourceName": "WACOAL",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "wacoal"
+      ]
+    },
+    {
+      "name": "WARRIX",
+      "category": "Thai brand sportswear",
+      "sourceName": "WARRIX",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "warrix"
+      ]
+    },
+    {
+      "name": "WATSONS",
+      "category": "Skincare, cosmetics, personal care",
+      "sourceName": "WATSONS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "watsons"
+      ]
+    },
+    {
+      "name": "YACCOMARICARD",
+      "category": "A women's wear brand",
+      "sourceName": "YACCOMARICARD",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "yaccomaricard"
+      ]
+    }
+  ]
+}

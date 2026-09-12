@@ -1,3 +1,4 @@
+import { expansionBrands } from "./brands-expansion";
 import { brandsAE } from "./brands-a-e";
 import { brandsFK } from "./brands-f-k";
 import { brandsLP } from "./brands-l-p";
@@ -9,6 +10,7 @@ import type { Brand } from "../../types/brand";
 export { brandsAE, brandsFK, brandsLP, brandsQT, brandsUZ, yeojuBrands };
 
 const allBrands: Brand[] = [
+  ...expansionBrands,
   ...brandsAE,
   ...brandsFK,
   ...brandsLP,
