@@ -1,0 +1,492 @@
+{
+  "outletId": "siam-premium-outlets",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.siampremiumoutlets.com/en/store",
+  "sourceRecordCount": 121,
+  "rows": [
+    {
+      "name": ".LIFE",
+      "category": "IT & Gadget"
+    },
+    {
+      "name": "7-ELEVEN",
+      "category": "Convenience Store"
+    },
+    {
+      "name": "ADIDAS FACTORY OUTLET",
+      "category": "Sportswear"
+    },
+    {
+      "name": "ALBEDO",
+      "category": "Bag"
+    },
+    {
+      "name": "ALDO",
+      "category": "Women's Shoes, Handbags & Accessories"
+    },
+    {
+      "name": "ALPHAKID",
+      "category": "Alpha Kid Toy Shop"
+    },
+    {
+      "name": "AMAZON CAFÉ",
+      "category": "Beverage"
+    },
+    {
+      "name": "AMERICAN EAGLE",
+      "category": "Trendy fashions for men, women"
+    },
+    {
+      "name": "AMERICAN TOURISTER",
+      "category": "Clothing, Shoes, Bags, Travel Product"
+    },
+    {
+      "name": "ANTA",
+      "category": "Sportswear"
+    },
+    {
+      "name": "ARROW",
+      "category": "Clothing, Trendy fashions"
+    },
+    {
+      "name": "ASICS",
+      "category": "Running Shoes, Clothing & Sport Accessories"
+    },
+    {
+      "name": "BALENCIAGA",
+      "category": "Clothing, Footwear, Bag, Accessories"
+    },
+    {
+      "name": "BATH&BODY WORKS",
+      "category": "Body & Bath Products"
+    },
+    {
+      "name": "BEVERLY HILLS POLO CLUB",
+      "category": "Clothing"
+    },
+    {
+      "name": "BODY GLOVE",
+      "category": "Sportswear, Athletic"
+    },
+    {
+      "name": "BONCHON",
+      "category": "Korean Chicken Wings Restaurant"
+    },
+    {
+      "name": "BOOTS",
+      "category": "Beauty, Healthcare Items, Personal Care"
+    },
+    {
+      "name": "BOSS",
+      "category": "Clothing, Footwear, Bag"
+    },
+    {
+      "name": "BP WORLD",
+      "category": "Travel bag, backpack"
+    },
+    {
+      "name": "BRANDZALE",
+      "category": "American brand of canvas shoes"
+    },
+    {
+      "name": "BREAD TALK",
+      "category": "Bakery"
+    },
+    {
+      "name": "ELLE (Soon)",
+      "category": ""
+    },
+    {
+      "name": "BURBERRY",
+      "category": "Clothing, Footwear, Bag"
+    },
+    {
+      "name": "B’ME BY WACOAL",
+      "category": "Underwear"
+    },
+    {
+      "name": "CALVIN KLEIN",
+      "category": "Ready-to-wear clothing for men, women"
+    },
+    {
+      "name": "CAMPER",
+      "category": "Shoes, Boots, Sneakers"
+    },
+    {
+      "name": "CARNIVAL",
+      "category": "Sneakers, Street wear, Sportswear"
+    },
+    {
+      "name": "CHA TRA MUE",
+      "category": "Beverage"
+    },
+    {
+      "name": "CHAMPION",
+      "category": "Athletic Apparel, Workout Clothes"
+    },
+    {
+      "name": "COACH OUTLET",
+      "category": "Clothing, Footwear, Bag"
+    },
+    {
+      "name": "CONVERSE",
+      "category": "American sneakers"
+    },
+    {
+      "name": "CROCS",
+      "category": "Footwear, Jibbitz"
+    },
+    {
+      "name": "DAKS LONDON",
+      "category": "Clothing Fashion for Men & Women"
+    },
+    {
+      "name": "DICKIES",
+      "category": "Men and Women Clothing"
+    },
+    {
+      "name": "DOSH",
+      "category": "Authentic licensed prints from superhero"
+    },
+    {
+      "name": "DR.MARTENS",
+      "category": "British footwear and clothing brand"
+    },
+    {
+      "name": "DVF - DIANE VON FURSTENBERG",
+      "category": "Shop women's Clothing"
+    },
+    {
+      "name": "ECCO",
+      "category": "Comfort footwear for men, women"
+    },
+    {
+      "name": "ELEMENT 72",
+      "category": "Multi-Brand Store for Urban Outdoor & Urban Lifestyle"
+    },
+    {
+      "name": "EMILIO PUCCI",
+      "category": "Clothing"
+    },
+    {
+      "name": "ERA WON",
+      "category": "Men's Wear Brand"
+    },
+    {
+      "name": "EVEANDBOY",
+      "category": "Makeup / Beauty Shop"
+    },
+    {
+      "name": "FERRAGAMO",
+      "category": "Footwear, Bag"
+    },
+    {
+      "name": "FITFLOP",
+      "category": "Bag"
+    },
+    {
+      "name": "FRANK LUNETTE",
+      "category": "Eyewear and Sunglasses"
+    },
+    {
+      "name": "FRED PERRY",
+      "category": "Clothing for Men, Women"
+    },
+    {
+      "name": "FURLA",
+      "category": "Bag"
+    },
+    {
+      "name": "GIVENCHY",
+      "category": "Luxury fashion, Ready-to-wear clothing, accessories"
+    },
+    {
+      "name": "GLASSAHOLIC",
+      "category": "Eyewear and Sunglasses"
+    },
+    {
+      "name": "GOLF REVOLUTION",
+      "category": "Sports equipment, Sports clothing"
+    },
+    {
+      "name": "GQ",
+      "category": "Men's fashion and style trends clothing"
+    },
+    {
+      "name": "HAVAIANAS",
+      "category": "Popular fashion sandals from Brazil"
+    },
+    {
+      "name": "HOKA OUTLET",
+      "category": "Running Shoes, Clothing & Sport Accessories"
+    },
+    {
+      "name": "HYBRID OUTFITTERS",
+      "category": "Clothing, Trendy fashions"
+    },
+    {
+      "name": "JELLY BUNNY",
+      "category": "Lifestyle shoes from many famous brands. for all ages"
+    },
+    {
+      "name": "JIM THOMPSON",
+      "category": "Thai silk products including luxury interior"
+    },
+    {
+      "name": "JOSILINS",
+      "category": "Sleepwear and Loungewear"
+    },
+    {
+      "name": "JUBILEE DIAMOND",
+      "category": "Diamond, High Jewelry Collection"
+    },
+    {
+      "name": "KARL LAGERFELD",
+      "category": "Clothing, Footwear, Bag, Accessories"
+    },
+    {
+      "name": "KATE SPADE OUTLET",
+      "category": "Clothing, Footwear, Bag, Accessories"
+    },
+    {
+      "name": "KFC",
+      "category": "The Spiciest Fried Chicken in Thailand"
+    },
+    {
+      "name": "KIPLING",
+      "category": "Handbags, Backpacks & Luggage"
+    },
+    {
+      "name": "LACOSTE",
+      "category": "Polos, Clothing, Shoes, Bags,"
+    },
+    {
+      "name": "LE COQ SPORTIF",
+      "category": "LE COQ SPORTIF"
+    },
+    {
+      "name": "LE CREUSET",
+      "category": "The French creator cast iron cookware"
+    },
+    {
+      "name": "LEVI'S",
+      "category": "Jeans, Denim Jackets & Clothing"
+    },
+    {
+      "name": "LONGCHAMP",
+      "category": "Bag, Clothing, Footwear,"
+    },
+    {
+      "name": "MANGO OUTLET",
+      "category": "Women’s, Men’s clothing and accessories"
+    },
+    {
+      "name": "MARC JACOBS",
+      "category": "Clothing, Footwear, Bag, Accessories"
+    },
+    {
+      "name": "MaxMara OUTLET",
+      "category": "Fashion, Bag"
+    },
+    {
+      "name": "MICHAEL KORS",
+      "category": "Clothing, Footwear, Bag, Accessories"
+    },
+    {
+      "name": "MLAB (Soon)",
+      "category": "Multibrand"
+    },
+    {
+      "name": "MONTBLANC",
+      "category": "Writing Instruments, Bags & Accessories"
+    },
+    {
+      "name": "NEW BALANCE",
+      "category": "Shoes, Sneakers, and Athletic Wear."
+    },
+    {
+      "name": "NEW ERA",
+      "category": "Sport Apparel"
+    },
+    {
+      "name": "NIKE UNITE SPO",
+      "category": "Athletic, Sportswear and Sport Accessories"
+    },
+    {
+      "name": "O&B OUTLET STORE, GEOX",
+      "category": "Shoe, high-heels, Bag"
+    },
+    {
+      "name": "OAKLEY",
+      "category": "Sunglasses, Goggles, & Apparel"
+    },
+    {
+      "name": "OASIS EATERY FOOD COURT",
+      "category": "Food Center, Dine-in, Halal Food."
+    },
+    {
+      "name": "OLINO CREPE & TEA",
+      "category": "Crepe & Tea Shop"
+    },
+    {
+      "name": "OMAZZ",
+      "category": "Mattress Consists Finest Natural-Based Material"
+    },
+    {
+      "name": "ONITSUKA TIGER",
+      "category": "Shoes, Apparel, and Accessories"
+    },
+    {
+      "name": "ORIGANI",
+      "category": "Skincare and beauty products"
+    },
+    {
+      "name": "OUTLET BY CLUB 21",
+      "category": "Clothing, Footwear, Bag, Accessories"
+    },
+    {
+      "name": "OWNDAYS",
+      "category": "Spectacle Frames and Sunglasses"
+    },
+    {
+      "name": "PASAYA",
+      "category": "Bed Sheet, Duvet Cover, Bolster, Body Pillow."
+    },
+    {
+      "name": "POLO RALPH LAUREN",
+      "category": "Ready-to-wear clothing for men, women"
+    },
+    {
+      "name": "POLO WORLD",
+      "category": "Lifestyle travelers' store"
+    },
+    {
+      "name": "POMELO OUTLET",
+      "category": "Fashion, Dresses, tops, knits, jackets and accessories"
+    },
+    {
+      "name": "PP SPACE",
+      "category": "Multi-Brand Store"
+    },
+    {
+      "name": "PRO EXCHANGE",
+      "category": "Currency Exchange"
+    },
+    {
+      "name": "PUMA (Soon)",
+      "category": "Athletic, Sportswear and Sport Accessories"
+    },
+    {
+      "name": "REV RUNNR",
+      "category": "Home of Running Shoe"
+    },
+    {
+      "name": "S&P",
+      "category": "Restaurant and Bakery"
+    },
+    {
+      "name": "SABINA",
+      "category": "Women's Clothes, Lingerie & Underwear"
+    },
+    {
+      "name": "SALOMON",
+      "category": "Running shoes and clothing"
+    },
+    {
+      "name": "SAMSONITE",
+      "category": "Suitcases, Backpacks, Bags and Travel Accessories"
+    },
+    {
+      "name": "SANTAS",
+      "category": "The high quality luxury bed & bath linen and white fillings."
+    },
+    {
+      "name": "SKECHERS",
+      "category": "Performance and Lifestyle Footwear"
+    },
+    {
+      "name": "SMILEY",
+      "category": ""
+    },
+    {
+      "name": "STARBUCKS",
+      "category": "Beverage"
+    },
+    {
+      "name": "SUNGLASS HUT",
+      "category": "Sunglasses"
+    },
+    {
+      "name": "SUSHI PLUS",
+      "category": "Japanese Restaurant"
+    },
+    {
+      "name": "SWAROVSKI",
+      "category": "Charming jewelry and sparkling crystal products."
+    },
+    {
+      "name": "SWISS WATCH",
+      "category": "WATCH"
+    },
+    {
+      "name": "TAKEO KIKUCHI",
+      "category": "High-spirited and voluptuous Tokyo brand,"
+    },
+    {
+      "name": "TEVA",
+      "category": "Footwear Store"
+    },
+    {
+      "name": "The Cosmetics Company Store",
+      "category": "Premium makeup, fragrances, skincare"
+    },
+    {
+      "name": "THE NORTH FACE (Open 12 Sep'26)",
+      "category": "Activewear and outdoor sports gear"
+    },
+    {
+      "name": "TIMBERLAND",
+      "category": "Boots, shoes, clothing & accessories"
+    },
+    {
+      "name": "TOMMY HILFIGER",
+      "category": "Clothing & Accessories"
+    },
+    {
+      "name": "TORY BURCH",
+      "category": "Bags, shoes, ready-to-wear, and accessories"
+    },
+    {
+      "name": "TUMI",
+      "category": "Bags, Backpack and Travel accessories"
+    },
+    {
+      "name": "UNDER ARMOUR",
+      "category": "Sportswear, Athletic Shoes and Accessories"
+    },
+    {
+      "name": "VANS",
+      "category": "Skateboarding shoes, clothing and accessories"
+    },
+    {
+      "name": "VERSACE",
+      "category": "Clothing, Footwear, Bag, Accessories"
+    },
+    {
+      "name": "WACOAL",
+      "category": "Women's Clothes, Lingerie & Underwear"
+    },
+    {
+      "name": "WARRIX",
+      "category": "Thai brand sportswear"
+    },
+    {
+      "name": "WATSONS",
+      "category": "Skincare, cosmetics, personal care"
+    },
+    {
+      "name": "YACCOMARICARD",
+      "category": "A women's wear brand"
+    }
+  ]
+}
