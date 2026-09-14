@@ -30,6 +30,7 @@ jobs:
       - run: npm run validate:master-data
       - run: node --import tsx tools/reportFinal32Readiness.ts
       - run: node --import tsx tools/checkFinal32OutletReadiness.ts
+      - run: node --import tsx tools/reportFinal32Media.ts
       - name: Commit synchronized MasterData
         run: |
           git config user.name "github-actions[bot]"
