@@ -18,7 +18,44 @@ import { getTransportationV2Options, getTransportationOptionDisplayModel, setTra
 import { masterDataCsv, checkMasterDataTable, syncMasterData } from "./syncMasterData";
 
 const directoryIds = ["woodbury-common-premium-outlets", "sawgrass-mills", "orlando-vineland-premium-outlets", "las-vegas-north-premium-outlets", "desert-hills-premium-outlets", "san-francisco-premium-outlets", "siam-premium-outlets", "citygate-outlets", "mitsui-outlet-park-linkou"];
-const completedIds = [...directoryIds, "yeoju-premium-outlets", "paju-premium-outlets", "busan-premium-outlets", "genting-highlands-premium-outlets", "shisui-premium-outlets", "kobe-sanda-premium-outlets", "sano-premium-outlets"];
+const priorCompletedIds = [...directoryIds, "yeoju-premium-outlets", "paju-premium-outlets", "busan-premium-outlets", "genting-highlands-premium-outlets", "shisui-premium-outlets", "kobe-sanda-premium-outlets", "sano-premium-outlets"];
+const finalExpansionIds = [
+  "one-salonica-outlet-mall",
+  "m3-outlet-polgar",
+  "mitsui-outlet-park-tainan",
+  "changi-city-point",
+  "central-village-bangkok",
+  "orlando-international-premium-outlets",
+  "the-mills-at-jersey-gardens",
+  "chicago-premium-outlets",
+  "seattle-premium-outlets",
+  "camarillo-premium-outlets",
+  "san-marcos-premium-outlets",
+  "waikele-premium-outlets",
+  "las-vegas-south-premium-outlets",
+  "citadel-outlets",
+  "factory-krakow",
+  "mega-outlet-thessaloniki",
+  "barari-outlet-mall",
+];
+const completedIds = [...priorCompletedIds, ...finalExpansionIds];
+const expectedUnitedStatesIds = [
+  "woodbury-common-premium-outlets",
+  "sawgrass-mills",
+  "orlando-vineland-premium-outlets",
+  "las-vegas-north-premium-outlets",
+  "desert-hills-premium-outlets",
+  "san-francisco-premium-outlets",
+  "orlando-international-premium-outlets",
+  "the-mills-at-jersey-gardens",
+  "chicago-premium-outlets",
+  "seattle-premium-outlets",
+  "camarillo-premium-outlets",
+  "san-marcos-premium-outlets",
+  "waikele-premium-outlets",
+  "las-vegas-south-premium-outlets",
+  "citadel-outlets",
+];
 const sameSet = (a: string[], b: string[], label: string) => assert.deepEqual([...new Set(a)].sort(), [...new Set(b)].sort(), label);
 const brandIds = new Set(brands.map(b => b.brandId));
 let sourceRows = 0;
@@ -58,7 +95,15 @@ for (const id of completedIds) {
   assert(expansionDistanceLabel(l), `${id}/${l}: distance basis missing`);
  }
 }
-assert.equal(outlets.filter(o => o.countryId === "united-states" && o.status === "active").length, 6);
+sameSet(
+  outlets.filter(o => o.countryId === "united-states" && o.status === "active").map(o => o.outletId),
+  expectedUnitedStatesIds,
+  "United States outlet coverage must remain exactly the approved 15-outlet set",
+);
+assert.equal(expectedUnitedStatesIds.length, 15);
+for (const id of finalExpansionIds) {
+  assert(expansionRoutes.some(route => route.outletId === id), `${id}: missing final-expansion route`);
+}
 assert(!outlets.some(o => o.outletId === "siam-premium-outlet"), "Siam duplicate metadata identity");
 const media = fs.readFileSync("src/media/outletMedia.ts", "utf8");
 assert(media.includes('"siam-premium-outlets": ['), "Siam media key disconnected");
@@ -99,4 +144,4 @@ assert.throws(() => checkMasterDataTable("fixture", fixture, masterDataCsv(fixtu
 const global = validateGlobalSnapshot();
 assert(global.passed, JSON.stringify(global.issues));
 syncMasterData(true);
-console.log(`Outlet expansion passed: ${completedIds.length} outlets; ${sourceRows} accounted source entries; ${expansionRoutes.length} routes × ${targetContentLanguages.length} languages; ${Object.keys(expansionOutletMetadata).length} new outlets.`);
+console.log(`Outlet expansion passed: ${completedIds.length} outlets; ${expectedUnitedStatesIds.length} US outlets; ${sourceRows} accounted source entries; ${expansionRoutes.length} routes × ${targetContentLanguages.length} languages; ${finalExpansionIds.length} final expansion outlets.`);
