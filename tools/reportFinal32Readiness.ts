@@ -51,3 +51,4 @@ console.log("MISSING_RESTAURANTS=" + rows.filter((r) => r.restaurantCount === 0)
 console.log("MISSING_TRANSPORT_SUMMARY_ESTIMATES=" + rows.filter((r) => r.transportSummaries === 0 || r.summariesWithDurationAndFare !== r.transportSummaries).map((r) => r.outletId).join(","));
 console.log("MISSING_GUIDE_ESTIMATES=" + rows.filter((r) => r.guides === 0 || r.guidesWithDurationAndFare !== r.guides).map((r) => r.outletId).join(","));
 console.log("GENERIC_PROVIDER_FALLBACKS=" + rows.flatMap((r) => r.genericFallbacks.map((x) => `${r.outletId}:${x}`)).join(","));
+console.log("JAPAN_ROUTE_FACTS=" + JSON.stringify(transportationRouteFacts.filter((fact) => ["shisui-premium-outlets","kobe-sanda-premium-outlets","sano-premium-outlets"].includes(fact.outletId)), null, 2));
