@@ -37,3 +37,4 @@ united-states,not_available,United States,🇺🇸,North America,USD,FALSE
 hong-kong,not_available,Hong Kong,🇭🇰,Asia,HKD,FALSE
 taiwan,available,Taiwan,🇹🇼,Asia,TWD,TRUE
 malaysia,not_available,Malaysia,🇲🇾,Asia,MYR,FALSE
+singapore,available,Singapore,🇸🇬,Asia,SGD,TRUE
