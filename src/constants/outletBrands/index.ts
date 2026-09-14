@@ -33,8 +33,8 @@ import { unitedArabEmiratesOutletBrands } from "./united-arab-emirates";
 import { kuwaitOutletBrands } from "./kuwait";
 import { southKoreaOutletBrands } from "./south-korea";
 import { thailandOutletBrands } from "./thailand";
-
 import { malaysiaOutletBrands } from "./malaysia";
+import { finalExpansionOutletBrands } from "./final-expansion";
 
 export type OutletBrand = {
   outletId: string;
@@ -75,16 +75,17 @@ export {
   unitedArabEmiratesOutletBrands,
   kuwaitOutletBrands,
   southKoreaOutletBrands,
- malaysiaOutletBrands,
- thailandOutletBrands,
+  malaysiaOutletBrands,
+  thailandOutletBrands,
+  finalExpansionOutletBrands,
 };
 
 export const outletBrands: OutletBrand[] = [
   ...unitedStatesOutletBrands,
   ...japanOutletBrands,
   ...chinaOutletBrands,
- ...hongKongOutletBrands,
- ...taiwanOutletBrands,
+  ...hongKongOutletBrands,
+  ...taiwanOutletBrands,
   ...italyOutletBrands,
   ...germanyOutletBrands,
   ...franceOutletBrands,
@@ -114,6 +115,7 @@ export const outletBrands: OutletBrand[] = [
   ...unitedArabEmiratesOutletBrands,
   ...kuwaitOutletBrands,
   ...southKoreaOutletBrands,
- ...malaysiaOutletBrands,
+  ...malaysiaOutletBrands,
   ...thailandOutletBrands,
+  ...finalExpansionOutletBrands,
 ];
