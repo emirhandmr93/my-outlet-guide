@@ -1,0 +1,21 @@
+name: Check final 32 outlet readiness
+
+on:
+  push:
+    branches:
+      - codex/complete-us-asia-data
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: node --import tsx tools/checkFinal32OutletReadiness.ts
