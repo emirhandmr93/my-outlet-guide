@@ -18,5 +18,9 @@ jobs:
           node-version: 22
           cache: npm
       - run: npm ci
+      - run: npm run data:check
+      - run: npm run validate:outlet-expansion
+      - run: node --import tsx tools/checkTransportationV2.ts
+      - run: npm run validate:master-data
       - run: node --import tsx tools/reportFinal32Readiness.ts
       - run: node --import tsx tools/checkFinal32OutletReadiness.ts
