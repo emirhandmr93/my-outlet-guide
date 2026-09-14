@@ -26,11 +26,11 @@ const target32Ids = [
   "the-mills-at-jersey-gardens",
   "chicago-premium-outlets",
   "seattle-premium-outlets",
-  "camarillo-premium-outlets",
+  "wrentham-village-premium-outlets",
   "san-marcos-premium-outlets",
   "waikele-premium-outlets",
   "las-vegas-south-premium-outlets",
-  "citadel-outlets",
+  "las-americas-premium-outlets",
   "factory-krakow",
   "mega-outlet-thessaloniki",
   "barari-outlet-mall",
@@ -56,3 +56,9 @@ console.log("MEDIA_DIRS_PRESENT=" + rows.filter((row) => row.directoryExists).le
 console.log("HEROES_PRESENT=" + rows.filter((row) => row.hasHero).length);
 console.log("MISSING_DIRS=" + rows.filter((row) => !row.directoryExists).map((row) => row.outletId).join(","));
 console.log("MISSING_HERO=" + rows.filter((row) => row.directoryExists && !row.hasHero).map((row) => row.outletId).join(","));
+
+const incomplete = rows.filter((row) => !row.directoryExists || !row.hasHero || row.galleryCount < 1);
+if (incomplete.length) {
+  throw new Error(`Final 32 media incomplete: ${incomplete.map((row) => row.outletId).join(",")}`);
+}
+console.log("FINAL32_MEDIA_READY=32/32");

@@ -43,11 +43,11 @@ const target32Ids = [
   "the-mills-at-jersey-gardens",
   "chicago-premium-outlets",
   "seattle-premium-outlets",
-  "camarillo-premium-outlets",
+  "wrentham-village-premium-outlets",
   "san-marcos-premium-outlets",
   "waikele-premium-outlets",
   "las-vegas-south-premium-outlets",
-  "citadel-outlets",
+  "las-americas-premium-outlets",
   "factory-krakow",
   "mega-outlet-thessaloniki",
   "barari-outlet-mall",
@@ -151,4 +151,4 @@ for (const outletId of target32Ids) {
 const missingRouteFacts = transportationRouteFacts.filter((fact) => targetIds.has(fact.outletId) && fact.guideId && !expansionRoutes.some((route) => route.guideId === fact.guideId));
 assert.equal(missingRouteFacts.length, 0, `Final 32 have route facts outside the verified expansion route set: ${missingRouteFacts.map((fact) => fact.guideId).join(", ")}`);
 
-console.log(`Final 32 outlet readiness passed: ${target32Ids.length} outlets; metadata + brands + dining + transportation + guides + numeric duration/fare estimates + 8-language runtime labels are complete. Manual visuals are the only excluded scope.`);
+console.log(`Final 32 outlet readiness passed: ${target32Ids.length} outlets; metadata + brands + dining + transportation + guides + numeric duration/fare estimates + 8-language runtime labels are complete. Core outlet data readiness is complete; media readiness is validated separately in the same CI gate.`);

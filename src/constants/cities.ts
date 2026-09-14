@@ -8,6 +8,8 @@ const finalExpansionCities = [
   { cityId: "elizabeth", cityName: "Elizabeth", countryId: "united-states" },
   { cityId: "chicago", cityName: "Chicago", countryId: "united-states" },
   { cityId: "seattle", cityName: "Seattle", countryId: "united-states" },
+  { cityId: "boston", cityName: "Boston", countryId: "united-states" },
+  { cityId: "san-diego", cityName: "San Diego", countryId: "united-states" },
   { cityId: "los-angeles", cityName: "Los Angeles", countryId: "united-states" },
   { cityId: "austin", cityName: "Austin", countryId: "united-states" },
   { cityId: "honolulu", cityName: "Honolulu", countryId: "united-states" },

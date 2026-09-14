@@ -29,11 +29,11 @@ const finalExpansionIds = [
   "the-mills-at-jersey-gardens",
   "chicago-premium-outlets",
   "seattle-premium-outlets",
-  "camarillo-premium-outlets",
+  "wrentham-village-premium-outlets",
   "san-marcos-premium-outlets",
   "waikele-premium-outlets",
   "las-vegas-south-premium-outlets",
-  "citadel-outlets",
+  "las-americas-premium-outlets",
   "factory-krakow",
   "mega-outlet-thessaloniki",
   "barari-outlet-mall",
@@ -50,11 +50,11 @@ const expectedUnitedStatesIds = [
   "the-mills-at-jersey-gardens",
   "chicago-premium-outlets",
   "seattle-premium-outlets",
-  "camarillo-premium-outlets",
+  "wrentham-village-premium-outlets",
   "san-marcos-premium-outlets",
   "waikele-premium-outlets",
   "las-vegas-south-premium-outlets",
-  "citadel-outlets",
+  "las-americas-premium-outlets",
 ];
 const sameSet = (a: string[], b: string[], label: string) => assert.deepEqual([...new Set(a)].sort(), [...new Set(b)].sort(), label);
 const brandIds = new Set(brands.map(b => b.brandId));
