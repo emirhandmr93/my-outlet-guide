@@ -15,6 +15,7 @@ const sourceBrands: Record<string, string[]> = {
   "citadel-outlets": ["adidas", "calvin-klein", "clarks", "cole-haan", "columbia", "converse", "crocs", "lululemon", "michael-kors", "new-balance", "puma", "skechers", "steve-madden", "tommy-hilfiger", "tumi", "vans"],
   "factory-krakow": ["adidas", "asics", "boss", "calvin-klein", "clarks", "crocs", "guess", "jack-jones", "karl-lagerfeld", "lacoste", "levis", "new-balance", "nike", "puma", "salomon", "skechers", "timberland", "tommy-hilfiger"],
   "mega-outlet-thessaloniki": ["adidas", "columbia", "guess", "levis", "vans", "napapijri", "crocs", "champion", "new-balance", "puma", "geox", "under-armour", "skechers"],
+  "barari-outlet-mall": ["r-and-b", "sony", "ajmal-perfumes", "lulu-hypermarket"],
 };
 
 export const finalExpansionOutletBrands = Object.entries(sourceBrands).flatMap(([outletId, brandIds]) =>
