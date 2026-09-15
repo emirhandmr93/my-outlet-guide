@@ -12,7 +12,7 @@ const PLAY_STORE_URL = "https://play.google.com/store/apps/details?id=com.myoutl
 const MAX_MOBILE_WIDTH = 1024;
 
 type StorePlatform = "ios" | "android";
-type ContextKind = "outlet" | "transportation" | "brand" | "country" | "city" | "tax_free" | "index";
+type ContextKind = "outlet" | "premium_map" | "transportation" | "brand" | "country" | "city" | "tax_free" | "index";
 type WebContext = { kind: ContextKind; id?: string; outletId?: string };
 type LinkItem = { label: string; path: string; key: string };
 
@@ -55,13 +55,16 @@ function stripLanguage(path: string) {
 
 function parseContext(path: string): WebContext | null {
   const segments = stripLanguage(path).split("/").filter(Boolean);
-  if (segments[0] === "outlet" && segments[1]) return { kind: "outlet", id: segments[1], outletId: segments[1] };
-  if (segments[0] === "transportation" && segments[1]) return { kind: "transportation", id: segments[1], outletId: segments[1] };
-  if (segments[0] === "brand" && segments[1]) return { kind: "brand", id: segments[1] };
-  if (segments[0] === "country" && segments[1]) return { kind: "country", id: segments[1] };
-  if (segments[0] === "city" && segments[1]) return { kind: "city", id: segments[1] };
-  if (segments[0] === "calculator" && segments[1] === "tax-free") return { kind: "tax_free" };
-  if (segments[0] === "research" && segments[1] === "european-outlet-shopping-index") return { kind: "index" };
+  if (segments[0] === "outlet" && segments[1] && segments[2] === "3d-map" && segments.length === 3) {
+    return { kind: "premium_map", id: segments[1], outletId: segments[1] };
+  }
+  if (segments[0] === "outlet" && segments[1] && segments.length === 2) return { kind: "outlet", id: segments[1], outletId: segments[1] };
+  if (segments[0] === "transportation" && segments[1] && segments.length === 2) return { kind: "transportation", id: segments[1], outletId: segments[1] };
+  if (segments[0] === "brand" && segments[1] && segments.length === 2) return { kind: "brand", id: segments[1] };
+  if (segments[0] === "country" && segments[1] && segments.length === 2) return { kind: "country", id: segments[1] };
+  if (segments[0] === "city" && segments[1] && segments.length === 2) return { kind: "city", id: segments[1] };
+  if (segments[0] === "calculator" && segments[1] === "tax-free" && segments.length === 2) return { kind: "tax_free" };
+  if (segments[0] === "research" && segments[1] === "european-outlet-shopping-index" && segments.length === 2) return { kind: "index" };
   return null;
 }
 
@@ -72,9 +75,16 @@ function localizedPath(language: string, path: string) {
 function relatedLinks(context: WebContext, language: string, copy: Copy): LinkItem[] {
   if (context.outletId) {
     const links: LinkItem[] = [];
-    if (context.kind === "transportation") links.push({ key: "outlet", label: copy.outlet, path: localizedPath(language, `outlet/${context.outletId}`) });
-    else links.push({ key: "transportation", label: copy.transportation, path: localizedPath(language, `transportation/${context.outletId}`) });
-    if (hasPremiumOutletMap(context.outletId)) links.push({ key: "map", label: copy.map, path: localizedPath(language, `outlet/${context.outletId}/3d-map`) });
+    if (context.kind === "transportation" || context.kind === "premium_map") {
+      links.push({ key: "outlet", label: copy.outlet, path: localizedPath(language, `outlet/${context.outletId}`) });
+    } else {
+      links.push({ key: "transportation", label: copy.transportation, path: localizedPath(language, `transportation/${context.outletId}`) });
+    }
+    if (context.kind === "premium_map") {
+      links.push({ key: "transportation", label: copy.transportation, path: localizedPath(language, `transportation/${context.outletId}`) });
+    } else if (hasPremiumOutletMap(context.outletId)) {
+      links.push({ key: "map", label: copy.map, path: localizedPath(language, `outlet/${context.outletId}/3d-map`) });
+    }
     links.push({ key: "tax_free", label: copy.taxFree, path: localizedPath(language, "calculator/tax-free") });
     return links.slice(0, 3);
   }
