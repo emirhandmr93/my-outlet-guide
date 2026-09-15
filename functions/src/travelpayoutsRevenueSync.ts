@@ -139,6 +139,16 @@ export function parseTravelpayoutsAttribution(value: unknown): Attribution {
   const subId = normalizeSubId(value);
   if (!subId) return { subId: null, category: null, placement: null, contextId: null };
 
+  if (subId === "app_flight_search") {
+    return { subId, category: "flight", placement: "flight_search", contextId: null };
+  }
+  if (subId === "app_flight_deal_detail") {
+    return { subId, category: "flight", placement: "flight_deal_detail", contextId: null };
+  }
+  if (subId === "app_rolling_flight_deal_detail") {
+    return { subId, category: "flight", placement: "flight_deal_detail", contextId: "rolling" };
+  }
+
   for (const category of CATEGORIES) {
     const categoryPrefix = `${category}_`;
     if (!subId.startsWith(categoryPrefix)) continue;
