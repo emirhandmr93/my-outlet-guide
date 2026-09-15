@@ -103,7 +103,7 @@ export function MobileWebDownloadBanner() {
   }
 
   return (
-    <View style={[styles.banner, rtl && styles.bannerRtl]} accessibilityRole="summary">
+    <View style={styles.banner} accessibilityRole="summary">
       <Image source={require("../../assets/icon.png")} style={styles.icon} accessibilityIgnoresInvertColors />
       <View style={styles.copyWrap}>
         <Text numberOfLines={1} style={[styles.title, rtl && styles.rtlText]}>My Outlet Guide</Text>
@@ -147,9 +147,6 @@ const styles = StyleSheet.create({
     paddingVertical: 8,
     width: "100%",
     zIndex: 1000,
-  },
-  bannerRtl: {
-    flexDirection: "row-reverse",
   },
   icon: {
     borderRadius: 9,
