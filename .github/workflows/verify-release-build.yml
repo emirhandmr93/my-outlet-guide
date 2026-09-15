@@ -153,8 +153,14 @@ jobs:
       - name: Report web performance
         run: npx tsx tools/reportWebPerformance.ts
 
-      - name: Validate web performance budget
-        run: npx tsx tools/checkWebPerformanceBudget.ts
+      - name: Validate web initial raw JS budget
+        run: npx tsx tools/checkWebPerformanceBudget.ts dist raw
+
+      - name: Validate web initial gzip JS budget
+        run: npx tsx tools/checkWebPerformanceBudget.ts dist gzip
+
+      - name: Validate web exported assets budget
+        run: npx tsx tools/checkWebPerformanceBudget.ts dist assets
 
       - name: Report export sizes
         run: du -sh dist-android dist-ios dist
