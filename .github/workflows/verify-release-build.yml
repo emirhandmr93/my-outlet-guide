@@ -178,6 +178,15 @@ jobs:
       - name: Report export sizes
         run: du -sh dist-android dist-ios dist
 
+      - name: Upload deployable web build
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-build-${{ github.sha }}
+          path: dist
+          if-no-files-found: error
+          retention-days: 14
+
       - name: Remove generated exports and diagnostics
         run: rm -rf dist-android dist-ios dist web-performance.txt
 
