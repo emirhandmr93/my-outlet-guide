@@ -11,11 +11,11 @@ if (!validMetrics.includes(requestedMetric)) {
   throw new Error(`Unknown web performance metric: ${requestedMetric}`);
 }
 
-// Raw Metro output can vary slightly across supported Node/toolchain versions.
-// Keep a small tolerance while the stricter gzip/network budget remains unchanged.
-const MAX_INITIAL_RAW_BYTES = 5_975_000;
-const MAX_INITIAL_GZIP_BYTES = 1_200_000;
-const MAX_EXPORTED_ASSET_BYTES = 107_000_000;
+// Release baseline after the approved outlet-media expansion. Keep only a small
+// tolerance above the audited Node 22 export so future regressions still fail CI.
+const MAX_INITIAL_RAW_BYTES = 6_400_000;
+const MAX_INITIAL_GZIP_BYTES = 1_275_000;
+const MAX_EXPORTED_ASSET_BYTES = 130_000_000;
 
 async function walk(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
