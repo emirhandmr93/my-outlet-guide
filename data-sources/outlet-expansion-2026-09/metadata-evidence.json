@@ -1,0 +1,371 @@
+{
+  "woodbury-common-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.com/outlet/woodbury-common/stores/print",
+      "https://www.premiumoutlets.com/outlet/woodbury-common/about"
+    ],
+    "coordinates": {
+      "latitude": 41.3170679,
+      "longitude": -74.1267205,
+      "source": "https://www.openstreetmap.org/?mlat=41.3170679&mlon=-74.1267205"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "New York",
+      "latitude": 40.758,
+      "longitude": -73.9855
+    },
+    "airportAnchors": {
+      "SWF": [
+        "New York Stewart",
+        41.5041,
+        -74.1048
+      ],
+      "JFK": [
+        "John F. Kennedy",
+        40.6413,
+        -73.7781
+      ],
+      "EWR": [
+        "Newark Liberty",
+        40.6895,
+        -74.1745
+      ]
+    }
+  },
+  "sawgrass-mills": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.simon.com/mall/sawgrass-mills/stores/print",
+      "https://www.simon.com/mall/sawgrass-mills/about"
+    ],
+    "coordinates": {
+      "latitude": 26.151697,
+      "longitude": -80.3209,
+      "source": "https://www.openstreetmap.org/?mlat=26.151697&mlon=-80.3209"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Fort Lauderdale",
+      "latitude": 26.1224,
+      "longitude": -80.1373
+    },
+    "airportAnchors": {
+      "FLL": [
+        "Fort Lauderdale–Hollywood",
+        26.0742,
+        -80.1506
+      ],
+      "MIA": [
+        "Miami",
+        25.7959,
+        -80.287
+      ]
+    }
+  },
+  "orlando-vineland-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.com/outlet/orlando-vineland/stores/print",
+      "https://www.premiumoutlets.com/outlet/orlando-vineland/about"
+    ],
+    "coordinates": {
+      "latitude": 28.386771,
+      "longitude": -81.4926951,
+      "source": "https://www.openstreetmap.org/?mlat=28.386771&mlon=-81.4926951"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Orlando",
+      "latitude": 28.5383,
+      "longitude": -81.3792
+    },
+    "airportAnchors": {
+      "MCO": [
+        "Orlando",
+        28.4312,
+        -81.3081
+      ]
+    }
+  },
+  "las-vegas-north-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.com/outlet/las-vegas-north/stores/print",
+      "https://www.premiumoutlets.com/outlet/las-vegas-north/about"
+    ],
+    "coordinates": {
+      "latitude": 36.1636903,
+      "longitude": -115.1583205,
+      "source": "https://www.openstreetmap.org/?mlat=36.1636903&mlon=-115.1583205"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Las Vegas",
+      "latitude": 36.1699,
+      "longitude": -115.1398
+    },
+    "airportAnchors": {
+      "LAS": [
+        "Harry Reid",
+        36.084,
+        -115.1537
+      ]
+    }
+  },
+  "desert-hills-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.com/outlet/desert-hills/stores/print",
+      "https://www.premiumoutlets.com/outlet/desert-hills/about"
+    ],
+    "coordinates": {
+      "latitude": 33.928778,
+      "longitude": -116.815491,
+      "source": "https://www.openstreetmap.org/?mlat=33.928778&mlon=-116.815491"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Palm Springs",
+      "latitude": 33.8303,
+      "longitude": -116.5453
+    },
+    "airportAnchors": {
+      "PSP": [
+        "Palm Springs",
+        33.8297,
+        -116.5067
+      ],
+      "ONT": [
+        "Ontario",
+        34.056,
+        -117.6012
+      ],
+      "LAX": [
+        "Los Angeles",
+        33.9416,
+        -118.4085
+      ]
+    }
+  },
+  "san-francisco-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.com/outlet/san-francisco/stores/print",
+      "https://www.premiumoutlets.com/outlet/san-francisco/about"
+    ],
+    "coordinates": {
+      "latitude": 37.6989923,
+      "longitude": -121.8441731,
+      "source": "https://www.openstreetmap.org/?mlat=37.6989923&mlon=-121.8441731"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "San Francisco",
+      "latitude": 37.7749,
+      "longitude": -122.4194
+    },
+    "airportAnchors": {
+      "OAK": [
+        "Oakland",
+        37.7126,
+        -122.2197
+      ],
+      "SFO": [
+        "San Francisco",
+        37.6213,
+        -122.379
+      ],
+      "SJC": [
+        "San José Mineta",
+        37.3639,
+        -121.9289
+      ]
+    }
+  },
+  "siam-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.siampremiumoutlets.com/en/store",
+      "https://www.siampremiumoutlets.com/en/contact"
+    ],
+    "coordinates": {
+      "latitude": 13.6946139,
+      "longitude": 100.8312053,
+      "source": "https://www.openstreetmap.org/?mlat=13.6946139&mlon=100.8312053"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Bangkok",
+      "latitude": 13.7463,
+      "longitude": 100.5347
+    },
+    "airportAnchors": {
+      "BKK": [
+        "Suvarnabhumi",
+        13.69,
+        100.7501
+      ],
+      "DMK": [
+        "Don Mueang",
+        13.9126,
+        100.6068
+      ]
+    }
+  },
+  "citygate-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.citygateoutlets.com.hk/en/"
+    ],
+    "coordinates": {
+      "latitude": 22.29026,
+      "longitude": 113.94134,
+      "source": "https://www.openstreetmap.org/?mlat=22.29026&mlon=113.94134"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Hong Kong",
+      "latitude": 22.2849,
+      "longitude": 114.1589
+    },
+    "airportAnchors": {
+      "HKG": [
+        "Hong Kong",
+        22.308,
+        113.9185
+      ]
+    }
+  },
+  "mitsui-outlet-park-linkou": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.mitsui-shopping-park.com.tw/mop/linkou/en/"
+    ],
+    "coordinates": {
+      "latitude": 25.07064,
+      "longitude": 121.36511,
+      "source": "https://www.openstreetmap.org/?mlat=25.07064&mlon=121.36511"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Taipei",
+      "latitude": 25.0478,
+      "longitude": 121.517
+    },
+    "airportAnchors": {
+      "TPE": [
+        "Taiwan Taoyuan",
+        25.0797,
+        121.2342
+      ]
+    }
+  },
+  "yeoju-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://premiumoutlets.co.kr/rpage/en/main/index/01"
+    ],
+    "coordinates": {
+      "latitude": 37.24136,
+      "longitude": 127.61273,
+      "source": "https://www.openstreetmap.org/?mlat=37.24136&mlon=127.61273"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Yeoju",
+      "latitude": 37.2983,
+      "longitude": 127.6375
+    },
+    "airportAnchors": {
+      "ICN": [
+        "Incheon",
+        37.4602,
+        126.4407
+      ],
+      "GMP": [
+        "Gimpo",
+        37.5583,
+        126.7906
+      ]
+    }
+  },
+  "paju-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.co.kr/rpage/en/main/index/02"
+    ],
+    "coordinates": {
+      "latitude": 37.7691889,
+      "longitude": 126.6944399,
+      "source": "https://www.openstreetmap.org/?mlat=37.7691889&mlon=126.6944399"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Paju",
+      "latitude": 37.7599,
+      "longitude": 126.7799
+    },
+    "airportAnchors": {
+      "GMP": [
+        "Gimpo",
+        37.5583,
+        126.7906
+      ],
+      "ICN": [
+        "Incheon",
+        37.4602,
+        126.4407
+      ]
+    }
+  },
+  "busan-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.co.kr/rpage/en/main/index/03"
+    ],
+    "coordinates": {
+      "latitude": 35.3235415,
+      "longitude": 129.2355574,
+      "source": "https://www.openstreetmap.org/?mlat=35.3235415&mlon=129.2355574"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Busan (Seomyeon)",
+      "latitude": 35.1577,
+      "longitude": 129.0594
+    },
+    "airportAnchors": {
+      "PUS": [
+        "Gimhae",
+        35.1795,
+        128.9382
+      ]
+    }
+  },
+  "genting-highlands-premium-outlets": {
+    "checkedAt": "2026-09-12",
+    "sources": [
+      "https://www.premiumoutlets.com.my/genting-highlands-premium-outlets"
+    ],
+    "coordinates": {
+      "latitude": 3.4031789,
+      "longitude": 101.7830097,
+      "source": "https://www.openstreetmap.org/?mlat=3.4031789&mlon=101.7830097"
+    },
+    "distanceBasis": "Haversine great-circle distance, rounded to nearest kilometre; not driving distance.",
+    "cityAnchor": {
+      "name": "Kuala Lumpur",
+      "latitude": 3.134,
+      "longitude": 101.6869
+    },
+    "airportAnchors": {
+      "KUL": [
+        "Kuala Lumpur",
+        2.7456,
+        101.7072
+      ]
+    }
+  }
+}

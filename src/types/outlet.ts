@@ -23,6 +23,10 @@ export type Outlet = {
   minimumTaxFreeSpend?: string;
   taxFreeOfficeInfo?: string;
   cityCenterDistanceKm?: number;
+  cityCenterInfo?: { name: string; distanceKm: number };
+  airports?: { code: string; name: string; distanceKm: number }[];
+  distanceBasis?: "straight-line" | "road";
+  metadataVerifiedAt?: string;
   airportDistanceKm?: number;
   websiteUrl?: string;
   centerMapUrl?: string;

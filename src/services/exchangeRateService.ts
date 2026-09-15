@@ -17,7 +17,8 @@ export type CurrencyCode =
   | "CNY"
   | "KRW"
   | "THB"
- | "TWD";
+  | "TWD"
+  | "SGD";
 
 export type ExchangeRateStatus = "ready" | "stale_cache" | "unavailable";
 
@@ -63,6 +64,8 @@ export const supportedCurrencyCodes: CurrencyCode[] = [
   "CNY",
   "KRW",
   "THB",
+  "TWD",
+  "SGD",
 ];
 
 export const FRANKFURTER_API_BASE_URL = "https://api.frankfurter.dev";

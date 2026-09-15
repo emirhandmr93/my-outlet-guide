@@ -1,3 +1,4 @@
+import { expansionCityNames } from "../constants/expansionPlaceNames";
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
 import type { TranslationLanguage } from "../translations/locale";
@@ -346,6 +347,7 @@ const countryDisplayNames: Record<string, LocaleMap> = {
 };
 
 const cityDisplayNames: Record<string, LocaleMap> = {
+  ...expansionCityNames,
   shanghai: {
     en: "Shanghai",
     tr: "Şanghay",

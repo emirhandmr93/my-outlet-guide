@@ -1,3 +1,5 @@
+import { expansionGuideIds, expansionTransportation } from "../expansionTransportation";
+import { completedJapanTransportation } from "./completed-japan";
 import { chinaTransportation } from "./china";
 import { japanTransportation } from "./japan";
 import { austriaTransportation } from "./austria";
@@ -62,6 +64,8 @@ export {
 };
 
 export const transportation = [
+  ...expansionTransportation,
+  ...completedJapanTransportation.filter(item => !expansionGuideIds.has(item.transportationId)),
   ...japanTransportation,
   ...chinaTransportation,
   ...italyTransportation,

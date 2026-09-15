@@ -1,20 +1,24 @@
+import { expansionBrands } from "./brands-expansion";
 import { brandsAE } from "./brands-a-e";
 import { brandsFK } from "./brands-f-k";
 import { brandsLP } from "./brands-l-p";
 import { brandsQT } from "./brands-q-t";
 import { brandsUZ } from "./brands-u-z";
 import { yeojuBrands } from "./brands-yeoju";
+import { finalExpansionBrands } from "./final-expansion";
 import type { Brand } from "../../types/brand";
 
-export { brandsAE, brandsFK, brandsLP, brandsQT, brandsUZ, yeojuBrands };
+export { brandsAE, brandsFK, brandsLP, brandsQT, brandsUZ, yeojuBrands, finalExpansionBrands };
 
 const allBrands: Brand[] = [
+  ...expansionBrands,
   ...brandsAE,
   ...brandsFK,
   ...brandsLP,
   ...brandsQT,
   ...brandsUZ,
   ...yeojuBrands,
+  ...finalExpansionBrands,
 ];
 
 const uniqueBrands = new Map<string, Brand>();

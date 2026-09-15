@@ -29,7 +29,7 @@ const normalizeBusinessName = (value: string): string =>
     .toLowerCase()
     .replace(/&/g, "and")
     .replace(/['’`´]/g, "")
-    .replace(/[^a-z0-9]+/g, " ")
+    .replace(/[^\p{L}\p{N}]+/gu, " ")
     .trim()
     .replace(/\s+/g, " ");
 

@@ -1,4 +1,5 @@
-﻿import type { TransportationGuide } from "./transportationGuides";
+import { localizeExpansionPlace } from "./expansionPlaceNames";
+import type { TransportationGuide } from "./transportationGuides";
 
 export type RecentOutletLanguage =
 | "en"
@@ -890,39 +891,45 @@ openingHours: yeojuHours[language],
 parking: yeojuParking[language],
 services: [...yeojuServices[language]],
 storesCountText: countText(249, language),
-cityCenterName: "Yeoju Station",
-airportNames: {},
+cityCenterName: localizeExpansionPlace("Yeoju", language),
+airportNames: { ICN: "Incheon (ICN)", GMP: "Gimpo (GMP)" },
 };
 }
 
 
-if (outletId === "paju-premium-outlets" && base) {
+if (outletId === "paju-premium-outlets") {
 return {
 ...base,
 openingHours: yeojuHours[language],
 parking: koreaPremiumParking[language],
 services: selectYeojuServices(pajuServiceIndexes, language),
 storesCountText: countText(236, language),
+cityCenterName: localizeExpansionPlace("Paju", language),
+airportNames: { GMP: "Gimpo (GMP)", ICN: "Incheon (ICN)" },
 };
 }
 
-if (outletId === "busan-premium-outlets" && base) {
+if (outletId === "busan-premium-outlets") {
 return {
 ...base,
 openingHours: yeojuHours[language],
 parking: koreaPremiumParking[language],
 services: selectYeojuServices(busanServiceIndexes, language),
 storesCountText: countText(245, language),
+cityCenterName: localizeExpansionPlace("Busan (Seomyeon)", language),
+airportNames: { PUS: "Gimhae (PUS)" },
 };
 }
 
-if (outletId === "genting-highlands-premium-outlets" && base) {
+if (outletId === "genting-highlands-premium-outlets") {
 return {
 ...base,
 openingHours: gentingHours[language],
 parking: gentingParking[language],
 services: gentingServices[language],
 storesCountText: gentingStoresCount[language],
+cityCenterName: localizeExpansionPlace("Kuala Lumpur", language),
+airportNames: { KUL: localizeExpansionPlace("Kuala Lumpur", language) + " (KUL)" },
 };
 }
 
@@ -931,8 +938,8 @@ return {
 openingHours: citygateHours[language],
 parking: citygateParking[language],
 services: citygateServices[language],
-storesCountText: countText(100, language),
-cityCenterName: "Central Hong Kong",
+storesCountText: countText(136, language),
+cityCenterName: localizeExpansionPlace("Hong Kong", language),
 airportNames: {
 HKG:
 language === "tr" ? "Hong Kong Uluslararası Havalimanı" :
@@ -952,8 +959,8 @@ return {
 openingHours: linkouHours[language],
 parking: linkouParking[language],
 services: linkouServices[language],
-storesCountText: countText(100, language),
-cityCenterName: "Taipei Main Station",
+storesCountText: countText(239, language),
+cityCenterName: localizeExpansionPlace("Taipei", language),
 airportNames: {
 TPE:
 language === "tr" ? "Taiwan Taoyuan Uluslararası Havalimanı" :

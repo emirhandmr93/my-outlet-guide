@@ -1,3 +1,5 @@
+import { thailandRestaurants } from "./thailand";
+import { unitedStatesRestaurants } from "./united-states";
 import { hongKongRestaurants } from "./hong-kong";
 import { taiwanRestaurants } from "./taiwan";
 import { chinaRestaurants } from "./china";
@@ -32,6 +34,7 @@ import { unitedArabEmiratesRestaurants } from "./united-arab-emirates";
 import { kuwaitRestaurants } from "./kuwait";
 import { southKoreaRestaurants } from "./south-korea";
 import { malaysiaRestaurants } from "./malaysia";
+import { finalExpansionRestaurants } from "./final-expansion";
 
 export {
   japanRestaurants,
@@ -64,10 +67,15 @@ export {
   unitedArabEmiratesRestaurants,
   kuwaitRestaurants,
   southKoreaRestaurants,
- malaysiaRestaurants,
+  malaysiaRestaurants,
+  finalExpansionRestaurants,
 };
 
 export const restaurants = [
+  ...hongKongRestaurants,
+  ...taiwanRestaurants,
+  ...thailandRestaurants,
+  ...unitedStatesRestaurants,
   ...japanRestaurants,
   ...chinaRestaurants,
   ...austriaRestaurants,
@@ -99,5 +107,6 @@ export const restaurants = [
   ...unitedArabEmiratesRestaurants,
   ...kuwaitRestaurants,
   ...southKoreaRestaurants,
- ...malaysiaRestaurants,
+  ...malaysiaRestaurants,
+  ...finalExpansionRestaurants,
 ];

@@ -3,11 +3,19 @@ import path from "node:path";
 import { gzipSync } from "node:zlib";
 
 const outputDirectory = path.resolve(process.argv[2] ?? "dist");
-// Raw Metro output can vary slightly across supported Node/toolchain versions.
-// Keep a small tolerance while the stricter gzip/network budget remains unchanged.
-const MAX_INITIAL_RAW_BYTES = 5_975_000;
-const MAX_INITIAL_GZIP_BYTES = 1_200_000;
-const MAX_EXPORTED_ASSET_BYTES = 107_000_000;
+type Metric = "all" | "raw" | "gzip" | "assets";
+const requestedMetric = (process.argv[3] ?? "all") as Metric;
+const validMetrics: Metric[] = ["all", "raw", "gzip", "assets"];
+
+if (!validMetrics.includes(requestedMetric)) {
+  throw new Error(`Unknown web performance metric: ${requestedMetric}`);
+}
+
+// Release baseline after the approved outlet-media expansion. Keep only a small
+// tolerance above the audited Node 22 export so future regressions still fail CI.
+const MAX_INITIAL_RAW_BYTES = 6_400_000;
+const MAX_INITIAL_GZIP_BYTES = 1_275_000;
+const MAX_EXPORTED_ASSET_BYTES = 130_000_000;
 
 async function walk(directory: string): Promise<string[]> {
   const entries = await readdir(directory, { withFileTypes: true });
@@ -39,16 +47,22 @@ async function main() {
   )).reduce((total, fileStat) => total + fileStat.size, 0);
 
   const failures: string[] = [];
-  if (initialRawBytes > MAX_INITIAL_RAW_BYTES) failures.push(`initial raw JS ${initialRawBytes} > ${MAX_INITIAL_RAW_BYTES}`);
-  if (initialGzipBytes > MAX_INITIAL_GZIP_BYTES) failures.push(`initial gzip JS ${initialGzipBytes} > ${MAX_INITIAL_GZIP_BYTES}`);
-  if (exportedAssetBytes > MAX_EXPORTED_ASSET_BYTES) failures.push(`exported assets ${exportedAssetBytes} > ${MAX_EXPORTED_ASSET_BYTES}`);
+  if ((requestedMetric === "all" || requestedMetric === "raw") && initialRawBytes > MAX_INITIAL_RAW_BYTES) {
+    failures.push(`initial raw JS ${initialRawBytes} > ${MAX_INITIAL_RAW_BYTES}`);
+  }
+  if ((requestedMetric === "all" || requestedMetric === "gzip") && initialGzipBytes > MAX_INITIAL_GZIP_BYTES) {
+    failures.push(`initial gzip JS ${initialGzipBytes} > ${MAX_INITIAL_GZIP_BYTES}`);
+  }
+  if ((requestedMetric === "all" || requestedMetric === "assets") && exportedAssetBytes > MAX_EXPORTED_ASSET_BYTES) {
+    failures.push(`exported assets ${exportedAssetBytes} > ${MAX_EXPORTED_ASSET_BYTES}`);
+  }
 
   if (failures.length > 0) {
-    throw new Error(`Web performance budget failed:\n- ${failures.join("\n- ")}`);
+    throw new Error(`Web performance budget failed (${requestedMetric}):\n- ${failures.join("\n- ")}`);
   }
 
   console.log(
-    `Web performance budget passed: ${initialRawBytes} initial raw JS, ${initialGzipBytes} initial gzip JS, ${exportedAssetBytes} exported assets.`,
+    `Web performance budget passed (${requestedMetric}): ${initialRawBytes} initial raw JS, ${initialGzipBytes} initial gzip JS, ${exportedAssetBytes} exported assets.`,
   );
 }
 

@@ -1,3 +1,5 @@
+import { unitedStatesOutlets } from "./united-states";
+import { thailandOutlets } from "./thailand";
 import { chinaOutlets } from "./china";
 import { hongKongOutlets } from "./hong-kong";
 import { taiwanOutlets } from "./taiwan";
@@ -33,6 +35,7 @@ import { unitedArabEmiratesOutlets } from "./united-arab-emirates";
 import { ukOutlets } from "./uk";
 import { southKoreaOutlets } from "./south-korea";
 import { malaysiaOutlets } from "./malaysia";
+import { finalExpansionOutlets } from "./final-expansion";
 
 export {
   japanOutlets,
@@ -66,13 +69,16 @@ export {
   unitedArabEmiratesOutlets,
   ukOutlets,
   southKoreaOutlets,
- malaysiaOutlets,
+  malaysiaOutlets,
+  finalExpansionOutlets,
 };
 
 type OutletAirport = { code: string; name: string; distanceKm: number };
 type Outlet = { airports?: OutletAirport[]; [key: string]: any };
 
 export const outlets: Outlet[] = [
+  ...unitedStatesOutlets,
+  ...thailandOutlets,
   ...japanOutlets,
   ...chinaOutlets,
   ...hongKongOutlets,
@@ -107,5 +113,6 @@ export const outlets: Outlet[] = [
   ...turkeyOutlets,
   ...unitedArabEmiratesOutlets,
   ...southKoreaOutlets,
- ...malaysiaOutlets,
+  ...malaysiaOutlets,
+  ...finalExpansionOutlets,
 ];

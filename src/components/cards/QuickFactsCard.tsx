@@ -30,6 +30,8 @@ export type QuickFactsCardProps = {
   taxFreeStatus: OutletTaxFreeDisplayStatus;
   taxFreeSummary?: string;
   cityCenterDistanceKm?: number;
+  cityCenterName?: string;
+  distanceNote?: string;
   airportDistanceKm?: number;
   nearestAirportName?: string;
   airportSummary?: string;
@@ -79,6 +81,8 @@ export function QuickFactsCard({
   taxFreeStatus,
   taxFreeSummary,
   cityCenterDistanceKm,
+  cityCenterName,
+  distanceNote,
   airportDistanceKm,
   nearestAirportName,
   airportSummary,
@@ -91,12 +95,14 @@ export function QuickFactsCard({
 }: QuickFactsCardProps) {
   const { t } = useTranslation();
   const airportDistanceText = formatOutletDistanceKm(airportDistanceKm);
-  const airportText = hasDisplayValue(airportSummary)
+  const airportBaseText = hasDisplayValue(airportSummary)
     ? airportSummary?.trim()
     : hasDisplayValue(nearestAirportName)
       ? [nearestAirportName, airportDistanceText].filter(Boolean).join(" • ")
       : airportDistanceText;
-  const cityCenterText = formatOutletDistanceKm(cityCenterDistanceKm);
+  const airportText = airportBaseText ? [airportBaseText, distanceNote].filter(Boolean).join("\n") : undefined;
+  const cityDistance = formatOutletDistanceKm(cityCenterDistanceKm);
+  const cityCenterText = cityDistance ? [cityCenterName, cityDistance, distanceNote].filter(Boolean).join("\n") : undefined;
 
   const reviewCountText = formatReviewCount(reviewCount);
   const ratingText = rating ? `${rating}${reviewCountText ? ` (${reviewCountText})` : ""}` : t("sharedCards.quickFacts.noRating");
@@ -125,7 +131,7 @@ export function QuickFactsCard({
           <FactTile icon="✈️" label={t("sharedCards.quickFacts.airports")} value={airportText} onPress={onPressAirport} />
         ) : null}
         {cityCenterText ? (
-          <FactTile icon="🚗" label={t("sharedCards.quickFacts.cityCenter")} value={cityCenterText} />
+          <FactTile icon={distanceNote ? "📍" : "🚗"} label={t("sharedCards.quickFacts.cityCenter")} value={cityCenterText} />
         ) : null}
         <FactTile icon="⭐" label={t("sharedCards.quickFacts.rating")} value={ratingText} onPress={onPressRating} />
       </View>

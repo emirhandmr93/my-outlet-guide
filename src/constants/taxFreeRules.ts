@@ -1,176 +1,56 @@
-import type { CurrencyCode } from "../services/exchangeRateService";
+import { taxFreeRules as baseTaxFreeRules, type TaxFreeRule } from "./taxFreeRulesBase";
 
-export type TaxFreeCountryStatus = "available" | "not_available" | "not_verified";
-export type MinimumPurchaseStatus = "verified_amount" | "no_statutory_minimum" | "not_verified";
-export type MinimumPurchaseComparison = "at_least" | "greater_than";
+export type {
+  TaxFreeCountryStatus,
+  MinimumPurchaseStatus,
+  MinimumPurchaseComparison,
+  TaxFreeSource,
+  OfficialFormulaPolicy,
+  RefundTableBracket,
+  TaxFreeRefundPolicy,
+  TaxFreeRule,
+} from "./taxFreeRulesBase";
 
-export type TaxFreeSource = { url: string; name: string; checkedDate: string };
+export {
+  getMaximumRefundRate,
+  getDateInTimeZone,
+  isPointOfSalePolicyActive,
+  getTaxFreePolicySummaryKey,
+  getRefundPolicyValidationErrors,
+} from "./taxFreeRulesBase";
 
-export type OfficialFormulaPolicy =
-  | { mode: "official_formula"; formula: "uae_vat_87_minus_transaction_fee"; source: TaxFreeSource; assumptionKey: "taxCalc.oneTransactionAssumption" }
-  | { mode: "official_formula"; formula: "china_standard_rate"; source: TaxFreeSource; assumptionKey: "taxCalc.standardRateProductAssumption" };
-
-export type RefundTableBracket = {
-  minimumGrossInclusive: number;
-  maximumGrossExclusive: number;
-  refund: number;
+const checkedDate = "2026-09-14";
+const singaporeSource = {
+  url: "https://www.iras.gov.sg/taxes/goods-services-tax-%28gst%29/consumers/tourist-refund-scheme",
+  name: "Inland Revenue Authority of Singapore — Tourist Refund Scheme",
+  checkedDate,
 };
 
-export type TaxFreeRefundPolicy =
-  | { mode: "provider_dependent_upper_bound"; source: TaxFreeSource }
-  | OfficialFormulaPolicy
-  | { mode: "official_refund_table"; brackets: ReadonlyArray<RefundTableBracket>; source: TaxFreeSource; assumptionKey?: string }
-  | { mode: "point_of_sale_exemption"; validThrough: string; refundRegimeStarts: string; timeZone: "Asia/Tokyo"; source: TaxFreeSource };
-
-export type TaxFreeRule = {
-  countryCode: string;
-  countryName: string;
-  countryId: string;
-  currency: CurrencyCode;
-  vatRate: number;
-  minimumPurchaseAmount?: number;
-  minimumPurchaseBasis?: "gross" | "net";
-  minimumPurchaseComparison?: MinimumPurchaseComparison;
-  minimumPurchaseStatus: MinimumPurchaseStatus;
-  refundPolicy: TaxFreeRefundPolicy;
-  schemeSource: TaxFreeSource;
-  vatRateSource: TaxFreeSource;
-  minimumPurchaseSource?: TaxFreeSource;
-  notes: string;
+const singaporeVatSource = {
+  url: "https://www.iras.gov.sg/quick-links/tax-rates/goods-and-services-tax-%28gst%29-rates",
+  name: "Inland Revenue Authority of Singapore — GST rates",
+  checkedDate,
 };
 
-const euVatRatesUrl = "https://taxation-customs.ec.europa.eu/taxation/vat/vat-rates_en";
-const checkedDate = "2026-07-23";
-const euSchemeSource: TaxFreeSource = { url: "https://taxation-customs.ec.europa.eu/taxation/vat/vat-directive/vat-refunds_en", name: "European Commission — VAT refunds", checkedDate };
-const euVatSource: TaxFreeSource = { url: euVatRatesUrl, name: "European Commission — VAT rates", checkedDate };
-const euNotes = "European Commission VAT rate reference. Confirm tourist-retail eligibility and retailer participation before purchase; the estimate is the maximum VAT component before operator and administration fees.";
+const singaporeRule: TaxFreeRule = {
+  countryCode: "SG",
+  countryName: "Singapore",
+  countryId: "singapore",
+  currency: "SGD",
+  vatRate: 9,
+  minimumPurchaseAmount: 100,
+  minimumPurchaseBasis: "gross",
+  minimumPurchaseComparison: "at_least",
+  minimumPurchaseStatus: "verified_amount",
+  refundPolicy: { mode: "provider_dependent_upper_bound", source: singaporeSource },
+  schemeSource: singaporeSource,
+  vatRateSource: singaporeVatSource,
+  minimumPurchaseSource: singaporeSource,
+  notes: "Eligible tourists may claim GST refunds on qualifying goods bought from participating eTRS retailers. The minimum is SGD 100 including GST; up to three same-day receipts from retailers with the same GST registration number and shop name may be combined. The actual refund is lower than the GST paid because handling fees are deducted.",
+};
 
-export const taxFreeRules: TaxFreeRule[] = [
-{
-countryCode: "TW",
-countryName: "Taiwan",
-countryId: "taiwan",
-currency: "TWD",
-vatRate: 5,
-minimumPurchaseAmount: 2000,
-minimumPurchaseBasis: "gross",
-minimumPurchaseComparison: "at_least",
-minimumPurchaseStatus: "verified_amount",
-refundPolicy: {
-mode: "provider_dependent_upper_bound",
-source: {
-url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
-name: "Taiwan Foreign Travelers VAT Refund",
-checkedDate: "2026-08-14"
-}
-},
-schemeSource: {
-url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
-name: "Taiwan Foreign Travelers VAT Refund",
-checkedDate: "2026-08-14"
-},
-vatRateSource: {
-url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
-name: "Taiwan Foreign Travelers VAT Refund",
-checkedDate: "2026-08-14"
-},
-minimumPurchaseSource: {
-url: "https://www.taxrefund.net.tw/ttr/info/8a8c512c53c2138e0153c216df0f000a?lang=en_US",
-name: "Taiwan Foreign Travelers VAT Refund",
-checkedDate: "2026-08-14"
-},
-notes: "Eligible foreign travelers staying no more than 183 days may request VAT refund for eligible goods purchased at authorized TRS stores. The same-store, same-day VAT-inclusive minimum is TWD 2,000. The standard VAT rate is 5%; the official refund system applies an administration charge."
-},
-
-  { countryCode: "JP", countryName: "Japan", countryId: "japan", currency: "JPY", vatRate: 10, minimumPurchaseAmount: 5000, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "point_of_sale_exemption", validThrough: "2026-10-31", refundRegimeStarts: "2026-11-01", timeZone: "Asia/Tokyo", source: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000001_00028.html", name: "Japan Tourism Agency — refund-system transition", checkedDate } }, schemeSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, vatRateSource: { url: "https://www.nta.go.jp/english/taxes/consumption_tax/01.htm", name: "Japan National Tax Agency", checkedDate }, minimumPurchaseSource: { url: "https://www.mlit.go.jp/kankocho/tax-free/page01_000113.html", name: "Japan Tourism Agency", checkedDate }, notes: "Eligible tourists may receive tax exemption at participating stores. The same-store, same-day minimum is JPY 5,000 excluding tax; store participation must be confirmed." },
-  { countryCode: "KR", countryName: "South Korea", countryId: "south-korea", currency: "KRW", vatRate: 10, minimumPurchaseAmount: 15000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=489&vcontsId=140736", name: "Korea Tourism Organization / VISITKOREA", checkedDate } }, schemeSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=489&vcontsId=140736", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, vatRateSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=929&vcontsId=248767", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, minimumPurchaseSource: { url: "https://english.visitkorea.or.kr/svc/contents/contentsView.do?menuSn=489&vcontsId=140736", name: "Korea Tourism Organization / VISITKOREA", checkedDate }, notes: "Participating stores may provide immediate refunds from KRW 15,000; retailer participation and official eligibility conditions apply." },
-  { countryCode: "TH", countryName: "Thailand", countryId: "thailand", currency: "THB", vatRate: 7, minimumPurchaseAmount: 2000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate } }, schemeSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, vatRateSource: { url: "https://www.rd.go.th/english/6043.html", name: "Thailand Revenue Department", checkedDate }, minimumPurchaseSource: { url: "https://vrtweb.rd.go.th/81.html", name: "Thailand Revenue Department", checkedDate }, notes: "VAT Refund for Tourists requires at least THB 2,000 including VAT from the same store on the same day and participating-store documentation." },
-  { countryCode: "CN", countryName: "China", countryId: "china", currency: "CNY", vatRate: 13, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.chinatax.gov.cn/eng/c101276/c102444/c5240901/content.html", name: "State Taxation Administration", checkedDate } }, schemeSource: { url: "https://www.chinatax.gov.cn/eng/c101276/c102444/c5240901/content.html", name: "State Taxation Administration", checkedDate }, vatRateSource: { url: "https://www.chinatax.gov.cn/eng/c101276/c102444/index.html", name: "State Taxation Administration", checkedDate }, minimumPurchaseSource: { url: "https://www.chinatax.gov.cn/eng/c101276/c102444/c5240901/content.html", name: "State Taxation Administration", checkedDate }, notes: "Official departure tax-refund policy; CNY 200 is modeled only for the official refund-shopping minimum." },
-  { countryCode: "AT", countryName: "Austria", countryId: "austria", currency: "EUR", vatRate: 20, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.bmf.gv.at/en/topics/customs/travellers/vat-refund.html", name: "Austrian Customs", checkedDate } }, schemeSource: { url: "https://www.bmf.gv.at/en/topics/customs/travellers/vat-refund.html", name: "Austrian Customs", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.bmf.gv.at/en/topics/customs/travellers/vat-refund.html", name: "Austrian Customs", checkedDate }, notes: "Austrian Customs requires the invoiced amount, possibly including VAT, to exceed EUR 75; estimates remain before operator and administration fees." },
-  { countryCode: "BE", countryName: "Belgium", countryId: "belgium", currency: "EUR", vatRate: 21, minimumPurchaseAmount: 125.01, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://financien.belgium.be/nl/douane_accijnzen/particulieren/reizen/btw-teruggave-aan-reizigers", name: "Belgian FPS Finance", checkedDate } }, schemeSource: { url: "https://financien.belgium.be/nl/douane_accijnzen/particulieren/reizen/btw-teruggave-aan-reizigers", name: "Belgian FPS Finance", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://financien.belgium.be/nl/douane_accijnzen/particulieren/reizen/btw-teruggave-aan-reizigers", name: "Belgian FPS Finance", checkedDate }, notes: "Belgian FPS Finance traveller VAT refund guidance requires at least EUR 125.01 including VAT on the invoice; estimates remain before operator and administration fees." },
-  { countryCode: "BG", countryName: "Bulgaria", countryId: "bulgaria", currency: "EUR", vatRate: 20, minimumPurchaseStatus: "not_verified", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://nra.bg/wps/portal/nra-en/taxes.en/vat.in.bulgaria.en/vat-refund-%2520to-foreign-natural-persons.en", name: "Bulgarian National Revenue Agency", checkedDate } }, schemeSource: { url: "https://nra.bg/wps/portal/nra-en/taxes.en/vat.in.bulgaria.en/vat-refund-%2520to-foreign-natural-persons.en", name: "Bulgarian National Revenue Agency", checkedDate }, vatRateSource: { url: euVatRatesUrl, name: "European Commission — VAT rates", checkedDate }, notes: "Bulgarian guidance expresses eligibility through an invoice VAT amount, not a purchase-price threshold; the shared model therefore leaves the purchase minimum unverified." },
-  { countryCode: "HR", countryName: "Croatia", countryId: "croatia", currency: "EUR", vatRate: 25, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://carina.gov.hr/access-to-information/regulations-and-agreements/customs-and-vat/exemption-from-vat-on-an-export-of-goods/2745", name: "Croatian Customs Administration", checkedDate } }, schemeSource: { url: "https://carina.gov.hr/access-to-information/regulations-and-agreements/customs-and-vat/exemption-from-vat-on-an-export-of-goods/2745", name: "Croatian Customs Administration", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://carina.gov.hr/access-to-information/regulations-and-agreements/customs-and-vat/exemption-from-vat-on-an-export-of-goods/2745", name: "Croatian Customs Administration", checkedDate }, notes: "Croatian Customs guidance requires the invoice total including VAT to exceed the national threshold, with PDV-P or accepted Tax Free documentation validated at final EU exit." },
-  { countryCode: "CZ", countryName: "Czech Republic", countryId: "czech-republic", currency: "CZK", vatRate: 21, minimumPurchaseAmount: 2000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://celnisprava.gov.cz/cz/dane/WebSPD/WebInFO/Stranky/InfoFO_Refund_VAT.aspx", name: "Czech Customs Administration", checkedDate } }, schemeSource: { url: "https://celnisprava.gov.cz/cz/dane/WebSPD/WebInFO/Stranky/InfoFO_Refund_VAT.aspx", name: "Czech Customs Administration", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://celnisprava.gov.cz/cz/dane/WebSPD/WebInFO/Stranky/InfoFO_Refund_VAT.aspx", name: "Czech Customs Administration", checkedDate }, notes: "Czech Customs 2026 guidance describes EvDPH as the electronic sales-document data system; temporary paper handling is only a fallback when electronic acceptance is unavailable or registration is incomplete." },
-  { countryCode: "DK", countryName: "Denmark", countryId: "denmark", currency: "DKK", vatRate: 25, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://toldst.dk/en-us/individuals/vat-refunds", name: "Danish Customs Agency", checkedDate } }, schemeSource: { url: "https://toldst.dk/en-us/individuals/vat-refunds", name: "Danish Customs Agency", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://toldst.dk/en-us/individuals/vat-refunds", name: "Danish Customs Agency", checkedDate }, notes: "Ordinary Danish tourist threshold applies only to the general non-EU traveller route; Norway and Åland residents use a separate import-VAT proof procedure." },
-  { countryCode: "EE", countryName: "Estonia", countryId: "estonia", currency: "EUR", vatRate: 24, minimumPurchaseAmount: 38, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.emta.ee/en/private-client/consignments-travel-moving/travel/tax-free", name: "Estonian Tax and Customs Board", checkedDate } }, schemeSource: { url: "https://www.emta.ee/en/business-client/taxes-and-payment/value-added-tax/taxation-goods/sales-vat-refund-ie-tax-free-system", name: "Estonian Tax and Customs Board", checkedDate }, vatRateSource: { url: "https://www.emta.ee/en/business-client/taxes-and-payment/value-added-tax/vat-rates-and-supply-exempt-tax/value-added-tax-rates", name: "Estonian Tax and Customs Board", checkedDate }, minimumPurchaseSource: { url: "https://www.emta.ee/en/private-client/consignments-travel-moving/travel/tax-free", name: "Estonian Tax and Customs Board", checkedDate }, notes: "Estonia requires the same-date, same-point-of-sale, same-seller total including VAT to exceed the statutory amount and export by the end of the third month following purchase." },
-  { countryCode: "FI", countryName: "Finland", countryId: "finland", currency: "EUR", vatRate: 25.5, minimumPurchaseAmount: 40, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.vero.fi/en/detailed-guidance/guidance/48464/tax-free-sales-to-travellers-in--finland/", name: "Finnish Tax Administration", checkedDate } }, schemeSource: { url: "https://www.vero.fi/en/detailed-guidance/guidance/48464/tax-free-sales-to-travellers-in--finland/", name: "Finnish Tax Administration", checkedDate }, vatRateSource: { url: "https://www.vero.fi/en/businesses-and-corporations/taxes-and-charges/vat/rates-of-vat/", name: "Finnish Tax Administration", checkedDate }, minimumPurchaseSource: { url: "https://www.vero.fi/en/detailed-guidance/guidance/48464/tax-free-sales-to-travellers-in--finland/", name: "Finnish Tax Administration", checkedDate }, notes: "Ordinary Finnish traveller sales exclude buyers established in the EU or Norway; permanent Norway residents use a separate import-VAT proof route." },
-  { countryCode: "FR", countryName: "France", countryId: "france", currency: "EUR", vatRate: 20, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.douane.gouv.fr/demarche/vous-achetez-des-marchandises-en-detaxe", name: "French Customs", checkedDate } }, schemeSource: { url: "https://www.douane.gouv.fr/demarche/vous-achetez-des-marchandises-en-detaxe", name: "French Customs", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.douane.gouv.fr/demarche/vous-achetez-des-marchandises-en-detaxe", name: "French Customs", checkedDate }, notes: euNotes },
-  { countryCode: "DE", countryName: "Germany", countryId: "germany", currency: "EUR", vatRate: 19, minimumPurchaseAmount: 50, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.zoll.de/EN/Private-individuals/Travel/Leaving-Germany/Tax-free-shopping/tax-free-shopping_node.html", name: "German Customs / Zoll", checkedDate } }, schemeSource: { url: "https://www.zoll.de/EN/Private-individuals/Travel/Leaving-Germany/Tax-free-shopping/tax-free-shopping_node.html", name: "German Customs / Zoll", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.zoll.de/EN/Private-individuals/Travel/Leaving-Germany/Tax-free-shopping/tax-free-shopping_node.html", name: "German Customs / Zoll", checkedDate }, notes: "German Customs requires the gross invoice value to exceed EUR 50 for the supplying retailer tax exemption; estimates remain before operator and administration fees." },
-  { countryCode: "GR", countryName: "Greece", countryId: "greece", currency: "EUR", vatRate: 24, minimumPurchaseStatus: "not_verified", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.aade.gr/en/customs/customs-services-citizens/tax-relief-vat-revenue-code-number-travelers", name: "Greek Independent Authority for Public Revenue / AADE", checkedDate } }, schemeSource: { url: "https://www.aade.gr/egkyklioi-kai-apofaseis/1108-03-08-2022", name: "Greek Independent Authority for Public Revenue / AADE", checkedDate }, vatRateSource: { url: "https://www.aade.gr/en/services-information/useful-guides/commencement-business-activity/basic-vat-rates", name: "Greek Independent Authority for Public Revenue / AADE", checkedDate }, notes: "Current primary AADE sources do not provide an unambiguous purchase threshold for this model; standard VAT is not the expected cash refund because goods, location and operator deductions vary." },
-  { countryCode: "HU", countryName: "Hungary", countryId: "hungary", currency: "HUF", vatRate: 27, minimumPurchaseAmount: 68000, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://nav.gov.hu/ugyfeliranytu/valaszol-a-nav/utastajekoztato/kulfoldi-utasok-afa-visszateritese", name: "Hungarian National Tax and Customs Administration", checkedDate } }, schemeSource: { url: "https://nav.gov.hu/ugyfeliranytu/valaszol-a-nav/utastajekoztato/kulfoldi-utasok-afa-visszateritese", name: "Hungarian National Tax and Customs Administration", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://nav.gov.hu/ugyfeliranytu/valaszol-a-nav/utastajekoztato/kulfoldi-utasok-afa-visszateritese", name: "Hungarian National Tax and Customs Administration", checkedDate }, notes: "NAV guidance ties the legal threshold to EUR 175 and publishes the 2026 HUF equivalent; goods must leave unused within 90 days and validation cannot be added after departure." },
-  { countryCode: "IE", countryName: "Ireland", countryId: "ireland", currency: "EUR", vatRate: 23, minimumPurchaseAmount: 75, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.revenue.ie/en/vat/retail-export-scheme/index.aspx", name: "Irish Revenue", checkedDate } }, schemeSource: { url: "https://www.revenue.ie/en/vat/retail-export-scheme/index.aspx", name: "Irish Revenue", checkedDate }, vatRateSource: { url: "https://www.revenue.ie/en/vat/vat-rates/search-vat-rates/current-VAT-rates.aspx", name: "Irish Revenue", checkedDate }, minimumPurchaseSource: { url: "https://www.revenue.ie/en/vat/retail-export-scheme/on-what-purchases-can-you-reclaim-VAT.aspx", name: "Irish Revenue", checkedDate }, notes: "Ireland Retail Export Scheme uses export vouchers, ordinary certification exceptions and high-value direct Customs procedures." },
-  { countryCode: "IT", countryName: "Italy", countryId: "italy", currency: "EUR", vatRate: 22, minimumPurchaseAmount: 70, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.agenziaentrate.gov.it/portale/documents/20143/5866239/Circolare%2Bn%2B3_del%2B16_2_2024.pdf/6e8e87f4-a360-b3c0-8b0b-475cf43ab2d8", name: "Agenzia delle Entrate", checkedDate } }, schemeSource: { url: "https://www.agenziaentrate.gov.it/portale/documents/20143/5866239/Circolare%2Bn%2B3_del%2B16_2_2024.pdf/6e8e87f4-a360-b3c0-8b0b-475cf43ab2d8", name: "Agenzia delle Entrate", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.agenziaentrate.gov.it/portale/documents/20143/5866239/Circolare%2Bn%2B3_del%2B16_2_2024.pdf/6e8e87f4-a360-b3c0-8b0b-475cf43ab2d8", name: "Agenzia delle Entrate", checkedDate }, notes: euNotes },
-  { countryCode: "LV", countryName: "Latvia", countryId: "latvia", currency: "EUR", vatRate: 21, minimumPurchaseAmount: 35, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.vid.gov.lv/en/recovery-value-added-tax-tax-free-receipts", name: "Latvian State Revenue Service", checkedDate } }, schemeSource: { url: "https://www.vid.gov.lv/en/recovery-value-added-tax-tax-free-receipts", name: "Latvian State Revenue Service", checkedDate }, vatRateSource: { url: "https://likumi.lv/ta/en/en/id/253451-value-added-tax-law", name: "Latvian State Revenue Service", checkedDate }, minimumPurchaseSource: { url: "https://www.vid.gov.lv/en/recovery-value-added-tax-tax-free-receipts", name: "Latvian State Revenue Service", checkedDate }, notes: "Latvia uses a same-day seller total excluding VAT, special-form Tax Free receipt, unused goods and final EU-exit Customs confirmation through electronic or paper routes." },
-  { countryCode: "LT", countryName: "Lithuania", countryId: "lithuania", currency: "EUR", vatRate: 21, minimumPurchaseAmount: 40, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.vmi.lt/evmi/u%C5%BEsienio-keleiviams-42-str.-?inheritRedirect=true", name: "Lithuanian State Tax Inspectorate / VMI", checkedDate } }, schemeSource: { url: "https://www.vmi.lt/evmi/u%C5%BEsienio-keleiviams-42-str.-?inheritRedirect=true", name: "Lithuanian State Tax Inspectorate / VMI", checkedDate }, vatRateSource: { url: "https://www.vmi.lt/evmi/u%C5%BEsienio-keleiviams-42-str.-?inheritRedirect=true", name: "Lithuanian State Tax Inspectorate / VMI", checkedDate }, minimumPurchaseSource: { url: "https://www.vmi.lt/evmi/u%C5%BEsienio-keleiviams-42-str.-?inheritRedirect=true", name: "Lithuanian State Tax Inspectorate / VMI", checkedDate }, notes: "Lithuania authoritative route is electronic VAT-refund declaration with QR code, barcode, declaration image or supported link before Customs export confirmation." },
-  { countryCode: "NL", countryName: "Netherlands", countryId: "netherlands", currency: "EUR", vatRate: 21, minimumPurchaseAmount: 50, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/douane/reisbagage/btw-terugvragen-bij-uitvoer/", name: "Dutch Tax and Customs Administration", checkedDate } }, schemeSource: { url: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/douane/reisbagage/btw-terugvragen-bij-uitvoer/", name: "Dutch Tax and Customs Administration", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://www.belastingdienst.nl/wps/wcm/connect/bldcontentnl/belastingdienst/prive/douane/reisbagage/btw-terugvragen-bij-uitvoer/", name: "Dutch Tax and Customs Administration", checkedDate }, notes: "Dutch tourist guidance requires a registered purchase invoice for an amount including VAT and uses the NL Customs VAT app for digital validation from 2026; estimates remain before operator and administration fees." },
-  { countryCode: "PL", countryName: "Poland", countryId: "poland", currency: "PLN", vatRate: 23, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://puesc.gov.pl/en/uslugi/tax-free-informacja-dla-podroznych", name: "Polish Ministry of Finance / PUESC", checkedDate } }, schemeSource: { url: "https://puesc.gov.pl/en/uslugi/tax-free-informacja-dla-podroznych", name: "Polish Ministry of Finance / PUESC", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://puesc.gov.pl/en/uslugi/tax-free-informacja-dla-podroznych", name: "Polish Ministry of Finance / PUESC", checkedDate }, notes: "Poland uses the electronic TAX FREE system for participating sellers, with mTAX FREE PL document access and granica.gov.pl status checking for Polish documents." },
-  { countryCode: "PT", countryName: "Portugal", countryId: "portugal", currency: "EUR", vatRate: 23, minimumPurchaseAmount: 50, minimumPurchaseBasis: "net", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/questoes_frequentes/Pages/faqs-00950.aspx", name: "Portuguese Tax and Customs Authority", checkedDate } }, schemeSource: { url: "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/questoes_frequentes/Pages/faqs-00950.aspx", name: "Portuguese Tax and Customs Authority", checkedDate }, vatRateSource: euVatSource, minimumPurchaseSource: { url: "https://info.portaldasfinancas.gov.pt/pt/apoio_contribuinte/questoes_frequentes/Pages/faqs-00950.aspx", name: "Portuguese Tax and Customs Authority", checkedDate }, notes: "Purchase value must exceed EUR 50 excluding VAT. The estimate is the maximum VAT component before operator and administration fees." },
-  { countryCode: "RO", countryName: "Romania", countryId: "romania", currency: "RON", vatRate: 21, minimumPurchaseStatus: "not_verified", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.customs.ro/calatori/iesirea-din-romania-dintr-un-stat-necomunitar", name: "Romanian Customs Authority", checkedDate } }, schemeSource: { url: "https://www.customs.ro/calatori/iesirea-din-romania-dintr-un-stat-necomunitar", name: "Romanian Customs Authority", checkedDate }, vatRateSource: { url: "https://legislatie.just.ro/Public/DetaliiDocument/305340", name: "Romanian Legislative Portal — Law 141/2025", checkedDate }, notes: "Romanian Customs confirms traveller VAT-refund conditions, authorised sellers, documents, baggage routing and final-EU-exit validation; Law 141/2025 amended Fiscal Code Article 291 so Romania's standard VAT rate became 21% from 1 August 2025; the exact 2026 RON equivalent threshold is not modeled because the official source chain was not sufficient to verify a numeric amount." },
-  { countryCode: "SK", countryName: "Slovakia", countryId: "slovakia", currency: "EUR", vatRate: 23, minimumPurchaseAmount: 100, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20260101.print.html", name: "Slov-Lex / Slovak statutory source", checkedDate } }, schemeSource: { url: "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20260101.print.html", name: "Slov-Lex / Slovak statutory source", checkedDate }, vatRateSource: { url: "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20260101.print.html", name: "Slov-Lex / Slovak statutory source", checkedDate }, minimumPurchaseSource: { url: "https://static.slov-lex.sk/static/SK/ZZ/2004/222/20260101.print.html", name: "Slov-Lex / Slovak statutory source", checkedDate }, notes: "Slovakia Section 59 requires non-commercial goods in personal baggage, excludes fuel, and separates Customs export confirmation from seller or operator refund payment." },
-  { countryCode: "ES", countryName: "Spain", countryId: "spain", currency: "EUR", vatRate: 21, minimumPurchaseStatus: "no_statutory_minimum", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://sede.agenciatributaria.gob.es/Sede/en_gb/viajeros-trabajadores-desplazados-fronterizos/devoluciones-iva-compras-viajeros/informacion-general-sobre-devolucion-iva-viajeros.html", name: "Agencia Tributaria / AEAT", checkedDate } }, schemeSource: { url: "https://sede.agenciatributaria.gob.es/Sede/en_gb/viajeros-trabajadores-desplazados-fronterizos/devoluciones-iva-compras-viajeros/informacion-general-sobre-devolucion-iva-viajeros.html", name: "Agencia Tributaria / AEAT", checkedDate }, vatRateSource: euVatSource, notes: "AEAT traveller VAT refund guidance does not set a statutory positive minimum purchase threshold; retailer DER issuance and eligibility conditions still apply." },
-  { countryCode: "SE", countryName: "Sweden", countryId: "sweden", currency: "SEK", vatRate: 25, minimumPurchaseAmount: 200, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.tullverket.se/en/startpage/private/travelling/bringinggoodswhentravelling/taxfreeshoppinginsweden.4.4776b304199f1ed58cc40727.html", name: "Swedish Customs", checkedDate } }, schemeSource: { url: "https://www.tullverket.se/en/startpage/private/travelling/bringinggoodswhentravelling/taxfreeshoppinginsweden.4.4776b304199f1ed58cc40727.html", name: "Swedish Customs", checkedDate }, vatRateSource: { url: "https://www.skatteverket.se/servicelankar/otherlanguages/englishengelska/businessesandemployers/startingandrunningaswedishbusiness/declaringtaxesbusinesses/vat/vatratesandvatexemption.4.676f4884175c97df419255d.html", name: "Swedish Tax Agency", checkedDate }, minimumPurchaseSource: { url: "https://www.tullverket.se/en/startpage/private/travelling/bringinggoodswhentravelling/taxfreeshoppinginsweden.4.4776b304199f1ed58cc40727.html", name: "Swedish Customs", checkedDate }, notes: "Swedish Customs states that Sweden must be the last country visited before leaving the EU for the Swedish Tax Free shopping procedure." },
-  { countryCode: "CH", countryName: "Switzerland", countryId: "switzerland", currency: "CHF", vatRate: 8.1, minimumPurchaseAmount: 300, minimumPurchaseBasis: "gross", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.estv.admin.ch/en/tax-free-for-tourists", name: "Swiss Federal Tax Administration", checkedDate } }, schemeSource: { url: "https://www.estv.admin.ch/en/tax-free-for-tourists", name: "Swiss Federal Tax Administration", checkedDate }, vatRateSource: { url: "https://www.estv.admin.ch/en/vat-rates-switzerland", name: "Swiss Federal Tax Administration", checkedDate }, minimumPurchaseSource: { url: "https://www.estv.admin.ch/en/tax-free-for-tourists", name: "Swiss Federal Tax Administration", checkedDate }, notes: "Swiss tax-free shopping threshold and VAT conditions must be confirmed with the retailer." },
-  { countryCode: "NO", countryName: "Norway", countryId: "norway", currency: "NOK", vatRate: 25, minimumPurchaseStatus: "not_verified", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://www.toll.no/en/travelling-to-and-from-norway/reimbursement-of-vat-to-tourists", name: "Norwegian Customs", checkedDate } }, schemeSource: { url: "https://www.toll.no/en/travelling-to-and-from-norway/reimbursement-of-vat-to-tourists", name: "Norwegian Customs", checkedDate }, vatRateSource: { url: "https://www.skatteetaten.no/en/rates/value-added-tax/", name: "Norwegian Tax Administration", checkedDate }, notes: "Norwegian Customs verifies residence-dependent thresholds and two reimbursement routes; no universal minimum is modeled because the current quick-fact model cannot express conditional thresholds safely." },
-  { countryCode: "TR", countryName: "Turkey", countryId: "turkey", currency: "TRY", vatRate: 20, minimumPurchaseAmount: 1000, minimumPurchaseBasis: "net", minimumPurchaseComparison: "greater_than", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "provider_dependent_upper_bound", source: { url: "https://cdn.gib.gov.tr/api/gibportal-file/file/getFile?objectKey=MEVZUAT_TEBLIGLER%2FUNIVERSAL%2F2026%2Fkdv_genteb.pdf", name: "Turkish Revenue Administration", checkedDate } }, schemeSource: { url: "https://cdn.gib.gov.tr/api/gibportal-file/file/getFile?objectKey=MEVZUAT_TEBLIGLER%2FUNIVERSAL%2F2026%2Fkdv_genteb.pdf", name: "Turkish Revenue Administration", checkedDate }, vatRateSource: { url: "https://cdn.gib.gov.tr/api/gibportal-file/file/getFile?objectKey=MEVZUAT_TEBLIGLER%2FUNIVERSAL%2F2026%2Fkdv_genteb.pdf", name: "Turkish Revenue Administration", checkedDate }, minimumPurchaseSource: { url: "https://cdn.gib.gov.tr/api/gibportal-file/file/getFile?objectKey=MEVZUAT_TEBLIGLER%2FUNIVERSAL%2F2026%2Fkdv_genteb.pdf", name: "Turkish Revenue Administration", checkedDate }, notes: "The consolidated VAT communiqué requires an invoice value above TRY 1,000 excluding VAT." },
-  { countryCode: "AE", countryName: "United Arab Emirates", countryId: "united-arab-emirates", currency: "AED", vatRate: 5, minimumPurchaseAmount: 250, minimumPurchaseBasis: "net", minimumPurchaseComparison: "at_least", minimumPurchaseStatus: "verified_amount", refundPolicy: { mode: "official_formula", formula: "uae_vat_87_minus_transaction_fee", source: { url: "https://tax.gov.ae/en/services/tourist.VAT.refunds.aspx", name: "UAE Federal Tax Authority", checkedDate: "2026-08-05" }, assumptionKey: "taxCalc.oneTransactionAssumption" }, schemeSource: { url: "https://tax.gov.ae/en/services/tourist.VAT.refunds.aspx", name: "UAE Federal Tax Authority", checkedDate: "2026-08-05" }, vatRateSource: { url: "https://tax.gov.ae/en/faq.aspx?keyword=What+is+the+standard+rate+of+VAT+in+the+UAE%3F", name: "UAE Federal Tax Authority", checkedDate: "2026-08-05" }, minimumPurchaseSource: { url: "https://tax.gov.ae/en/services/tourist.VAT.refunds.aspx", name: "UAE Federal Tax Authority", checkedDate: "2026-08-05" }, notes: "UAE tourist VAT refunds use an official formula: 87% of the VAT amount minus AED 3.60 per eligible Tax Free transaction; retailer registration and export validation apply." },
-];
+export const taxFreeRules: TaxFreeRule[] = [...baseTaxFreeRules, singaporeRule];
 
 export function getTaxFreeRule(countryId: string) {
   return taxFreeRules.find((rule) => rule.countryId === countryId);
-}
-
-export function getMaximumRefundRate(rule: TaxFreeRule) {
-  return rule.vatRate / (100 + rule.vatRate) * 100;
-}
-
-export function getDateInTimeZone(date: Date, timeZone: string) {
-  const parts = new Intl.DateTimeFormat("en-CA", { timeZone, year: "numeric", month: "2-digit", day: "2-digit" }).formatToParts(date);
-  const get = (type: "year" | "month" | "day") => parts.find((part) => part.type === type)?.value ?? "";
-  return `${get("year")}-${get("month")}-${get("day")}`;
-}
-
-export function isPointOfSalePolicyActive(policy: Extract<TaxFreeRefundPolicy, { mode: "point_of_sale_exemption" }>, date = new Date()) {
-  return getDateInTimeZone(date, policy.timeZone) < policy.refundRegimeStarts;
-}
-
-export function getTaxFreePolicySummaryKey(rule: TaxFreeRule, date = new Date()) {
-  switch (rule.refundPolicy.mode) {
-    case "official_formula": return "taxCalc.officialFormulaSummary";
-    case "official_refund_table": return "taxCalc.officialRefundTable";
-    case "point_of_sale_exemption": return isPointOfSalePolicyActive(rule.refundPolicy, date) ? "taxCalc.pointOfSaleExemption" : "taxCalc.futureRegimeNoEstimate";
-    default: return "taxCalc.maximumBeforeFeesRate";
-  }
-}
-
-export function getRefundPolicyValidationErrors(policy: TaxFreeRefundPolicy): string[] {
-  const errors: string[] = [];
-  if (!policy.source.url.trim() || !policy.source.name.trim() || !/^\d{4}-\d{2}-\d{2}$/.test(policy.source.checkedDate)) errors.push("refund policy source is incomplete");
-  if (policy.mode === "provider_dependent_upper_bound") {
-    if ("estimatedNetRefund" in policy) errors.push("upper-bound policy contains a net refund");
-  } else if (policy.mode === "official_formula") {
-    if (policy.formula === "uae_vat_87_minus_transaction_fee" && policy.assumptionKey !== "taxCalc.oneTransactionAssumption") errors.push("UAE formula assumption mismatch");
-    if (policy.formula === "china_standard_rate" && policy.assumptionKey !== "taxCalc.standardRateProductAssumption") errors.push("China formula assumption mismatch");
-  } else if (policy.mode === "official_refund_table") {
-    if (policy.brackets.length === 0) errors.push("refund table is empty");
-    policy.brackets.forEach((bracket, index) => {
-      const values = [bracket.minimumGrossInclusive, bracket.maximumGrossExclusive, bracket.refund];
-      if (values.some((value) => !Number.isFinite(value) || value <= 0)) errors.push(`refund table bracket ${index} has non-positive or non-finite values`);
-      if (bracket.minimumGrossInclusive >= bracket.maximumGrossExclusive) errors.push(`refund table bracket ${index} has an invalid range`);
-      if (bracket.refund > bracket.minimumGrossInclusive) errors.push(`refund table bracket ${index} exceeds its gross range`);
-      if (index > 0 && policy.brackets[index - 1].maximumGrossExclusive > bracket.minimumGrossInclusive) errors.push(`refund table bracket ${index} overlaps or is unsorted`);
-    });
-  } else {
-    const validDate = (value: string) => {
-      if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
-      const date = new Date(`${value}T00:00:00.000Z`);
-      return !Number.isNaN(date.getTime()) && date.toISOString().slice(0, 10) === value;
-    };
-    if (!validDate(policy.validThrough) || !validDate(policy.refundRegimeStarts)) errors.push("point-of-sale dates are invalid");
-    else {
-      const nextDay = new Date(`${policy.validThrough}T00:00:00.000Z`);
-      nextDay.setUTCDate(nextDay.getUTCDate() + 1);
-      if (nextDay.toISOString().slice(0, 10) !== policy.refundRegimeStarts) errors.push("point-of-sale dates are not consecutive");
-    }
-  }
-  return errors;
 }

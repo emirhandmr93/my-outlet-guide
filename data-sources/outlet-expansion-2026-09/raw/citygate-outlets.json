@@ -1,0 +1,998 @@
+{
+  "outletId": "citygate-outlets",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.citygateoutlets.com.hk/en/brands/",
+  "sourceRecordCount": 198,
+  "rows": [
+    {
+      "name": "adidas Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/adidas-factory-outlet"
+    },
+    {
+      "name": "AIGLE",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/aigle"
+    },
+    {
+      "name": "Alice + Olivia by Stacey Bendet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/alice-and-olivia-by-stacey-bendet"
+    },
+    {
+      "name": "American Eagle",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/american-eagle"
+    },
+    {
+      "name": "American Vintage",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/americanvintage"
+    },
+    {
+      "name": "Anteprima Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/anteprima-outlet"
+    },
+    {
+      "name": "AQUA+",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/aqua-200675"
+    },
+    {
+      "name": "Arc’teryx",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/arcteryx"
+    },
+    {
+      "name": "Armani Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/armani-outlet"
+    },
+    {
+      "name": "Ashworth",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/ashworth"
+    },
+    {
+      "name": "ASICS",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/asics"
+    },
+    {
+      "name": "Atsuro Tayama Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/atsuro-tayama-outlet"
+    },
+    {
+      "name": "Bally",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/bally"
+    },
+    {
+      "name": "Bath & Body Works",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/bath-body-works"
+    },
+    {
+      "name": "Bank of China (Hong Kong) - Citygate Banking Services Centre",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/boc"
+    },
+    {
+      "name": "BORA AKSU",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/bora-aksu"
+    },
+    {
+      "name": "Breitling",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/breitling"
+    },
+    {
+      "name": "Bricks House",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/bricks-house"
+    },
+    {
+      "name": "Brooks Brothers",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/brooks-brothers-factory-store"
+    },
+    {
+      "name": "Burberry",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/burberry"
+    },
+    {
+      "name": "Calvin Klein Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/calvin-klein-outlet"
+    },
+    {
+      "name": "Calvin Klein Underwear",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/calvin-klein-underwear"
+    },
+    {
+      "name": "Camper",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/camper-200648"
+    },
+    {
+      "name": "CASETiFY OUTLET",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/casetify-200464"
+    },
+    {
+      "name": "Cath Kidston",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/cath-kidston"
+    },
+    {
+      "name": "cdf Beauty",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/cdf-beauty"
+    },
+    {
+      "name": "Chevignon",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/chevignon"
+    },
+    {
+      "name": "Chloé",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/chole"
+    },
+    {
+      "name": "Chow Sang Sang",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/chow-sang-sang"
+    },
+    {
+      "name": "CHOW TAI FOOK",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/chow-tai-fook"
+    },
+    {
+      "name": "City Chain GLAM Timepieces",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/city-chain-glam-timepieces"
+    },
+    {
+      "name": "City Chain Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/city-chain-outlet"
+    },
+    {
+      "name": "Clarks",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/clarks-200498"
+    },
+    {
+      "name": "Club Monaco Studio",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/club-monaco-studio"
+    },
+    {
+      "name": "Coach Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/coach-outlet"
+    },
+    {
+      "name": "Coach Men's Factory",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/coach-mens-factory"
+    },
+    {
+      "name": "Cocktail Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/cocktail"
+    },
+    {
+      "name": "Columbia Sportswear Company",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/columbia-sportswear-company"
+    },
+    {
+      "name": "Comvita",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/comvita-200549"
+    },
+    {
+      "name": "Crocs Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/crocs-outlet"
+    },
+    {
+      "name": "DAKS Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/daks"
+    },
+    {
+      "name": "DESCENTE",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/descente"
+    },
+    {
+      "name": "DIESEL",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/diesel-200083"
+    },
+    {
+      "name": "Dior Beauty",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/dior-beauty"
+    },
+    {
+      "name": "Dr. Kong",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/dr-kong-footcare-outlet"
+    },
+    {
+      "name": "Dunhill",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/dunhill"
+    },
+    {
+      "name": "ECCO Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/ecco"
+    },
+    {
+      "name": "eGG Optical Boutique",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/egg-optical-boutique"
+    },
+    {
+      "name": "Evisu Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/evisu-outlet"
+    },
+    {
+      "name": "Ferragamo",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/ferragamo"
+    },
+    {
+      "name": "FILA",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/fila"
+    },
+    {
+      "name": "FILA FUSION",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/fila-fusion"
+    },
+    {
+      "name": "FILA Shoe Space",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/fila-shoe-space"
+    },
+    {
+      "name": "Fortress",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/fortress"
+    },
+    {
+      "name": "G2000",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/g2000"
+    },
+    {
+      "name": "Glasstique",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/glasstique"
+    },
+    {
+      "name": "Her own words",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/her-own-words"
+    },
+    {
+      "name": "HK JEBN",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/hk-jebn"
+    },
+    {
+      "name": "Hour Passion",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/hour-passion"
+    },
+    {
+      "name": "HSBC",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/hsbc"
+    },
+    {
+      "name": "BOSS",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/boss"
+    },
+    {
+      "name": "initial",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/initial"
+    },
+    {
+      "name": "i.t Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/it-outlet-103457"
+    },
+    {
+      "name": "J. Lindeberg",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/j-lindeberg"
+    },
+    {
+      "name": "JIMMY CHOO",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/jimmy-choo"
+    },
+    {
+      "name": "Jumpin Gym",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/jumpin-gym-200166"
+    },
+    {
+      "name": "K-Swiss Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/k-swiss-outlet"
+    },
+    {
+      "name": "Kate Spade",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/kate-spade"
+    },
+    {
+      "name": "KENZO",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/kenzo"
+    },
+    {
+      "name": "KINJI",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/kinji"
+    },
+    {
+      "name": "Kipling Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/kipling"
+    },
+    {
+      "name": "La Compagnie des Petits",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/la-compagnie-des-petits"
+    },
+    {
+      "name": "Lacoste Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/lacoste-accessories-outlet"
+    },
+    {
+      "name": "Lane Crawford",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/lane-crawford-200685"
+    },
+    {
+      "name": "Le Creuset",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/lecreuset"
+    },
+    {
+      "name": "Levi's Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/levis-outlet"
+    },
+    {
+      "name": "LIFE KAN",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/life-kan"
+    },
+    {
+      "name": "Lukfook Jewellery",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/luk-fook"
+    },
+    {
+      "name": "lululemon",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/lululemon"
+    },
+    {
+      "name": "MaBelle Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/mabelle-outlet"
+    },
+    {
+      "name": "Maje Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/maje"
+    },
+    {
+      "name": "Mannings",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/mannings"
+    },
+    {
+      "name": "MARC JACOBS",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/marc-jacobs"
+    },
+    {
+      "name": "Marimekko",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/marimekko"
+    },
+    {
+      "name": "Marithé François Girbaud",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/marithe-francois-girbaud-200561"
+    },
+    {
+      "name": "M&S Food",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/marks-spencer-food-200437"
+    },
+    {
+      "name": "MARNI",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/marni"
+    },
+    {
+      "name": "MARYLING",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/maryling"
+    },
+    {
+      "name": "Matin Kim",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/matin-kim-200573"
+    },
+    {
+      "name": "MAX&Co. Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/max-and-co"
+    },
+    {
+      "name": "MaxMara",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/max-mara-fashion-group"
+    },
+    {
+      "name": "Michael Kors",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/michael-kors"
+    },
+    {
+      "name": "Miss Sixty",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/miss-sixty"
+    },
+    {
+      "name": "MLB",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/mlb"
+    },
+    {
+      "name": "Moody Tiger",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/moody-tiger"
+    },
+    {
+      "name": "National Geographic Apparel",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/national-geographic-apparel-200555"
+    },
+    {
+      "name": "New Balance Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/new-balance-outlet"
+    },
+    {
+      "name": "Nike Factory Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/nike-factory-outlet"
+    },
+    {
+      "name": "Novotel Lobby - Olea",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/novotel-lobby-olea-103587"
+    },
+    {
+      "name": "OPTICAL 88 Factory",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/optical-88-outlet"
+    },
+    {
+      "name": "Palladium",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/palladium"
+    },
+    {
+      "name": "Pandora",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/pandora"
+    },
+    {
+      "name": "Polo Ralph Lauren Childrenswear Factory Store",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/polo-ralph-lauren-child"
+    },
+    {
+      "name": "Polo Ralph Lauren Factory Store",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/polo-ralph-lauren-factory-store"
+    },
+    {
+      "name": "Popcorn",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/popcorn"
+    },
+    {
+      "name": "PUMA Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/puma-outlet"
+    },
+    {
+      "name": "Ray-Ban",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/ray-ban-200183"
+    },
+    {
+      "name": "Repetto",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/repetto"
+    },
+    {
+      "name": "Rue Madame",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/rue-madame"
+    },
+    {
+      "name": "Sa Sa",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/sa-sa"
+    },
+    {
+      "name": "Salomon",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/salomon-200537"
+    },
+    {
+      "name": "Sam Edelman",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/sam-edelman"
+    },
+    {
+      "name": "Samsonite",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/samsonite"
+    },
+    {
+      "name": "SANDRO Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/sandro"
+    },
+    {
+      "name": "Shanghai Tang Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/shanghai-tang-outlet"
+    },
+    {
+      "name": "Simply Toys",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/simply-toys-200625"
+    },
+    {
+      "name": "Skechers Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/skechers-outlet"
+    },
+    {
+      "name": "Sunglass Hut Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/sunglass-hut-outlet"
+    },
+    {
+      "name": "Swarovski Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/swarovski"
+    },
+    {
+      "name": "TaSTe",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/taste"
+    },
+    {
+      "name": "The Body Shop",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/the-body-shop-outlet2"
+    },
+    {
+      "name": "The North Face Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/the-north-face"
+    },
+    {
+      "name": "Theory Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/theory"
+    },
+    {
+      "name": "THERMOS",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/thermos"
+    },
+    {
+      "name": "Timberland Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/timberland-outlet"
+    },
+    {
+      "name": "Tommy Hilfiger Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/tommy-hilfiger"
+    },
+    {
+      "name": "Tory Burch",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/tory-burch-200426"
+    },
+    {
+      "name": "TSL",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/tsl-company-store"
+    },
+    {
+      "name": "TUMI",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/tumi"
+    },
+    {
+      "name": "Under Armour",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/under-armour"
+    },
+    {
+      "name": "UNIQLO",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/uniqlo"
+    },
+    {
+      "name": "Vans Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/vans"
+    },
+    {
+      "name": "Versace",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/versace"
+    },
+    {
+      "name": "Victorinox Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/victorinox-outlet"
+    },
+    {
+      "name": "Vilebrequin Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/vilebrequin"
+    },
+    {
+      "name": "VIVAIA",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/vivaia-200591"
+    },
+    {
+      "name": "Furla",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/furla"
+    },
+    {
+      "name": "Georg Jensen . Royal Copenhagen . Wedgwood",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/georg-jensen-royal-copenhagen-wedgwood"
+    },
+    {
+      "name": "GEOX Outlet",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/geox"
+    },
+    {
+      "name": "GO WILD",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/go-wild"
+    },
+    {
+      "name": "Hong Kong Disneyland Treasures",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/hong-kong-disneyland-treasures-200553"
+    },
+    {
+      "name": "KOLON SPORT",
+      "kind": "retail",
+      "url": "https://www.citygateoutlets.com.hk/en/brands/kolon-sport"
+    },
+    {
+      "name": "A Cheng Goose",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/a-cheng-goose-200556"
+    },
+    {
+      "name": "Andante",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/andante"
+    },
+    {
+      "name": "Bakehouse",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/bakehouse-200497"
+    },
+    {
+      "name": "Blue Bottle Coffee",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/blue-bottle-coffee-200521"
+    },
+    {
+      "name": "Canton House",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/canton-house-200559"
+    },
+    {
+      "name": "Châteraisé",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/chateraise"
+    },
+    {
+      "name": "Chef Hung Taiwanese Beef Noodle",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/chef-hung-taiwanese-beef-noodle"
+    },
+    {
+      "name": "Chun Shui Tang Culture Tea House",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/chun-shui-tang"
+    },
+    {
+      "name": "Cinnabon",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/cinnabon"
+    },
+    {
+      "name": "Cupping Room Coffee Roasters",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/cupping-room-200161"
+    },
+    {
+      "name": "Dab-pa Modern Chinese Cuisine",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/dak-pa-peking--szechuan-cusine"
+    },
+    {
+      "name": "DUTY ZERO by cdf",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/duty-zero"
+    },
+    {
+      "name": "Essence",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/essence-novotel"
+    },
+    {
+      "name": "FireBird",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/firebird-tsujihan-200289"
+    },
+    {
+      "name": "Food Republic",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/food-republic-200637"
+    },
+    {
+      "name": "Fresh",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/fresh"
+    },
+    {
+      "name": "Genki Sushi",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/genkisushi"
+    },
+    {
+      "name": "Golden Dragon",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/golden-gragon-200564"
+    },
+    {
+      "name": "Goobne Chicken",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/goobne-chicken"
+    },
+    {
+      "name": "Gyu-Kaku J",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/gyu-kaku-200535"
+    },
+    {
+      "name": "hana-musubi",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/hana-musubi"
+    },
+    {
+      "name": "HANNOSUKE",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/hannosuke"
+    },
+    {
+      "name": "Jasmine",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/jasmine"
+    },
+    {
+      "name": "Kee Wah Bakery",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/kee-wah-bakery"
+    },
+    {
+      "name": "LAW MARK KEE",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/law-mark-kee"
+    },
+    {
+      "name": "LIAN",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/lian"
+    },
+    {
+      "name": "Luscious Yunnan Rice Noodles",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/luscious-yunnan-rice-noodles"
+    },
+    {
+      "name": "McDonald's & McCafé",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/mcdonalds-restaurant-and-mccafe"
+    },
+    {
+      "name": "Meet Fresh",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/meet-fresh-200346"
+    },
+    {
+      "name": "Mister Donut",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/mister-donut-200602"
+    },
+    {
+      "name": "Moccato",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/moccato"
+    },
+    {
+      "name": "Moon Lok Chiu Chow",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/moon-lok-chiu-chow2"
+    },
+    {
+      "name": "Nabe Urawa",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/nabe-urawa"
+    },
+    {
+      "name": "Nha Trang Vietnamese Cuisine",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/nha-trang"
+    },
+    {
+      "name": "Olea",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/olea_updated"
+    },
+    {
+      "name": "Oolaa",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/oolaa-tung-chung"
+    },
+    {
+      "name": "Oreryu Shio Ramen",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/oreryu-shio-ramen"
+    },
+    {
+      "name": "Outback Steakhouse",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/outback-steakhouse"
+    },
+    {
+      "name": "Paradise Dynasty (temporarily closed)",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/paradise-dynasty"
+    },
+    {
+      "name": "Pho Le",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/pho-le-200197"
+    },
+    {
+      "name": "PizzaExpress",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/pizza-express"
+    },
+    {
+      "name": "Pret A Manger",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/pret-a-manger"
+    },
+    {
+      "name": "QUE",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/que"
+    },
+    {
+      "name": "Shabu Days by Mou Mou Club",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/shabu-days-by-mou-mou-club-200538"
+    },
+    {
+      "name": "Shake Shack",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/shake-shack"
+    },
+    {
+      "name": "Shokudo Wara",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/shokudo-wara-200560"
+    },
+    {
+      "name": "Silk.",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/silk-200639"
+    },
+    {
+      "name": "Starbucks Reserve™",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/starbucks-reserve"
+    },
+    {
+      "name": "TeaWood Taiwanese Cafe & Restaurant",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/teawood"
+    },
+    {
+      "name": "TenRen's Tea",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/tenren-tea"
+    },
+    {
+      "name": "The Enclave",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/the-enclave"
+    },
+    {
+      "name": "The Pavilion",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/the-pavilion"
+    },
+    {
+      "name": "TSUJIHAN",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/tsujihan-200293"
+    },
+    {
+      "name": "Venchi",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/venchi"
+    },
+    {
+      "name": "Watson's Wine",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/watsons-wine-cellar"
+    },
+    {
+      "name": "XIHE YA YUAN",
+      "kind": "restaurant",
+      "url": "https://www.citygateoutlets.com.hk/en/dine/xihe-ya-yuan"
+    }
+  ]
+}

@@ -1,3 +1,4 @@
+import { expansionOutletFallback, expansionTransportFallback } from "./outletExpansionWebFallback";
 import { mkdir, readFile, readdir, unlink, writeFile } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { getIndexableWebSeoPages, getWebSeoBreadcrumbs, resolveWebSeo, WEB_SEO_LANGUAGES, WEB_SEO_NOINDEX_PATHS, WEB_SEO_ORIGIN, type WebSeoLogicalPage } from "../src/constants/webSeo";
@@ -103,7 +104,7 @@ function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
   const breadcrumb=breadcrumbs.length ? `<nav aria-label="Breadcrumb"><ol>${breadcrumbs.map((item,index)=>`<li>${index===breadcrumbs.length-1 ? `<span aria-current="page">${escapeHtml(item.name)}</span>` : `<a href="${href(item.path)}">${escapeHtml(item.name)}</a>`}</li>`).join("")}</ol></nav>` : "";
   const copy=TRANSPORTATION_COPY[language];
   const records=page.kind==="transportation" ? transportationByOutletId.get(page.outletId) ?? [] : [];
-  const transportationSection=records.length ? `<section data-transportation-fallback="true"><h2>${escapeHtml(copy.heading)}</h2><ul>${records.map(item=>`<li data-transportation-id="${escapeHtml(item.transportationId)}"><strong>${escapeHtml(copy.modes[item.transportType] || item.transportType)}</strong>: <span>${escapeHtml(item.title.trim())}</span>${item.duration.trim() ? ` <span>(${escapeHtml(copy.duration)}: ${escapeHtml(item.duration.trim())})</span>` : ""}</li>`).join("")}</ul></section>` : "";
+  const transportationSection=records.length ? `<section data-transportation-fallback="true"><h2>${escapeHtml(copy.heading)}</h2><ul>${records.map(item=>expansionTransportFallback(item.transportationId, language) ?? `<li data-transportation-id="${escapeHtml(item.transportationId)}"><strong>${escapeHtml(copy.modes[item.transportType] || item.transportType)}</strong>: <span>${escapeHtml(item.title.trim())}</span>${item.duration.trim() ? ` <span>(${escapeHtml(copy.duration)}: ${escapeHtml(item.duration.trim())})</span>` : ""}</li>`).join("")}</ul></section>` : "";
   const brandId=page.kind==="brand" ? page.path.slice("brand/".length) : "";
   const brand=brandId ? activeBrandById.get(brandId) : undefined;
   const uniqueRelated=brand ? brandOutletsByBrandId.get(brandId) ?? [] : [];
@@ -114,7 +115,7 @@ function staticFallback(language: typeof WEB_SEO_LANGUAGES[number], page: WebSeo
   const facts=[categoryName ? `<dt>${escapeHtml(locationCopy.category)}</dt><dd data-brand-category="true">${escapeHtml(categoryName)}</dd>` : "",origin ? `<dt>${escapeHtml(locationCopy.origin)}</dt><dd data-brand-origin="true">${escapeHtml(origin)}</dd>` : ""].join("");
   const brandLocations=uniqueRelated.length ? `<ul data-brand-outlet-list="true">${uniqueRelated.map(outlet=>`<li data-brand-outlet-id="${escapeHtml(outlet.outletId)}"><a href="${href(`outlet/${outlet.outletId}`)}">${escapeHtml(outlet.name)}</a> — ${escapeHtml(formatCityDisplayName(outlet.cityId,language))}, ${escapeHtml(formatCountryDisplayName(outlet.countryId,language))}</li>`).join("")}</ul>` : "";
   const brandSection=brand&&uniqueRelated.length ? `<section data-brand-location-fallback="true" data-brand-outlet-count="${uniqueRelated.length}"><h2>${escapeHtml(locationCopy.heading)} ${escapeHtml(brand.brandName)}</h2>${facts ? `<dl>${facts}</dl>` : ""}${brandLocations}</section>` : "";
-  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}${transportationSection}${brandSection}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
+  return `<noscript><main ${FALLBACK_MARKER}="true" style="box-sizing:border-box;max-width:72rem;margin:2rem auto;padding:1.25rem;font-family:system-ui,sans-serif;color:#0b1f3a"><h1>${escapeHtml(title)}</h1><p>${escapeHtml(description)}</p>${breadcrumb}${page.kind === "outlet" ? expansionOutletFallback(page.outletId!, language) : ""}${transportationSection}${brandSection}<nav aria-label="${escapeHtml(title)}"><ul>${links.map(item=>`<li><a href="${href(item.path)}">${escapeHtml(item.name)}</a></li>`).join("")}</ul></nav><p>${escapeHtml(NO_SCRIPT_COPY[language])}</p></main></noscript>`;
 }
 
 function render(base: string, language: typeof WEB_SEO_LANGUAGES[number], page?: WebSeoLogicalPage) {

@@ -1,0 +1,3748 @@
+{
+  "outletId": "mitsui-outlet-park-linkou",
+  "retrievedAt": "2026-09-12",
+  "sourceUrl": "https://www.mitsui-shopping-park.com.tw/mop/linkou/en/shopguide.html",
+  "sourceRecordCount": 326,
+  "rows": [
+    {
+      "name": "B.C Stock",
+      "storeId": "10050",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "B.C Stock",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "b-c-stock"
+      ]
+    },
+    {
+      "name": "SNIDEL/Gelato Pique/ Lily Brown/Uraha",
+      "storeId": "10060",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "SNIDEL/Gelato Pique/ Lily Brown/Uraha",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "snidel",
+        "gelato-pique",
+        "lily-brown",
+        "uraha"
+      ]
+    },
+    {
+      "name": "UNIQLO",
+      "storeId": "50110",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "UNIQLO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "uniqlo"
+      ]
+    },
+    {
+      "name": "AIGLE",
+      "storeId": "10170",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "AIGLE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aigle"
+      ]
+    },
+    {
+      "name": "Levi's",
+      "storeId": "10202",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Levi's",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "levis"
+      ]
+    },
+    {
+      "name": "I.T",
+      "storeId": "10210",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "I.T",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "i-t"
+      ]
+    },
+    {
+      "name": "Boy London",
+      "storeId": "10181",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Boy London",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boy-london"
+      ]
+    },
+    {
+      "name": "Blue Way",
+      "storeId": "20350",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Blue Way",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "blue-way"
+      ]
+    },
+    {
+      "name": "Edwin",
+      "storeId": "20330",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Edwin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "edwin"
+      ]
+    },
+    {
+      "name": "SST&C",
+      "storeId": "60430",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "SST&C",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "sst-and-c"
+      ]
+    },
+    {
+      "name": "Bazaar",
+      "storeId": "10271",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Bazaar",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bazaar"
+      ]
+    },
+    {
+      "name": "LACOSTE",
+      "storeId": "10290",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "LACOSTE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lacoste"
+      ]
+    },
+    {
+      "name": "CALVIN KLEIN JEANS",
+      "storeId": "10300",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "CALVIN KLEIN JEANS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "calvin-klein-jeans"
+      ]
+    },
+    {
+      "name": "Tommy Hilfiger",
+      "storeId": "10320",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Tommy Hilfiger",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tommy-hilfiger"
+      ]
+    },
+    {
+      "name": "Beams Outlet",
+      "storeId": "10350",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Beams Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "beams"
+      ]
+    },
+    {
+      "name": "Urban Research Outlet",
+      "storeId": "10360",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Urban Research Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "urban-research"
+      ]
+    },
+    {
+      "name": "United Arrows Ltd. Outlet",
+      "storeId": "10390",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "United Arrows Ltd. Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "united-arrows"
+      ]
+    },
+    {
+      "name": "Arnold Palmer",
+      "storeId": "10490",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Arnold Palmer",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "arnold-palmer"
+      ]
+    },
+    {
+      "name": "Nautica",
+      "storeId": "10280",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Nautica",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nautica"
+      ]
+    },
+    {
+      "name": "Roots",
+      "storeId": "10520",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Roots",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "roots"
+      ]
+    },
+    {
+      "name": "Stayreal",
+      "storeId": "60440",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Stayreal",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "stayreal"
+      ]
+    },
+    {
+      "name": "TY SELECT/ Giuseppe Zanotti/ Stella McCartney/ Mon Birdie/ Yuen",
+      "storeId": "11110",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "TY SELECT/ Giuseppe Zanotti/ Stella McCartney/ Mon Birdie/ Yuen",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ty-select",
+        "giuseppe-zanotti",
+        "stella-mccartney",
+        "mon-birdie",
+        "yuen"
+      ]
+    },
+    {
+      "name": "23区",
+      "storeId": "10030",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "23区",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "23ku"
+      ]
+    },
+    {
+      "name": "Shiatzy Chen",
+      "storeId": "11220",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "Shiatzy Chen",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "shiatzy-chen"
+      ]
+    },
+    {
+      "name": "MaxMara",
+      "storeId": "11250",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "MaxMara",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "max-mara"
+      ]
+    },
+    {
+      "name": "Roberto Cavalli",
+      "storeId": "11270",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "Roberto Cavalli",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "roberto-cavalli"
+      ]
+    },
+    {
+      "name": "Triumph",
+      "storeId": "20040",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Triumph",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "triumph"
+      ]
+    },
+    {
+      "name": "Nara Camicie",
+      "storeId": "20060",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Nara Camicie",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nara-camicie"
+      ]
+    },
+    {
+      "name": "Free Area",
+      "storeId": "20070",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Free Area",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "free-area"
+      ]
+    },
+    {
+      "name": "Earth Music&Ecology Super Premium Store",
+      "storeId": "20290",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Earth Music&Ecology Super Premium Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "earth-music-and-ecology"
+      ]
+    },
+    {
+      "name": "Wacoal",
+      "storeId": "20340",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Wacoal",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "wacoal"
+      ]
+    },
+    {
+      "name": "Scottish House",
+      "storeId": "20360",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Scottish House",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "scottish-house"
+      ]
+    },
+    {
+      "name": "Gozo",
+      "storeId": "20300",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Gozo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gozo"
+      ]
+    },
+    {
+      "name": "à la sha",
+      "storeId": "20390",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "à la sha",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "a-la-sha"
+      ]
+    },
+    {
+      "name": "Y’s YOHJI YAMAMOTO",
+      "storeId": "11240",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "Y’s YOHJI YAMAMOTO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "yohji-yamamoto"
+      ]
+    },
+    {
+      "name": "Club Monaco",
+      "storeId": "11460",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "Club Monaco",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "club-monaco"
+      ]
+    },
+    {
+      "name": "Polo Ralph Lauren",
+      "storeId": "11171",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "Polo Ralph Lauren",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "HUGO BOSS",
+      "storeId": "11280",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "HUGO BOSS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "boss"
+      ]
+    },
+    {
+      "name": "Gap",
+      "storeId": "10254",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Gap",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gap"
+      ]
+    },
+    {
+      "name": "Champion",
+      "storeId": "10540",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Champion",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "champion"
+      ]
+    },
+    {
+      "name": "and ST",
+      "storeId": "20310",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "and ST",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "and-st"
+      ]
+    },
+    {
+      "name": "LEVI'S Denim Iconic store",
+      "storeId": "10460",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "LEVI'S Denim Iconic store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "levis"
+      ]
+    },
+    {
+      "name": "MLB",
+      "storeId": "10183",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "MLB",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mlb-korea"
+      ]
+    },
+    {
+      "name": "Plain-me",
+      "storeId": "10340",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Plain-me",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "plain-me"
+      ]
+    },
+    {
+      "name": "KANGOL",
+      "storeId": "10510",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "KANGOL",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kangol"
+      ]
+    },
+    {
+      "name": "FRED PERRY",
+      "storeId": "10310",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "FRED PERRY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fred-perry"
+      ]
+    },
+    {
+      "name": "Abercrombie & Fitch",
+      "storeId": "11130",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "Abercrombie & Fitch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "abercrombie-and-fitch"
+      ]
+    },
+    {
+      "name": "La Féta",
+      "storeId": "11390",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "La Féta",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "la-feta"
+      ]
+    },
+    {
+      "name": "NCAA",
+      "storeId": "10550",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "NCAA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ncaa"
+      ]
+    },
+    {
+      "name": "GU",
+      "storeId": "50010",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "GU",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gu"
+      ]
+    },
+    {
+      "name": "BRAPPERS",
+      "storeId": "60260",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "BRAPPERS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brappers"
+      ]
+    },
+    {
+      "name": "BIG TRAIN",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "BIG TRAIN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "big-train"
+      ]
+    },
+    {
+      "name": "en-suey 銀穗",
+      "storeId": "60070",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "en-suey 銀穗",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "en-suey"
+      ]
+    },
+    {
+      "name": "Mode Marie 曼黛瑪璉",
+      "storeId": "60090",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "Mode Marie 曼黛瑪璉",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mode-marie"
+      ]
+    },
+    {
+      "name": "LITTLE MARKET",
+      "storeId": "60370",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "LITTLE MARKET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "little-market"
+      ]
+    },
+    {
+      "name": "HUF",
+      "storeId": "60380",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "HUF",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "huf"
+      ]
+    },
+    {
+      "name": "DESCENTE",
+      "storeId": "60420",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "DESCENTE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "descente"
+      ]
+    },
+    {
+      "name": "AMERICAN HOLIC",
+      "storeId": "70310",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "AMERICAN HOLIC",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "american-holic"
+      ]
+    },
+    {
+      "name": "studio CLIP",
+      "storeId": "70320",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "studio CLIP",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "studio-clip"
+      ]
+    },
+    {
+      "name": "niko and ...",
+      "storeId": "70340",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "niko and ...",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "niko-and"
+      ]
+    },
+    {
+      "name": "nano･universe",
+      "storeId": "60170",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "nano･universe",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nano-universe"
+      ]
+    },
+    {
+      "name": "HOLLISTER",
+      "storeId": "21290",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "HOLLISTER",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hollister"
+      ]
+    },
+    {
+      "name": "好感未來",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "好感未來",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-49132e982aaf"
+      ]
+    },
+    {
+      "name": "JOSEPH",
+      "storeId": "11440",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "JOSEPH",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "joseph"
+      ]
+    },
+    {
+      "name": "6IXTY8IGHT",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "6IXTY8IGHT",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "6ixty8ight"
+      ]
+    },
+    {
+      "name": "nonspace",
+      "storeId": "10201",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "nonspace",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nonspace"
+      ]
+    },
+    {
+      "name": "團團TUANTUAN",
+      "storeId": "11450",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 1,
+      "sourceName": "團團TUANTUAN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tuantuan"
+      ]
+    },
+    {
+      "name": "INLook",
+      "storeId": "60080",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "INLook",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "inlook"
+      ]
+    },
+    {
+      "name": "OTTO服飾",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "OTTO服飾",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "otto"
+      ]
+    },
+    {
+      "name": "ANYBEARS",
+      "storeId": null,
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "ANYBEARS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "anybears"
+      ]
+    },
+    {
+      "name": "VIBE",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "VIBE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vibe"
+      ]
+    },
+    {
+      "name": "LEE",
+      "storeId": "10160",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 1,
+      "sourceName": "LEE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lee"
+      ]
+    },
+    {
+      "name": "La Boutique Du Velo",
+      "storeId": "10100",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "La Boutique Du Velo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "la-boutique-du-velo"
+      ]
+    },
+    {
+      "name": "Under Armour",
+      "storeId": "21010",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Under Armour",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "under-armour"
+      ]
+    },
+    {
+      "name": "Munsingwear",
+      "storeId": "21060",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Munsingwear",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "munsingwear"
+      ]
+    },
+    {
+      "name": "Le Coq Sportif",
+      "storeId": "21080",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Le Coq Sportif",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "le-coq-sportif"
+      ]
+    },
+    {
+      "name": "Traveler",
+      "storeId": "21110",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Traveler",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "traveler"
+      ]
+    },
+    {
+      "name": "HillTop 山頂鳥",
+      "storeId": "21120",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "HillTop 山頂鳥",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hilltop"
+      ]
+    },
+    {
+      "name": "Atunas",
+      "storeId": "21130",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Atunas",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "atunas"
+      ]
+    },
+    {
+      "name": "Merrell",
+      "storeId": "21140",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Merrell",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "merrell"
+      ]
+    },
+    {
+      "name": "Columbia",
+      "storeId": "21160",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Columbia",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "columbia"
+      ]
+    },
+    {
+      "name": "The North Face",
+      "storeId": "21170",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "The North Face",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-north-face"
+      ]
+    },
+    {
+      "name": "Nike Factory Store",
+      "storeId": "21190",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Nike Factory Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nike"
+      ]
+    },
+    {
+      "name": "Skechers",
+      "storeId": "60290",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "Skechers",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skechers"
+      ]
+    },
+    {
+      "name": "Mizuno",
+      "storeId": "21222",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Mizuno",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mizuno"
+      ]
+    },
+    {
+      "name": "Asics Factory Outlet",
+      "storeId": "21232",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Asics Factory Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "asics"
+      ]
+    },
+    {
+      "name": "New Balance",
+      "storeId": "21250",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "New Balance",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-balance"
+      ]
+    },
+    {
+      "name": "Adidas",
+      "storeId": "60190",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "Adidas",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "adidas"
+      ]
+    },
+    {
+      "name": "Puma",
+      "storeId": "21030",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Puma",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "puma"
+      ]
+    },
+    {
+      "name": "Super Golf",
+      "storeId": "21050",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Super Golf",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "super-golf"
+      ]
+    },
+    {
+      "name": "Mammut 長毛象",
+      "storeId": "21180",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "Mammut 長毛象",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mammut"
+      ]
+    },
+    {
+      "name": "ISPO+",
+      "storeId": "60250",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "ISPO+",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ispo"
+      ]
+    },
+    {
+      "name": "WILDMEET",
+      "storeId": "60110",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "WILDMEET",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "wildmeet"
+      ]
+    },
+    {
+      "name": "CHUMS",
+      "storeId": "60160",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "CHUMS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "chums"
+      ]
+    },
+    {
+      "name": "New Wolsey",
+      "storeId": "60230",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "New Wolsey",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-wolsey"
+      ]
+    },
+    {
+      "name": "National Geographic",
+      "storeId": "60270",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "National Geographic",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "national-geographic-apparel"
+      ]
+    },
+    {
+      "name": "城市綠洲",
+      "storeId": "21211",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "城市綠洲",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-a9f7dbd63818"
+      ]
+    },
+    {
+      "name": "lululemon",
+      "storeId": "11310",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "lululemon",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lululemon"
+      ]
+    },
+    {
+      "name": "NBA STORE",
+      "storeId": "21221",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "NBA STORE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nba-store"
+      ]
+    },
+    {
+      "name": "STANCAVE",
+      "storeId": null,
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "STANCAVE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "stancave"
+      ]
+    },
+    {
+      "name": "BROOKS",
+      "storeId": "21150",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "BROOKS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brooks"
+      ]
+    },
+    {
+      "name": "HONMA",
+      "storeId": "11331",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 2,
+      "sourceName": "HONMA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "honma"
+      ]
+    },
+    {
+      "name": "AROAK",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 2,
+      "sourceName": "AROAK",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "aroak"
+      ]
+    },
+    {
+      "name": "Porter International",
+      "storeId": "10010",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Porter International",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "porter-international"
+      ]
+    },
+    {
+      "name": "Regal/Orobianco",
+      "storeId": "10420",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Regal/Orobianco",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "regal",
+        "orobianco"
+      ]
+    },
+    {
+      "name": "Timberland",
+      "storeId": "10480",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Timberland",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "timberland"
+      ]
+    },
+    {
+      "name": "Tumi",
+      "storeId": "11060",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 3,
+      "sourceName": "Tumi",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tumi"
+      ]
+    },
+    {
+      "name": "Kate Spade",
+      "storeId": "11070",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 3,
+      "sourceName": "Kate Spade",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kate-spade-new-york"
+      ]
+    },
+    {
+      "name": "Michael Kors",
+      "storeId": "11470",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 3,
+      "sourceName": "Michael Kors",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "michael-kors"
+      ]
+    },
+    {
+      "name": "FitFlop",
+      "storeId": "20280",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "FitFlop",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fitflop"
+      ]
+    },
+    {
+      "name": "Uniarts",
+      "storeId": "60310",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Uniarts",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "uniarts"
+      ]
+    },
+    {
+      "name": "Vans/Hawkins",
+      "storeId": "21090",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 3,
+      "sourceName": "Vans/Hawkins",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vans",
+        "hawkins"
+      ]
+    },
+    {
+      "name": "Converse",
+      "storeId": "21231",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 3,
+      "sourceName": "Converse",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "converse"
+      ]
+    },
+    {
+      "name": "Clarks",
+      "storeId": "10243",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Clarks",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "clarks"
+      ]
+    },
+    {
+      "name": "Kipling",
+      "storeId": "10150",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Kipling",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kipling"
+      ]
+    },
+    {
+      "name": "BIRKENSTOCK",
+      "storeId": "20500",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "BIRKENSTOCK",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "birkenstock"
+      ]
+    },
+    {
+      "name": "ecco",
+      "storeId": "20080",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "ecco",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ecco"
+      ]
+    },
+    {
+      "name": "Hunter",
+      "storeId": "10330",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Hunter",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hunter"
+      ]
+    },
+    {
+      "name": "GIANNI CHIARINI/Barbour",
+      "storeId": "11080",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 3,
+      "sourceName": "GIANNI CHIARINI/Barbour",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gianni-chiarini",
+        "barbour"
+      ]
+    },
+    {
+      "name": "The Bridge",
+      "storeId": "20370",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "The Bridge",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-bridge"
+      ]
+    },
+    {
+      "name": "ALL BLACK COLLECTION",
+      "storeId": "10530",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "ALL BLACK COLLECTION",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "all-black-collection"
+      ]
+    },
+    {
+      "name": "UGG",
+      "storeId": "11020",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 3,
+      "sourceName": "UGG",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ugg"
+      ]
+    },
+    {
+      "name": "D+AF",
+      "storeId": "50080",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "D+AF",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "d-af"
+      ]
+    },
+    {
+      "name": "BYHUE",
+      "storeId": "60050",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "BYHUE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "byhue"
+      ]
+    },
+    {
+      "name": "MOONSTAR",
+      "storeId": "60100",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "MOONSTAR",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "moonstar"
+      ]
+    },
+    {
+      "name": "NEW STEP",
+      "storeId": "60330",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "NEW STEP",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-step"
+      ]
+    },
+    {
+      "name": "impact 怡寶書包",
+      "storeId": "60350",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "impact 怡寶書包",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "impact"
+      ]
+    },
+    {
+      "name": "Royal Elastics",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Royal Elastics",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "royal-elastics"
+      ]
+    },
+    {
+      "name": "Palladium",
+      "storeId": "10500",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Palladium",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "palladium"
+      ]
+    },
+    {
+      "name": "RegettaCanoe",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "RegettaCanoe",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "regettacanoe"
+      ]
+    },
+    {
+      "name": "小金牛",
+      "storeId": null,
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "小金牛",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-cdcbabe8cdd9"
+      ]
+    },
+    {
+      "name": "Achilles Sorbo",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 3,
+      "sourceName": "Achilles Sorbo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "achilles-sorbo"
+      ]
+    },
+    {
+      "name": "Dogday",
+      "storeId": "10140",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Dogday",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dogday"
+      ]
+    },
+    {
+      "name": "Le Creuset",
+      "storeId": "10430",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Le Creuset",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "le-creuset"
+      ]
+    },
+    {
+      "name": "Samsonite",
+      "storeId": "10470",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Samsonite",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsonite"
+      ]
+    },
+    {
+      "name": "ZWILLING",
+      "storeId": "10130",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "ZWILLING",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "zwilling"
+      ]
+    },
+    {
+      "name": "hengstyle",
+      "storeId": "10440",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "hengstyle",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hengstyle"
+      ]
+    },
+    {
+      "name": "YVONNE COLLECTION",
+      "storeId": "20490",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "YVONNE COLLECTION",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "yvonne-collection"
+      ]
+    },
+    {
+      "name": "Tefal",
+      "storeId": "10101",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Tefal",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tefal"
+      ]
+    },
+    {
+      "name": "小米之家授權店",
+      "storeId": "20010",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "小米之家授權店",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "xiaomi"
+      ]
+    },
+    {
+      "name": "Beutii",
+      "storeId": "20030",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Beutii",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "beutii"
+      ]
+    },
+    {
+      "name": "毛巾美術館",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "毛巾美術館",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-fc526a487485"
+      ]
+    },
+    {
+      "name": "晶澈BTP",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "晶澈BTP",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "btp"
+      ]
+    },
+    {
+      "name": "三花棉業",
+      "storeId": null,
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 4,
+      "sourceName": "三花棉業",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-1ed6662cd9c1"
+      ]
+    },
+    {
+      "name": "MUJI 無印良品",
+      "storeId": "50040",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "MUJI 無印良品",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "muji"
+      ]
+    },
+    {
+      "name": "HOLA",
+      "storeId": "50070",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "HOLA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hola"
+      ]
+    },
+    {
+      "name": "LocknLock樂扣樂扣",
+      "storeId": "60120",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "LocknLock樂扣樂扣",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lock-and-lock"
+      ]
+    },
+    {
+      "name": "TENDAYS",
+      "storeId": "60130",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "TENDAYS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tendays"
+      ]
+    },
+    {
+      "name": "元氣熊",
+      "storeId": "60150",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "元氣熊",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-b347a083ff2b"
+      ]
+    },
+    {
+      "name": "THERMOS",
+      "storeId": "60220",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "THERMOS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "thermos-store"
+      ]
+    },
+    {
+      "name": "FUJI按摩椅",
+      "storeId": "60240",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "FUJI按摩椅",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fuji-massage-chair"
+      ]
+    },
+    {
+      "name": "Peter Rabbit",
+      "storeId": "60300",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Peter Rabbit",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "peter-rabbit"
+      ]
+    },
+    {
+      "name": "Tonia Nicole 東妮寢飾",
+      "storeId": "60320",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Tonia Nicole 東妮寢飾",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tonia-nicole"
+      ]
+    },
+    {
+      "name": "Hallmark",
+      "storeId": "60340",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "Hallmark",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "hallmark"
+      ]
+    },
+    {
+      "name": "DAISO / Standard Products / THREEPPY",
+      "storeId": "70010",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "DAISO / Standard Products / THREEPPY",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "daiso",
+        "standard-products",
+        "threeppy"
+      ]
+    },
+    {
+      "name": "DHC",
+      "storeId": "70060",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "DHC",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dhc"
+      ]
+    },
+    {
+      "name": "O'right",
+      "storeId": "70070",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "O'right",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "o-right"
+      ]
+    },
+    {
+      "name": "iam我適文創",
+      "storeId": "10272",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "iam我適文創",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "iam"
+      ]
+    },
+    {
+      "name": "阿原YUAN",
+      "storeId": "10255",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "阿原YUAN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "yuan"
+      ]
+    },
+    {
+      "name": "NITORI 宜得利",
+      "storeId": "10090",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "NITORI 宜得利",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "nitori"
+      ]
+    },
+    {
+      "name": "慕可慕客MUC MUC",
+      "storeId": null,
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "慕可慕客MUC MUC",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "muc-muc"
+      ]
+    },
+    {
+      "name": "HOUSUXI 舒希",
+      "storeId": null,
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "HOUSUXI 舒希",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "housuxi"
+      ]
+    },
+    {
+      "name": "Royal Copenhagen & Wedgwood",
+      "storeId": "11040",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 4,
+      "sourceName": "Royal Copenhagen & Wedgwood",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "royal-copenhagen",
+        "wedgwood"
+      ]
+    },
+    {
+      "name": "星紅織品",
+      "storeId": null,
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "星紅織品",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-c80fec4d8155"
+      ]
+    },
+    {
+      "name": "CHECK 2 CHECK (C2C)",
+      "storeId": null,
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 4,
+      "sourceName": "CHECK 2 CHECK (C2C)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "check-2-check"
+      ]
+    },
+    {
+      "name": "朵莉絲行李箱",
+      "storeId": null,
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "朵莉絲行李箱",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-eeeebf9a38ad"
+      ]
+    },
+    {
+      "name": "VECS Gardenia",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 4,
+      "sourceName": "VECS Gardenia",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vecs-gardenia"
+      ]
+    },
+    {
+      "name": "les enphants",
+      "storeId": "20510",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "les enphants",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "les-enphants"
+      ]
+    },
+    {
+      "name": "Mamas&Papas",
+      "storeId": "20480",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "Mamas&Papas",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mamas-and-papas"
+      ]
+    },
+    {
+      "name": "Polo Ralph Lauren kids",
+      "storeId": "11420",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 5,
+      "sourceName": "Polo Ralph Lauren kids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "polo-ralph-lauren"
+      ]
+    },
+    {
+      "name": "Rookie",
+      "storeId": "21020",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 5,
+      "sourceName": "Rookie",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "rookie"
+      ]
+    },
+    {
+      "name": "akachan honpo",
+      "storeId": "50020",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "akachan honpo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "akachan-honpo"
+      ]
+    },
+    {
+      "name": "Baby City",
+      "storeId": "60360",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "Baby City",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "baby-city"
+      ]
+    },
+    {
+      "name": "Adidas Kids",
+      "storeId": "60390",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "Adidas Kids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "adidas"
+      ]
+    },
+    {
+      "name": "PUMA Kids",
+      "storeId": "60400",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "PUMA Kids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "puma"
+      ]
+    },
+    {
+      "name": "SKECHERS Kids",
+      "storeId": "60410",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "SKECHERS Kids",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "skechers"
+      ]
+    },
+    {
+      "name": "MARKEY'S",
+      "storeId": "60060",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "MARKEY'S",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "markey-s"
+      ]
+    },
+    {
+      "name": "抱抱羊",
+      "storeId": null,
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 5,
+      "sourceName": "抱抱羊",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-5b7dcd1df841"
+      ]
+    },
+    {
+      "name": "The Body Shop",
+      "storeId": "10020",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "The Body Shop",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-body-shop"
+      ]
+    },
+    {
+      "name": "OWNDAYS",
+      "storeId": "10450",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "OWNDAYS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "owndays"
+      ]
+    },
+    {
+      "name": "Designer Fragrances＆Cosmetic Co.",
+      "storeId": "11120",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 6,
+      "sourceName": "Designer Fragrances＆Cosmetic Co.",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "designer-fragrances-and-cosmetic-co"
+      ]
+    },
+    {
+      "name": "agnès b.",
+      "storeId": "11230",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 6,
+      "sourceName": "agnès b.",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "agnes-b"
+      ]
+    },
+    {
+      "name": "Ray-Ban",
+      "storeId": "20530",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "Ray-Ban",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "ray-ban"
+      ]
+    },
+    {
+      "name": "Beauty Scents",
+      "storeId": "11031",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 6,
+      "sourceName": "Beauty Scents",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "beauty-scents"
+      ]
+    },
+    {
+      "name": "LORYA",
+      "storeId": "11330",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 6,
+      "sourceName": "LORYA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "lorya"
+      ]
+    },
+    {
+      "name": "Cath Kidston",
+      "storeId": "10061",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "Cath Kidston",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "cath-kidston"
+      ]
+    },
+    {
+      "name": "New Era",
+      "storeId": "20020",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "New Era",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "new-era"
+      ]
+    },
+    {
+      "name": "The Cosmetics Company Store",
+      "storeId": "11100",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 6,
+      "sourceName": "The Cosmetics Company Store",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "the-cosmetics-company-store"
+      ]
+    },
+    {
+      "name": "TOY SELECT",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "TOY SELECT",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "toy-select"
+      ]
+    },
+    {
+      "name": "金安德森皮件-Ⅰ館 2F 室內區 Gozo前",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "金安德森皮件-Ⅰ館 2F 室內區 Gozo前",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kinloch-anderson"
+      ]
+    },
+    {
+      "name": "FRAAS",
+      "storeId": null,
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "FRAAS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fraas"
+      ]
+    },
+    {
+      "name": "Dalla",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "Dalla",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "dalla"
+      ]
+    },
+    {
+      "name": "scent of seoul",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "scent of seoul",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "scent-of-seoul"
+      ]
+    },
+    {
+      "name": "MayBee充棉娃娃",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "MayBee充棉娃娃",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "maybee"
+      ]
+    },
+    {
+      "name": "INNISFREE",
+      "storeId": null,
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "INNISFREE",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "innisfree"
+      ]
+    },
+    {
+      "name": "金安德森皮件-Ⅰ館 2F 室內區 迷你廣場",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 6,
+      "sourceName": "金安德森皮件-Ⅰ館 2F 室內區 迷你廣場",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kinloch-anderson"
+      ]
+    },
+    {
+      "name": "G-Shock Outlet",
+      "storeId": "11560",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "G-Shock Outlet",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "g-shock"
+      ]
+    },
+    {
+      "name": "Formosa Watch",
+      "storeId": "11090",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 7,
+      "sourceName": "Formosa Watch",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "formosa-watch"
+      ]
+    },
+    {
+      "name": "Seiko",
+      "storeId": "20323",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "Seiko",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "seiko"
+      ]
+    },
+    {
+      "name": "Citizen",
+      "storeId": "20321",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "Citizen",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "citizen"
+      ]
+    },
+    {
+      "name": "Fossil",
+      "storeId": "20322",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "Fossil",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "fossil"
+      ]
+    },
+    {
+      "name": "點睛品",
+      "storeId": "11380",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 7,
+      "sourceName": "點睛品",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "chow-sang-sang"
+      ]
+    },
+    {
+      "name": "Just Gold",
+      "storeId": "11410",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 7,
+      "sourceName": "Just Gold",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "just-gold"
+      ]
+    },
+    {
+      "name": "Garmin",
+      "storeId": "50120",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "Garmin",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "garmin"
+      ]
+    },
+    {
+      "name": "vacanza accessory",
+      "storeId": "70040",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "vacanza accessory",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "vacanza-accessory"
+      ]
+    },
+    {
+      "name": "FINISS x ILCO",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "FINISS x ILCO",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "finiss-x-ilco"
+      ]
+    },
+    {
+      "name": "BONNY & READ",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 7,
+      "sourceName": "BONNY & READ",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bonny-and-read"
+      ]
+    },
+    {
+      "name": "Brand楓月",
+      "storeId": "11200",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 7,
+      "sourceName": "Brand楓月",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-fugetsu"
+      ]
+    },
+    {
+      "name": "今生金飾",
+      "storeId": "11400",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 7,
+      "sourceName": "今生金飾",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-91d2a485325d"
+      ]
+    },
+    {
+      "name": "Kura Sushi",
+      "storeId": "00540",
+      "location": "I館 / GF / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Kura Sushi",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-00540"
+    },
+    {
+      "name": "Meet Fresh",
+      "storeId": "70190",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "Meet Fresh",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70190"
+    },
+    {
+      "name": "Donq",
+      "storeId": "00111",
+      "location": "I館 / GF / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "Donq",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-00111"
+    },
+    {
+      "name": "The Secret Cake",
+      "storeId": "70390",
+      "location": "II館 / 3F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "The Secret Cake",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70390"
+    },
+    {
+      "name": "春水堂",
+      "storeId": "10120",
+      "location": "I館 / 1F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "春水堂",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-10120"
+    },
+    {
+      "name": "Starbucks",
+      "storeId": "10241",
+      "location": "I館 / 1F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "Starbucks",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-10241"
+    },
+    {
+      "name": "Godiva",
+      "storeId": "11180",
+      "location": "I館 / 1F / 戶外區輕食",
+      "sourceCategory": 8,
+      "sourceName": "Godiva",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-11180"
+    },
+    {
+      "name": "Paul",
+      "storeId": "11360",
+      "location": "I館 / 1F / 戶外區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Paul",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-11360"
+    },
+    {
+      "name": "Shin Yeh Cusine",
+      "storeId": "20100",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Shin Yeh Cusine",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20100"
+    },
+    {
+      "name": "Dian Shui Luo",
+      "storeId": "20110",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Dian Shui Luo",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20110"
+    },
+    {
+      "name": "靜岡勝政日式豬排",
+      "storeId": "20140",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "靜岡勝政日式豬排",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20140"
+    },
+    {
+      "name": "CoCo壱番屋",
+      "storeId": "20150",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "CoCo壱番屋",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20150"
+    },
+    {
+      "name": "Kanpai",
+      "storeId": "20160",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Kanpai",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20160"
+    },
+    {
+      "name": "Tonchin Ramen",
+      "storeId": "20180",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Tonchin Ramen",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20180"
+    },
+    {
+      "name": "Turuhashifugetsu",
+      "storeId": "20210",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Turuhashifugetsu",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20210"
+    },
+    {
+      "name": "四川吳抄手",
+      "storeId": "20410",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "四川吳抄手",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20410"
+    },
+    {
+      "name": "Grazie",
+      "storeId": "20430",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Grazie",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20430"
+    },
+    {
+      "name": "bibimbap & korea BBQ ビビﾑ",
+      "storeId": "20454",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "bibimbap & korea BBQ ビビﾑ",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20454"
+    },
+    {
+      "name": "Chang Kee's Hainan Chi-fan",
+      "storeId": "20457",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "Chang Kee's Hainan Chi-fan",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20457"
+    },
+    {
+      "name": "金子半之助",
+      "storeId": "20459",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "金子半之助",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20459"
+    },
+    {
+      "name": "宮武讃岐烏龍麵",
+      "storeId": "20462",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "宮武讃岐烏龍麵",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20462"
+    },
+    {
+      "name": "Kua `Aina",
+      "storeId": "21260",
+      "location": "I館 / 2F / 戶外區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Kua `Aina",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-21260"
+    },
+    {
+      "name": "Japoli",
+      "storeId": "21270",
+      "location": "I館 / 2F / 戶外區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Japoli",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-21270"
+    },
+    {
+      "name": "J.S. FOODIES TOKYO",
+      "storeId": "21280",
+      "location": "I館 / 2F / 戶外區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "J.S. FOODIES TOKYO",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-21280"
+    },
+    {
+      "name": "31冰淇淋",
+      "storeId": "20464",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "31冰淇淋",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20464"
+    },
+    {
+      "name": "翰林茶棧",
+      "storeId": "70120",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "翰林茶棧",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70120"
+    },
+    {
+      "name": "Häagen-Dazs 哈根達斯",
+      "storeId": "70370",
+      "location": "II館 / 3F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "Häagen-Dazs 哈根達斯",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70370"
+    },
+    {
+      "name": "beard papa’s",
+      "storeId": "70360",
+      "location": "II館 / 3F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "beard papa’s",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70360"
+    },
+    {
+      "name": "炸牛 元村",
+      "storeId": "00118",
+      "location": "I館 / GF / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "炸牛 元村",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-00118"
+    },
+    {
+      "name": "于記杏仁",
+      "storeId": "20465",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "于記杏仁",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20465"
+    },
+    {
+      "name": "飛機河粉",
+      "storeId": "20460",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "飛機河粉",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20460"
+    },
+    {
+      "name": "點點心",
+      "storeId": "20200",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "點點心",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20200"
+    },
+    {
+      "name": "但馬屋",
+      "storeId": "20090",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "但馬屋",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20090"
+    },
+    {
+      "name": "韓國一隻雞",
+      "storeId": "20240",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "韓國一隻雞",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20240"
+    },
+    {
+      "name": "牛品牛排專門店",
+      "storeId": "20458",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "牛品牛排專門店",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20458"
+    },
+    {
+      "name": "太陽蕃茄拉麵",
+      "storeId": "20456",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "太陽蕃茄拉麵",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20456"
+    },
+    {
+      "name": "一風堂",
+      "storeId": "20453",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "一風堂",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20453"
+    },
+    {
+      "name": "粟米肉粒",
+      "storeId": "20466",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "粟米肉粒",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20466"
+    },
+    {
+      "name": "加加港味",
+      "storeId": "20455",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "加加港味",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20455"
+    },
+    {
+      "name": "彩豚屋",
+      "storeId": "20230",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "彩豚屋",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20230"
+    },
+    {
+      "name": "肉のはせ川",
+      "storeId": "20451",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "肉のはせ川",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20451"
+    },
+    {
+      "name": "武藏野麵包(期間限定店)",
+      "storeId": null,
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "武藏野麵包(期間限定店)",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-6e888b67ad17"
+    },
+    {
+      "name": "PRESERVE",
+      "storeId": "50090",
+      "location": "II館 / 1F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "PRESERVE",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-50090"
+    },
+    {
+      "name": "JK STUDIO",
+      "storeId": "50100",
+      "location": "II館 / 1F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "JK STUDIO",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-50100"
+    },
+    {
+      "name": "The Café By 想 林口",
+      "storeId": "60140",
+      "location": "II館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "The Café By 想 林口",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-60140"
+    },
+    {
+      "name": "gelato pique cafe",
+      "storeId": "60180",
+      "location": "II館 / 2F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "gelato pique cafe",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-60180"
+    },
+    {
+      "name": "極之好味",
+      "storeId": "70080",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "極之好味",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70080"
+    },
+    {
+      "name": "林記海南雞飯",
+      "storeId": "70090",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "林記海南雞飯",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70090"
+    },
+    {
+      "name": "訪韓國傳統豆腐鍋",
+      "storeId": "70100",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "訪韓國傳統豆腐鍋",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70100"
+    },
+    {
+      "name": "廟口鴨香飯",
+      "storeId": "70110",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "廟口鴨香飯",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70110"
+    },
+    {
+      "name": "Chicken Eater",
+      "storeId": "70130",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "Chicken Eater",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70130"
+    },
+    {
+      "name": "鰻鰻 EXPRESS",
+      "storeId": "70140",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "鰻鰻 EXPRESS",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70140"
+    },
+    {
+      "name": "東京油組総本店",
+      "storeId": "70150",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "東京油組総本店",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70150"
+    },
+    {
+      "name": "元気！もりちゃん亭",
+      "storeId": "70160",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "元気！もりちゃん亭",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70160"
+    },
+    {
+      "name": "粕粕咖哩POPOCURRY",
+      "storeId": "70170",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "粕粕咖哩POPOCURRY",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70170"
+    },
+    {
+      "name": "牛角次男坊",
+      "storeId": "70180",
+      "location": "II館 / 3F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "牛角次男坊",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70180"
+    },
+    {
+      "name": "NARA Thai Cuisine",
+      "storeId": "70200",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "NARA Thai Cuisine",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70200"
+    },
+    {
+      "name": "御前上茶",
+      "storeId": "70210",
+      "location": "II館 / 3F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "御前上茶",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70210"
+    },
+    {
+      "name": "上善豆家",
+      "storeId": "70230",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "上善豆家",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70230"
+    },
+    {
+      "name": "藍象廷",
+      "storeId": "70240",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "藍象廷",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70240"
+    },
+    {
+      "name": "忠青商行",
+      "storeId": "70250",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "忠青商行",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70250"
+    },
+    {
+      "name": "涓豆腐",
+      "storeId": "70260",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "涓豆腐",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70260"
+    },
+    {
+      "name": "京昌園",
+      "storeId": "70270",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "京昌園",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70270"
+    },
+    {
+      "name": "THE BBQ HOUSE",
+      "storeId": "70280",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "THE BBQ HOUSE",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70280"
+    },
+    {
+      "name": "大阪王將",
+      "storeId": "70400",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "大阪王將",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70400"
+    },
+    {
+      "name": "YAYOI彌生軒",
+      "storeId": "70410",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "YAYOI彌生軒",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70410"
+    },
+    {
+      "name": "得正",
+      "storeId": "70420",
+      "location": "II館 / 3F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "得正",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70420"
+    },
+    {
+      "name": "Suage北海道湯咖哩",
+      "storeId": "70430",
+      "location": "II館 / 3F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "Suage北海道湯咖哩",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70430"
+    },
+    {
+      "name": "武藏野の洋菓子",
+      "storeId": "70381",
+      "location": "II館 / 3F / 室內區輕食",
+      "sourceCategory": 8,
+      "sourceName": "武藏野の洋菓子",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-70381"
+    },
+    {
+      "name": "橫濱牛排",
+      "storeId": "00700",
+      "location": "I館 / GF / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "橫濱牛排",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-00700"
+    },
+    {
+      "name": "客美多咖啡 Komeda‘s Coffee",
+      "storeId": "00600",
+      "location": "I館 / GF / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "客美多咖啡 Komeda‘s Coffee",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-00600"
+    },
+    {
+      "name": "TOASTERiA CAFE",
+      "storeId": "21300",
+      "location": "I館 / 2F / 戶外區",
+      "sourceCategory": 8,
+      "sourceName": "TOASTERiA CAFE",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-21300"
+    },
+    {
+      "name": "KOI PLUS",
+      "storeId": "60010",
+      "location": "II館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "KOI PLUS",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-60010"
+    },
+    {
+      "name": "饗食天堂",
+      "storeId": "60280",
+      "location": "II館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "饗食天堂",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-60280"
+    },
+    {
+      "name": "創作蛋包飯蘋果樹",
+      "storeId": "20220",
+      "location": "I館 / 2F / 室內區主題餐廳",
+      "sourceCategory": 8,
+      "sourceName": "創作蛋包飯蘋果樹",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20220"
+    },
+    {
+      "name": "窯幸福",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "窯幸福",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-45dd96eda3d7"
+    },
+    {
+      "name": "ㄛ店",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "ㄛ店",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-db4aaae0db54"
+    },
+    {
+      "name": "本氣梅酒",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "本氣梅酒",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-85237009dd66"
+    },
+    {
+      "name": "Melons",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "Melons",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-melons"
+    },
+    {
+      "name": "心心甜心屋",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "心心甜心屋",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-bc1c35732484"
+    },
+    {
+      "name": "豆腐里",
+      "storeId": "20461",
+      "location": "I館 / 2F / 美食街",
+      "sourceCategory": 8,
+      "sourceName": "豆腐里",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-20461"
+    },
+    {
+      "name": "芋艿川",
+      "storeId": null,
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "芋艿川",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-0df8107515f0"
+    },
+    {
+      "name": "艷麗",
+      "storeId": null,
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "艷麗",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-57f6215d6154"
+    },
+    {
+      "name": "暮初食茶",
+      "storeId": null,
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "暮初食茶",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-7ad9d42d8aca"
+    },
+    {
+      "name": "小鱷先生",
+      "storeId": null,
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 8,
+      "sourceName": "小鱷先生",
+      "kind": "restaurant",
+      "status": "active",
+      "restaurantId": "mitsui-outlet-park-linkou-4eed2737d0ab"
+    },
+    {
+      "name": "Bandai/Lego",
+      "storeId": "20520",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "Bandai/Lego",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bandai",
+        "lego"
+      ]
+    },
+    {
+      "name": "VIESHOW CINEMAS",
+      "storeId": "30010",
+      "location": "I館 / 3F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "VIESHOW CINEMAS",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "Little Planet",
+      "storeId": "60020",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "Little Planet",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "POP Circus 星奇市",
+      "storeId": "60030",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "POP Circus 星奇市",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "POP MART",
+      "storeId": "50050",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "POP MART",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pop-mart"
+      ]
+    },
+    {
+      "name": "Funbox",
+      "storeId": "60040",
+      "location": "II館 / 2F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "Funbox",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "funbox"
+      ]
+    },
+    {
+      "name": "Tom's world 湯姆熊歡樂世界",
+      "storeId": "70290",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "Tom's world 湯姆熊歡樂世界",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "GASHAPON",
+      "storeId": null,
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 9,
+      "sourceName": "GASHAPON",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "gashapon"
+      ]
+    },
+    {
+      "name": "Tomod’s",
+      "storeId": "00200",
+      "location": "I館 / GF / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "Tomod’s",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tomods"
+      ]
+    },
+    {
+      "name": "Mia C'bon",
+      "storeId": "00100",
+      "location": "I館 / GF / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "Mia C'bon",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "mia-c-bon"
+      ]
+    },
+    {
+      "name": "誠品書店/誠品生活",
+      "storeId": "10080",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "誠品書店/誠品生活",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "eslite"
+      ]
+    },
+    {
+      "name": "誠品生活 expo",
+      "storeId": "10400",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "誠品生活 expo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "eslite-expo"
+      ]
+    },
+    {
+      "name": "カルデイ COFFEE FARM",
+      "storeId": "20470",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "カルデイ COFFEE FARM",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "kaldi-coffee-farm"
+      ]
+    },
+    {
+      "name": "OSIM",
+      "storeId": "20050",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "OSIM",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "osim"
+      ]
+    },
+    {
+      "name": "QB House",
+      "storeId": "00300",
+      "location": "I館 / GF /",
+      "sourceCategory": 10,
+      "sourceName": "QB House",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "德誼數位 Apple",
+      "storeId": "10370",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "德誼數位 Apple",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "data-express"
+      ]
+    },
+    {
+      "name": "Tomod’s 三友藥妝",
+      "storeId": "70030",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "Tomod’s 三友藥妝",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "tomods"
+      ]
+    },
+    {
+      "name": "友士",
+      "storeId": "70380",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "友士",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-ea2c8807030a"
+      ]
+    },
+    {
+      "name": "玩具反斗城",
+      "storeId": null,
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "玩具反斗城",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "toys-r-us"
+      ]
+    },
+    {
+      "name": "玩具反斗城",
+      "storeId": "20250",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "玩具反斗城",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "toys-r-us"
+      ]
+    },
+    {
+      "name": "POP TOYS",
+      "storeId": "10242",
+      "location": "I館 / 1F / 室內區",
+      "sourceCategory": 10,
+      "sourceName": "POP TOYS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "pop-toys"
+      ]
+    },
+    {
+      "name": "Bose",
+      "storeId": "11050",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 11,
+      "sourceName": "Bose",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "bose"
+      ]
+    },
+    {
+      "name": "BCG汽車維護中心",
+      "storeId": null,
+      "location": "I館 / 3F /",
+      "sourceCategory": 11,
+      "sourceName": "BCG汽車維護中心",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "衫隆修改室",
+      "storeId": "11490",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 11,
+      "sourceName": "衫隆修改室",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "新各界家電生活館",
+      "storeId": "11032",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 11,
+      "sourceName": "新各界家電生活館",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "brand-0a25b68cb728"
+      ]
+    },
+    {
+      "name": "Volvo",
+      "storeId": "11010",
+      "location": "I館 / 1F / 戶外區",
+      "sourceCategory": 11,
+      "sourceName": "Volvo",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "volvo"
+      ]
+    },
+    {
+      "name": "三星智慧館(Samsung)",
+      "storeId": "50030",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 11,
+      "sourceName": "三星智慧館(Samsung)",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "samsung"
+      ]
+    },
+    {
+      "name": "JINGHUA",
+      "storeId": null,
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 11,
+      "sourceName": "JINGHUA",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jinghua"
+      ]
+    },
+    {
+      "name": "7-ELEVEN",
+      "storeId": "50060",
+      "location": "II館 / 1F / 室內區",
+      "sourceCategory": 11,
+      "sourceName": "7-ELEVEN",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "7-eleven"
+      ]
+    },
+    {
+      "name": "JINS",
+      "storeId": "70020",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 11,
+      "sourceName": "JINS",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "jins"
+      ]
+    },
+    {
+      "name": "S Bar by SOCIE",
+      "storeId": "70050",
+      "location": "II館 / 3F / 室內區",
+      "sourceCategory": 11,
+      "sourceName": "S Bar by SOCIE",
+      "kind": "excluded",
+      "status": "active",
+      "reason": "Service, entertainment or common area; not a retail brand or dining tenant."
+    },
+    {
+      "name": "A+",
+      "storeId": "20270",
+      "location": "I館 / 2F / 室內區",
+      "sourceCategory": 11,
+      "sourceName": "A+",
+      "kind": "retail",
+      "status": "active",
+      "brandIds": [
+        "a"
+      ]
+    }
+  ]
+}

@@ -4664,7 +4664,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "hero",
 "assetPath": "assets/outlet-images/siam-premium-outlet/hero.webp",
 "sourceStatus": "project-owned",
@@ -4674,7 +4674,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "gallery",
 "assetPath": "assets/outlet-images/siam-premium-outlet/gallery1.webp",
 "sourceStatus": "project-owned",
@@ -4684,7 +4684,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "gallery",
 "assetPath": "assets/outlet-images/siam-premium-outlet/gallery2.webp",
 "sourceStatus": "project-owned",
@@ -4694,7 +4694,7 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
 },
 {
-"outletId": "siam-premium-outlet",
+"outletId": "siam-premium-outlets",
 "role": "gallery",
 "assetPath": "assets/outlet-images/siam-premium-outlet/gallery3.webp",
 "sourceStatus": "project-owned",
@@ -4702,5 +4702,965 @@ export const outletMediaMetadata: readonly OutletMediaAssetMetadata[] = [
 "license": "Project-owned",
 "alt": "Siam Premium Outlet gallery photo",
 "notes": "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
-}
+},
+  {
+    outletId: "woodbury-common-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/woodbury-common-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "woodbury common premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "woodbury-common-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/woodbury-common-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "woodbury common premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "woodbury-common-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/woodbury-common-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "woodbury common premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "woodbury-common-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/woodbury-common-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "woodbury common premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sawgrass-mills",
+    role: "hero",
+    assetPath: "assets/outlet-images/sawgrass-mills/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sawgrass mills hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sawgrass-mills",
+    role: "gallery",
+    assetPath: "assets/outlet-images/sawgrass-mills/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sawgrass mills gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sawgrass-mills",
+    role: "gallery",
+    assetPath: "assets/outlet-images/sawgrass-mills/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sawgrass mills gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sawgrass-mills",
+    role: "gallery",
+    assetPath: "assets/outlet-images/sawgrass-mills/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sawgrass mills gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-vineland-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/orlando-vineland-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando vineland premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-vineland-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/orlando-vineland-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando vineland premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-vineland-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/orlando-vineland-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando vineland premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-vineland-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/orlando-vineland-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando vineland premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-north-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/las-vegas-north-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas north premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-north-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-vegas-north-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas north premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-north-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-vegas-north-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas north premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-north-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-vegas-north-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas north premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "desert-hills-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/desert-hills-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "desert hills premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "desert-hills-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/desert-hills-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "desert hills premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "desert-hills-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/desert-hills-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "desert hills premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "desert-hills-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/desert-hills-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "desert hills premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-francisco-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/san-francisco-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san francisco premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-francisco-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/san-francisco-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san francisco premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-francisco-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/san-francisco-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san francisco premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-francisco-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/san-francisco-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san francisco premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sano-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/sano-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sano premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sano-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/sano-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sano premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sano-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/sano-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sano premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "sano-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/sano-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "sano premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "one-salonica-outlet-mall",
+    role: "hero",
+    assetPath: "assets/outlet-images/one-salonica-outlet-mall/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "one salonica outlet mall hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "one-salonica-outlet-mall",
+    role: "gallery",
+    assetPath: "assets/outlet-images/one-salonica-outlet-mall/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "one salonica outlet mall gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "one-salonica-outlet-mall",
+    role: "gallery",
+    assetPath: "assets/outlet-images/one-salonica-outlet-mall/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "one salonica outlet mall gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "one-salonica-outlet-mall",
+    role: "gallery",
+    assetPath: "assets/outlet-images/one-salonica-outlet-mall/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "one salonica outlet mall gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "m3-outlet-polgar",
+    role: "hero",
+    assetPath: "assets/outlet-images/m3-outlet-polgar/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "m3 outlet polgar hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "m3-outlet-polgar",
+    role: "gallery",
+    assetPath: "assets/outlet-images/m3-outlet-polgar/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "m3 outlet polgar gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "m3-outlet-polgar",
+    role: "gallery",
+    assetPath: "assets/outlet-images/m3-outlet-polgar/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "m3 outlet polgar gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "m3-outlet-polgar",
+    role: "gallery",
+    assetPath: "assets/outlet-images/m3-outlet-polgar/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "m3 outlet polgar gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mitsui-outlet-park-tainan",
+    role: "hero",
+    assetPath: "assets/outlet-images/mitsui-outlet-park-tainan/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mitsui outlet park tainan hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mitsui-outlet-park-tainan",
+    role: "gallery",
+    assetPath: "assets/outlet-images/mitsui-outlet-park-tainan/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mitsui outlet park tainan gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mitsui-outlet-park-tainan",
+    role: "gallery",
+    assetPath: "assets/outlet-images/mitsui-outlet-park-tainan/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mitsui outlet park tainan gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mitsui-outlet-park-tainan",
+    role: "gallery",
+    assetPath: "assets/outlet-images/mitsui-outlet-park-tainan/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mitsui outlet park tainan gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "changi-city-point",
+    role: "hero",
+    assetPath: "assets/outlet-images/changi-city-point/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "changi city point hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "changi-city-point",
+    role: "gallery",
+    assetPath: "assets/outlet-images/changi-city-point/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "changi city point gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "changi-city-point",
+    role: "gallery",
+    assetPath: "assets/outlet-images/changi-city-point/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "changi city point gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "changi-city-point",
+    role: "gallery",
+    assetPath: "assets/outlet-images/changi-city-point/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "changi city point gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "central-village-bangkok",
+    role: "hero",
+    assetPath: "assets/outlet-images/central-village-bangkok/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "central village bangkok hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "central-village-bangkok",
+    role: "gallery",
+    assetPath: "assets/outlet-images/central-village-bangkok/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "central village bangkok gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "central-village-bangkok",
+    role: "gallery",
+    assetPath: "assets/outlet-images/central-village-bangkok/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "central village bangkok gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "central-village-bangkok",
+    role: "gallery",
+    assetPath: "assets/outlet-images/central-village-bangkok/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "central village bangkok gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-international-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/orlando-international-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando international premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-international-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/orlando-international-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando international premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-international-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/orlando-international-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando international premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "orlando-international-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/orlando-international-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "orlando international premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "the-mills-at-jersey-gardens",
+    role: "hero",
+    assetPath: "assets/outlet-images/the-mills-at-jersey-gardens/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "the mills at jersey gardens hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "the-mills-at-jersey-gardens",
+    role: "gallery",
+    assetPath: "assets/outlet-images/the-mills-at-jersey-gardens/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "the mills at jersey gardens gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "the-mills-at-jersey-gardens",
+    role: "gallery",
+    assetPath: "assets/outlet-images/the-mills-at-jersey-gardens/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "the mills at jersey gardens gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "the-mills-at-jersey-gardens",
+    role: "gallery",
+    assetPath: "assets/outlet-images/the-mills-at-jersey-gardens/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "the mills at jersey gardens gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "chicago-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/chicago-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "chicago premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "chicago-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/chicago-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "chicago premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "chicago-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/chicago-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "chicago premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "chicago-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/chicago-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "chicago premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "seattle-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/seattle-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "seattle premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "seattle-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/seattle-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "seattle premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "seattle-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/seattle-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "seattle premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "seattle-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/seattle-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "seattle premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "wrentham-village-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/wrentham-village-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "wrentham village premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "wrentham-village-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/wrentham-village-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "wrentham village premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "wrentham-village-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/wrentham-village-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "wrentham village premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "wrentham-village-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/wrentham-village-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "wrentham village premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-marcos-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/san-marcos-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san marcos premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-marcos-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/san-marcos-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san marcos premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-marcos-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/san-marcos-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san marcos premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "san-marcos-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/san-marcos-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "san marcos premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "waikele-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/waikele-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "waikele premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "waikele-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/waikele-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "waikele premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "waikele-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/waikele-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "waikele premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "waikele-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/waikele-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "waikele premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-south-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/las-vegas-south-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas south premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-south-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-vegas-south-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas south premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-south-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-vegas-south-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas south premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-vegas-south-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-vegas-south-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las vegas south premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-americas-premium-outlets",
+    role: "hero",
+    assetPath: "assets/outlet-images/las-americas-premium-outlets/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las americas premium outlets hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-americas-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-americas-premium-outlets/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las americas premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-americas-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-americas-premium-outlets/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las americas premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "las-americas-premium-outlets",
+    role: "gallery",
+    assetPath: "assets/outlet-images/las-americas-premium-outlets/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "las americas premium outlets gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "factory-krakow",
+    role: "hero",
+    assetPath: "assets/outlet-images/factory-krakow/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "factory krakow hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "factory-krakow",
+    role: "gallery",
+    assetPath: "assets/outlet-images/factory-krakow/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "factory krakow gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "factory-krakow",
+    role: "gallery",
+    assetPath: "assets/outlet-images/factory-krakow/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "factory krakow gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "factory-krakow",
+    role: "gallery",
+    assetPath: "assets/outlet-images/factory-krakow/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "factory krakow gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mega-outlet-thessaloniki",
+    role: "hero",
+    assetPath: "assets/outlet-images/mega-outlet-thessaloniki/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mega outlet thessaloniki hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mega-outlet-thessaloniki",
+    role: "gallery",
+    assetPath: "assets/outlet-images/mega-outlet-thessaloniki/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mega outlet thessaloniki gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mega-outlet-thessaloniki",
+    role: "gallery",
+    assetPath: "assets/outlet-images/mega-outlet-thessaloniki/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mega outlet thessaloniki gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "mega-outlet-thessaloniki",
+    role: "gallery",
+    assetPath: "assets/outlet-images/mega-outlet-thessaloniki/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "mega outlet thessaloniki gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "barari-outlet-mall",
+    role: "hero",
+    assetPath: "assets/outlet-images/barari-outlet-mall/hero.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "barari outlet mall hero photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "barari-outlet-mall",
+    role: "gallery",
+    assetPath: "assets/outlet-images/barari-outlet-mall/gallery1.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "barari outlet mall gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "barari-outlet-mall",
+    role: "gallery",
+    assetPath: "assets/outlet-images/barari-outlet-mall/gallery2.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "barari outlet mall gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
+  {
+    outletId: "barari-outlet-mall",
+    role: "gallery",
+    assetPath: "assets/outlet-images/barari-outlet-mall/gallery3.webp",
+    sourceStatus: "project-owned",
+    credit: "My Outlet Guide project-owned manual media",
+    license: "Project-owned",
+    alt: "barari outlet mall gallery photo",
+    notes: "Manual exact outlet photo supplied for this outlet; project-owned or user-provided with rights; not AI-generated; not generic; not downloaded from an unknown web source."
+  },
 ] as const;

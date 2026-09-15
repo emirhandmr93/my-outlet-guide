@@ -1581,6 +1581,7 @@ export function getTransportationOptionDisplayModel(
       localizedTargetGuide.estimatedDuration
     : undefined;
   const durationLabel =
+    (fact?.fareUnit ? localizedDurationLabel : undefined) ||
     (fact?.displayDuration
       ? `${I18N[language].approx} ${fact.displayDuration}`
       : undefined) ||
@@ -1591,6 +1592,7 @@ export function getTransportationOptionDisplayModel(
       ? formatDuration(estimate, language)
       : undefined);
   const fareLabel =
+    (fact?.fareUnit ? localizedTargetGuide?.estimatedCost : undefined) ||
     (fact?.displayFare
       ? `${I18N[language].approx} ${fact.displayFare}`
       : undefined) ||

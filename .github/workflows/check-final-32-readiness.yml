@@ -1,0 +1,44 @@
+name: Check final 32 outlet readiness
+
+on:
+  push:
+    branches:
+      - codex/complete-us-asia-data
+    paths-ignore:
+      - "MasterData/**"
+
+permissions:
+  contents: write
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          ref: codex/complete-us-asia-data
+          fetch-depth: 1
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+      - run: npm ci
+      - run: npm run data:sync
+      - run: npm run data:check
+      - run: npm run validate:outlet-expansion
+      - run: node --import tsx tools/checkTransportationV2.ts
+      - run: npm run validate:master-data
+      - run: node --import tsx tools/reportFinal32Readiness.ts
+      - run: node --import tsx tools/checkFinal32OutletReadiness.ts
+      - run: node --import tsx tools/reportFinal32Media.ts
+      - name: Commit synchronized MasterData
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add MasterData
+          if git diff --cached --quiet; then
+            echo "MasterData already synchronized."
+          else
+            git commit -m "data: synchronize final 32 outlet MasterData"
+            git push origin HEAD:codex/complete-us-asia-data
+          fi

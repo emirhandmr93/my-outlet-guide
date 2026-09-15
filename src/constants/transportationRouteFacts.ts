@@ -1,3 +1,4 @@
+import { expansionTransportationRouteFacts, expansionGuideIds } from "./expansionTransportation";
 import type { TransportationType } from "./transportationGuides";
 
 export type TransportationRouteOriginType =
@@ -14,6 +15,9 @@ export type TransportationRouteConfidence =
 
 export type TransportationRouteFact = {
   guideId?: string;
+  checkedAt?: string;
+  sourceUrls?: string[];
+  fareUnit?: "oneWay" | "roundTrip" | "roundTripFrom" | "vehicle";
   outletId: string;
   originType: TransportationRouteOriginType;
   mode: TransportationType;
@@ -41,7 +45,7 @@ export type TransportationRouteFact = {
   officialProviderUrl?: string;
 };
 
-export const transportationRouteFacts: TransportationRouteFact[] = [
+const legacyTransportationRouteFacts: TransportationRouteFact[] = [
 {
 guideId: "hkg-to-citygate-outlets-bus",
 outletId: "citygate-outlets",
@@ -2263,3 +2267,5 @@ officialProviderUrl: "https://www.premiumoutlets.com.my/genting-highlands-premiu
 export function getTransportationRouteFact(guideId: string | undefined) {
   return transportationRouteFacts.find((fact) => fact.guideId === guideId);
 }
+
+export const transportationRouteFacts: TransportationRouteFact[] = [...legacyTransportationRouteFacts.filter(fact => !expansionGuideIds.has(fact.guideId ?? "")), ...expansionTransportationRouteFacts];
