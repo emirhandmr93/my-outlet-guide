@@ -178,8 +178,8 @@ jobs:
       - name: Report export sizes
         run: du -sh dist-android dist-ios dist
 
-      - name: Remove generated exports
-        run: rm -rf dist-android dist-ios dist
+      - name: Remove generated exports and diagnostics
+        run: rm -rf dist-android dist-ios dist web-performance.txt
 
       - name: Confirm Functions build output is untracked
         run: |
