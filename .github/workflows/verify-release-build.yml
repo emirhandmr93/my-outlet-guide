@@ -54,8 +54,107 @@ jobs:
       - name: Export iOS bundle
         run: npx expo export --platform ios --output-dir dist-ios
 
-      - name: Build and validate web export
-        run: npm run web:build
+      - name: Prepare web translations
+        run: npm run translations:web:prepare
+
+      - name: Export web bundle
+        run: npx expo export --platform web --output-dir dist
+
+      - name: Finalize web SEO
+        run: npx tsx tools/finalizeWebSeo.ts
+
+      - name: Enhance priority country SEO
+        run: npx tsx tools/enhancePriorityCountrySeo.ts
+
+      - name: Enhance priority city SEO
+        run: npx tsx tools/enhancePriorityCitySeo.ts
+
+      - name: Enhance UK and Spain SEO
+        run: npx tsx tools/enhanceUkSpainSeo.ts
+
+      - name: Enhance Germany and Netherlands SEO
+        run: npx tsx tools/enhanceGermanyNetherlandsSeo.ts
+
+      - name: Enhance flagship outlet SEO
+        run: npx tsx tools/enhanceFlagshipOutletSeo.ts
+
+      - name: Enhance flagship outlet SEO batch 2
+        run: npx tsx tools/enhanceFlagshipOutletSeoBatch2.ts
+
+      - name: Enhance broad entity SEO
+        run: npx tsx tools/enhanceBroadEntitySeo.ts
+
+      - name: Enhance tax free SEO
+        run: npx tsx tools/enhanceTaxFreeSeo.ts
+
+      - name: Enhance brand SEO
+        run: npx tsx tools/enhanceBrandSeo.ts
+
+      - name: Enhance brand country intent SEO
+        run: npx tsx tools/enhanceBrandCountryIntentSeo.ts
+
+      - name: Enhance search intent SEO
+        run: npx tsx tools/enhanceSearchIntentSeo.ts
+
+      - name: Enhance entity intent SEO
+        run: npx tsx tools/enhanceEntityIntentSeo.ts
+
+      - name: Enhance country tax free SEO
+        run: npx tsx tools/enhanceCountryTaxFreeSeo.ts
+
+      - name: Enhance outlet brand intent SEO
+        run: npx tsx tools/enhanceOutletBrandIntentSeo.ts
+
+      - name: Enhance destination anchor intent SEO
+        run: npx tsx tools/enhanceDestinationAnchorIntentSeo.ts
+
+      - name: Enhance priority editorial SEO
+        run: npx tsx tools/enhancePriorityEditorialSeo.ts
+
+      - name: Enhance research trust SEO
+        run: npx tsx tools/enhanceResearchTrustSeo.ts
+
+      - name: Re-run entity intent SEO
+        run: npx tsx tools/enhanceEntityIntentSeo.ts
+
+      - name: Re-run country tax free SEO
+        run: npx tsx tools/enhanceCountryTaxFreeSeo.ts
+
+      - name: Validate web SEO
+        run: npx tsx tools/checkWebSeo.ts
+
+      - name: Validate SEO enhancement coverage
+        run: npx tsx tools/checkSeoEnhancementCoverage.ts
+
+      - name: Validate entity intent SEO
+        run: npx tsx tools/checkEntityIntentSeo.ts
+
+      - name: Validate brand country intent SEO
+        run: npx tsx tools/checkBrandCountryIntentSeo.ts
+
+      - name: Validate country tax free SEO
+        run: npx tsx tools/checkCountryTaxFreeSeo.ts
+
+      - name: Validate outlet brand intent SEO
+        run: npx tsx tools/checkOutletBrandIntentSeo.ts
+
+      - name: Validate destination anchor intent SEO
+        run: npx tsx tools/checkDestinationAnchorIntentSeo.ts
+
+      - name: Validate priority editorial SEO
+        run: npx tsx tools/checkPriorityEditorialSeo.ts
+
+      - name: Validate research trust SEO
+        run: npx tsx tools/checkResearchTrustSeo.ts
+
+      - name: Validate internal links
+        run: npx tsx tools/checkInternalLinksFast.ts
+
+      - name: Report web performance
+        run: npx tsx tools/reportWebPerformance.ts
+
+      - name: Validate web performance budget
+        run: npx tsx tools/checkWebPerformanceBudget.ts
 
       - name: Report export sizes
         run: du -sh dist-android dist-ios dist
