@@ -151,7 +151,14 @@ jobs:
         run: npx tsx tools/checkInternalLinksFast.ts
 
       - name: Report web performance
-        run: npx tsx tools/reportWebPerformance.ts
+        run: npx tsx tools/reportWebPerformance.ts | tee web-performance.txt
+
+      - name: Upload web performance diagnostics
+        uses: actions/upload-artifact@v4
+        with:
+          name: web-performance-diagnostics
+          path: web-performance.txt
+          if-no-files-found: error
 
       - name: Diagnose web initial raw JS budget
         continue-on-error: true
