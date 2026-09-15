@@ -43,6 +43,8 @@ export type TransportationRouteFact = {
   officialCheckNote?: string;
   confidence: TransportationRouteConfidence;
   officialProviderUrl?: string;
+  sourceUrl?: string;
+  verifiedAt?: string;
 };
 
 const legacyTransportationRouteFacts: TransportationRouteFact[] = [
