@@ -92,6 +92,18 @@ function timestampMillis(value: unknown): number {
   return value instanceof Timestamp ? value.toMillis() : 0;
 }
 
+function translationLastAttemptMillis(data: Record<string, unknown>): number {
+  return timestampMillis(recordValue(data.translation).lastAttemptAt);
+}
+
+function campaignRecencyMillis(data: Record<string, unknown>): number {
+  return Math.max(
+    timestampMillis(data.publishedAt),
+    timestampMillis(data.startsAt),
+    timestampMillis(data.updatedAt),
+  );
+}
+
 function isCurrentCampaign(data: Record<string, unknown>, now: Date) {
   if (data.status !== "published" && data.status !== "scheduled") return false;
   return !(data.endsAt instanceof Timestamp) || data.endsAt.toDate() > now;
@@ -119,8 +131,14 @@ export const backfillOutletCampaignTranslations = onSchedule({
     .sort((left, right) => {
       const leftData = left.data();
       const rightData = right.data();
-      return Math.max(timestampMillis(rightData.publishedAt), timestampMillis(rightData.startsAt), timestampMillis(rightData.updatedAt)) -
-        Math.max(timestampMillis(leftData.publishedAt), timestampMillis(leftData.startsAt), timestampMillis(leftData.updatedAt));
+      const leftAttempt = translationLastAttemptMillis(leftData);
+      const rightAttempt = translationLastAttemptMillis(rightData);
+
+      // Rotate batches instead of repeatedly selecting the same failed 10.
+      // Never-attempted campaigns (0) are always handled first; after every
+      // active campaign has had a pass, the oldest failed attempt is retried.
+      if (leftAttempt !== rightAttempt) return leftAttempt - rightAttempt;
+      return campaignRecencyMillis(rightData) - campaignRecencyMillis(leftData);
     })
     .slice(0, CAMPAIGN_TRANSLATION_BACKFILL_MAX_CAMPAIGNS_PER_RUN);
 
