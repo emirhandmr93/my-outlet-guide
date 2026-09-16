@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 
 import { brands } from "../src/constants/brands";
 import { finalExpansionStoreResolutions } from "../src/constants/brands/final-expansion-directory";
-import { finalExpansionStoreDirectories } from "../src/constants/finalExpansionStoreDirectories";
+import { effectiveFinalExpansionStoreDirectories } from "../src/constants/finalExpansionStoreDirectoryOverrides";
 import { outletBrands } from "../src/constants/outletBrands";
 
 const expectedOutletIds = [
@@ -40,17 +40,17 @@ const sameSet = (actual: Iterable<string>, expected: Iterable<string>, message: 
 };
 
 sameSet(
-  finalExpansionStoreDirectories.map((directory) => directory.outletId),
+  effectiveFinalExpansionStoreDirectories.map((directory) => directory.outletId),
   expectedOutletIds,
   "Final expansion store-directory scope drifted from the approved 17 outlets",
 );
-assert.equal(finalExpansionStoreDirectories.length, expectedOutletIds.length, "Final expansion directory count must remain 17");
+assert.equal(effectiveFinalExpansionStoreDirectories.length, expectedOutletIds.length, "Final expansion directory count must remain 17");
 
 const brandIds = new Set(brands.map((brand) => brand.brandId));
 let storefrontCount = 0;
 let mappedIdentityCount = 0;
 
-for (const directory of finalExpansionStoreDirectories) {
+for (const directory of effectiveFinalExpansionStoreDirectories) {
   assert(directory.sourceUrls.length > 0, `${directory.outletId}: official store-directory source URL missing`);
   assert(directory.sourceUrls.every((url) => url.startsWith("https://")), `${directory.outletId}: non-HTTPS source URL`);
   assert(/^\d{4}-\d{2}-\d{2}$/.test(directory.checkedAt), `${directory.outletId}: checkedAt must be ISO date`);
@@ -98,8 +98,66 @@ for (const directory of finalExpansionStoreDirectories) {
   sameSet(
     activeRelations.map((relation) => relation.brandId),
     expectedBrandIds,
-    `${directory.outletId}: runtime brand coverage is not an exact projection of the official store-directory snapshot`,
+    `${directory.outletId}: runtime brand coverage is not an exact projection of the effective official store-directory snapshot`,
   );
+}
+
+const jerseyGardens = effectiveFinalExpansionStoreDirectories.find(
+  (directory) => directory.outletId === "the-mills-at-jersey-gardens",
+);
+assert(jerseyGardens, "Jersey Gardens effective directory missing");
+const jerseyNames = new Set(jerseyGardens.storeNames);
+for (const staleName of [
+  "Last Call by Neiman Marcus",
+  "JCPenney",
+  "Macy's",
+  "Boscov's",
+  "Kohl's",
+  "Aldo Accessories",
+  "American Dream Jewelry",
+  "Ardene",
+  "Beauty Plus Salon",
+  "Charming Charlie",
+  "City Blue",
+  "Eblens",
+  "FYE",
+  "GameStop",
+  "LensCrafters",
+  "Shoe Dept. Encore",
+  "Torrid",
+  "Urban Planet",
+  "XIOS",
+]) {
+  assert(!jerseyNames.has(staleName), `Jersey Gardens stale/historical tenant leaked into current directory: ${staleName}`);
+}
+for (const currentName of [
+  "Cohoes",
+  "Five Below",
+  "Freedom News",
+  "G-Star RAW",
+  "Garage",
+  "House of K Beauty",
+  "Jewelers on Fifth Jewelry Exchange",
+  "La Perfumerie",
+  "Laced Up",
+  "Mavi Jeans",
+  "Metro Mart",
+  "Oscar's Fine Jewelry",
+  "Portabella",
+  "Prato Fine Men's Wear",
+  "QL Shop",
+  "Runway NY",
+  "Scrubs & Beyond",
+  "Showtime Sneaker Boutique",
+  "snipes",
+  "Stacy Adams Shoes",
+  "Steps NY",
+  "The Next Exit",
+  "Ulta",
+  "Vitamin World",
+  "Watch Express",
+]) {
+  assert(jerseyNames.has(currentName), `Jersey Gardens current official tenant missing from effective directory: ${currentName}`);
 }
 
 assert(
@@ -109,5 +167,5 @@ assert(
 assert(mappedIdentityCount >= storefrontCount, "Every storefront must map to at least one canonical brand identity");
 
 console.log(
-  `Final expansion store-directory coverage passed: ${finalExpansionStoreDirectories.length} outlets; ${storefrontCount} source storefronts; ${mappedIdentityCount} mapped brand identities; runtime outletBrands exactly match the source snapshots.`,
+  `Final expansion store-directory coverage passed: ${effectiveFinalExpansionStoreDirectories.length} outlets; ${storefrontCount} source storefronts; ${mappedIdentityCount} mapped brand identities; runtime outletBrands exactly match the effective source snapshots.`,
 );
