@@ -6,9 +6,19 @@ import { brandsQT } from "./brands-q-t";
 import { brandsUZ } from "./brands-u-z";
 import { yeojuBrands } from "./brands-yeoju";
 import { finalExpansionBrands } from "./final-expansion";
+import { finalExpansionDirectoryBrands } from "./final-expansion-directory";
 import type { Brand } from "../../types/brand";
 
-export { brandsAE, brandsFK, brandsLP, brandsQT, brandsUZ, yeojuBrands, finalExpansionBrands };
+export {
+  brandsAE,
+  brandsFK,
+  brandsLP,
+  brandsQT,
+  brandsUZ,
+  yeojuBrands,
+  finalExpansionBrands,
+  finalExpansionDirectoryBrands,
+};
 
 const allBrands: Brand[] = [
   ...expansionBrands,
@@ -19,6 +29,7 @@ const allBrands: Brand[] = [
   ...brandsUZ,
   ...yeojuBrands,
   ...finalExpansionBrands,
+  ...finalExpansionDirectoryBrands,
 ];
 
 const uniqueBrands = new Map<string, Brand>();

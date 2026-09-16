@@ -63,7 +63,7 @@
     "validate:web-carousel-controls": "tsx tools/checkWebManualCarouselControls.ts",
     "validate:android-navigation": "tsx tools/checkAndroidBottomNavigation.ts",
     "validate:readiness": "tsx tools/checkAppShare.ts && tsx tools/checkExternalLinksReadiness.ts && tsx tools/checkBetaReadiness.ts && tsx tools/checkEasArchiveReadiness.ts && tsx tools/checkWelcomeEmail.ts && tsx tools/checkFirebaseDeployWrapper.ts && npm run validate:android-navigation",
-    "validate:release": "npm run typecheck && npm run validate:master-data && npm run validate:translations && npm run translations:web:check && npm run validate:external-urls && npm run validate:flight-alerts && npm run validate:media && npm run validate:shopping-companion && npm run validate:nearby && npm run validate:travel-basket && npm run validate:campaigns && npm run validate:growth && npm run validate:premium-maps && npm run validate:web-carousel-controls && npm run validate:readiness",
+    "validate:release": "npm run typecheck && npm run validate:master-data && npm run validate:outlet-expansion && npm run validate:translations && npm run translations:web:check && npm run validate:external-urls && npm run validate:flight-alerts && npm run validate:media && npm run validate:shopping-companion && npm run validate:nearby && npm run validate:travel-basket && npm run validate:campaigns && npm run validate:growth && npm run validate:premium-maps && npm run validate:web-carousel-controls && npm run validate:readiness",
     "web:perf": "tsx tools/reportWebPerformance.ts",
     "web:perf:check": "tsx tools/checkWebPerformanceBudget.ts",
     "web:links": "tsx tools/checkInternalLinksFast.ts",
@@ -79,7 +79,7 @@
     "test:restaurant-categories": "tsx tools/testRestaurantCategoryFormatter.ts",
     "data:sync": "node --import tsx tools/syncMasterData.ts",
     "data:check": "node --import tsx tools/syncMasterData.ts --check",
-    "validate:outlet-expansion": "node --import tsx tools/checkOutletExpansion.ts"
+    "validate:outlet-expansion": "node --import tsx tools/checkOutletExpansion.ts && node --import tsx tools/checkFinalExpansionStoreDirectories.ts"
   },
   "private": true,
   "devDependencies": {
