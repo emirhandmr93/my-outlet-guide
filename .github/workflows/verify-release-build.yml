@@ -120,6 +120,9 @@ jobs:
       - name: Re-run country tax free SEO
         run: npx tsx tools/enhanceCountryTaxFreeSeo.ts
 
+      - name: Re-run brand country intent SEO
+        run: npx tsx tools/enhanceBrandCountryIntentSeo.ts
+
       - name: Validate web SEO
         run: npx tsx tools/checkWebSeo.ts
 
