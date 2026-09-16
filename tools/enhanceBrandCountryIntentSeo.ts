@@ -77,11 +77,15 @@ function fill(value: string, values: Record<string, string>) {
 
 function replaceAnchorText(section: string, href: string, label: string, context: string) {
   const pattern = new RegExp(
-    `(<a href="${escapeRegExp(href)}">)[\\s\\S]*?(<\\/a>)`,
+    `(<a\\b[^>]*\\bhref="${escapeRegExp(href)}"[^>]*>)[\\s\\S]*?(<\\/a>)`,
     "i",
   );
   if (!pattern.test(section)) throw new Error(`${context}: anchor not found`);
-  return section.replace(pattern, `$1${escapeHtml(label)}$2`);
+  return section.replace(
+    pattern,
+    (_match, opening: string, closing: string) =>
+      `${opening}${escapeHtml(label)}${closing}`,
+  );
 }
 
 async function inBatches<T>(items: readonly T[], run: (item: T) => Promise<void>) {
