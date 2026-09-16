@@ -1,5 +1,5 @@
 import type { Brand } from "../../types/brand";
-import { finalExpansionStoreDirectories } from "../finalExpansionStoreDirectories";
+import { effectiveFinalExpansionStoreDirectories } from "../finalExpansionStoreDirectoryOverrides";
 import { expansionBrands } from "./brands-expansion";
 import { brandsAE } from "./brands-a-e";
 import { brandsFK } from "./brands-f-k";
@@ -197,7 +197,7 @@ const resolveOrCreateBrand = (rawName: string): string => {
 };
 
 const resolutions: FinalExpansionStoreResolution[] = [];
-for (const directory of finalExpansionStoreDirectories) {
+for (const directory of effectiveFinalExpansionStoreDirectories) {
   for (const storeName of directory.storeNames) {
     const brandIds = [...new Set(expandStorefront(storeName).map(resolveOrCreateBrand))];
     resolutions.push({ outletId: directory.outletId, storeName, brandIds });
