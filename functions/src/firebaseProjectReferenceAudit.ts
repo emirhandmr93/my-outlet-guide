@@ -214,5 +214,14 @@ export const auditFirebaseProjectReferences = onSchedule({
   };
 
   await db.collection(AUDIT_COLLECTION).doc(AUDIT_DOCUMENT).set(report);
-  logger.info("Firestore project reference audit completed", report);
+  logger.info("Firestore project reference audit completed", {
+    targetProjectId: TARGET_PROJECT_ID,
+    scannedDocuments: state.scannedDocuments,
+    scannedCollections: state.scannedCollections,
+    findingCount: state.findings.length,
+    legacyReferenceCount,
+    foreignProjectIds,
+    readErrors: state.readErrors,
+    scanLimitReached: state.scanLimitReached,
+  });
 });
