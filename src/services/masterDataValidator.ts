@@ -1,12 +1,14 @@
 import { categories } from "../constants/categories";
 import { cities } from "../constants/cities";
 import { countries } from "../constants/countries";
+import { currencies } from "../constants/currencies";
 import { brands } from "../constants/brands";
 import { outletBrands } from "../constants/outletBrands";
 import { restaurants } from "../constants/restaurants";
 import { outlets } from "../constants/outlets";
 import { transportation } from "../constants/transportation";
 import { transportationGuides } from "../constants/transportationGuides";
+import { transportationRouteFacts, type TransportationRouteFact } from "../constants/transportationRouteFacts";
 import { getRefundPolicyValidationErrors, taxFreeRules } from "../constants/taxFreeRules";
 
 export type MasterDataValidationIssue = {
@@ -351,6 +353,88 @@ const validateTransportationGuides = (
   });
 };
 
+const validateTransportationRouteFacts = (
+  issues: MasterDataValidationIssue[]
+): void => {
+  const supportedCurrencies = new Set(
+    currencies.map((currency) => currency.currencyCode)
+  );
+  const numericFields = [
+    "estimatedDurationMin",
+    "estimatedDurationMax",
+    "estimatedFareMin",
+    "estimatedFareMax",
+  ] as const satisfies readonly (keyof TransportationRouteFact)[];
+
+  transportationRouteFacts.forEach((fact) => {
+    const issueFields = {
+      outletId: fact.outletId,
+      guideId: fact.guideId,
+      businessName: fact.guideId ?? fact.outletId,
+    };
+
+    numericFields.forEach((field) => {
+      const value = fact[field];
+      if (
+        value !== undefined &&
+        (typeof value !== "number" || !Number.isFinite(value) || value < 0)
+      ) {
+        pushIssue(
+          issues,
+          "INVALID_TRANSPORTATION_ROUTE_NUMBER",
+          `Transportation route ${issueFields.businessName} has an invalid ${field}.`,
+          issueFields
+        );
+      }
+    });
+
+    if (
+      fact.estimatedDurationMin !== undefined &&
+      fact.estimatedDurationMax !== undefined &&
+      fact.estimatedDurationMin > fact.estimatedDurationMax
+    ) {
+      pushIssue(issues, "INVALID_TRANSPORTATION_ROUTE_DURATION_RANGE", `Transportation route ${issueFields.businessName} has a minimum duration greater than its maximum duration.`, issueFields);
+    }
+
+    const hasFare =
+      fact.estimatedFareMin !== undefined || fact.estimatedFareMax !== undefined;
+    if (
+      fact.estimatedFareMin !== undefined &&
+      fact.estimatedFareMax !== undefined &&
+      fact.estimatedFareMin > fact.estimatedFareMax
+    ) {
+      pushIssue(issues, "INVALID_TRANSPORTATION_ROUTE_FARE_RANGE", `Transportation route ${issueFields.businessName} has a minimum fare greater than its maximum fare.`, issueFields);
+    }
+    if (hasFare && !fact.currency?.trim()) {
+      pushIssue(issues, "MISSING_TRANSPORTATION_ROUTE_CURRENCY", `Transportation route ${issueFields.businessName} has a fare without a currency.`, issueFields);
+    }
+    if (
+      fact.currency !== undefined &&
+      !supportedCurrencies.has(fact.currency)
+    ) {
+      pushIssue(issues, "UNSUPPORTED_TRANSPORTATION_ROUTE_CURRENCY", `Transportation route ${issueFields.businessName} uses unsupported currency ${fact.currency || "EMPTY"}.`, issueFields);
+    }
+
+    if (fact.sourceUrl !== undefined) {
+      let isValidHttpsUrl = false;
+      try {
+        isValidHttpsUrl = new URL(fact.sourceUrl).protocol === "https:";
+      } catch {
+        // Invalid URLs are reported below.
+      }
+      if (!isValidHttpsUrl) {
+        pushIssue(issues, "INVALID_TRANSPORTATION_ROUTE_SOURCE_URL", `Transportation route ${issueFields.businessName} has an invalid HTTPS sourceUrl.`, issueFields);
+      }
+    }
+    if (fact.verifiedAt !== undefined && !isIsoDate(fact.verifiedAt)) {
+      pushIssue(issues, "INVALID_TRANSPORTATION_ROUTE_VERIFIED_AT", `Transportation route ${issueFields.businessName} has an invalid verifiedAt date.`, issueFields);
+    }
+    if ((fact.sourceUrl === undefined) !== (fact.verifiedAt === undefined)) {
+      pushIssue(issues, "INCOMPLETE_TRANSPORTATION_ROUTE_SOURCE", `Transportation route ${issueFields.businessName} must provide sourceUrl and verifiedAt together.`, issueFields);
+    }
+  });
+};
+
 const isIsoDate = (value: string) => {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) return false;
   const date = new Date(`${value}T00:00:00.000Z`);
@@ -401,6 +485,7 @@ export function validateGlobalSnapshot(): MasterDataValidationResult {
 
   validateCoreReferences(issues);
   validateTransportationGuides(issues);
+  validateTransportationRouteFacts(issues);
   validateTaxFreeRules(issues);
 
   outletBrands.forEach((outletBrand) => {
